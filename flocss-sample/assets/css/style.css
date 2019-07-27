@@ -1,0 +1,81 @@
+@charset "UTF-8";
+/* --------------------------------------------------
+* 00.setting //カラー、フォントなどの変数を設定
+* 01.layout //l-から始まる接頭辞のclassに対して設定
+* 02.modules //ボタンなどのパーツはここにまとめる
+* 03.custom //独自のものは全てBEMに準してここに記述
+-------------------------------------------------- */
+/* --------------------------------------------------
+* 00.setting
+-------------------------------------------------- */
+body {
+  font-family: 'Helvetica Neue', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; }
+
+/* --------------------------------------------------
+* 01.layout
+-------------------------------------------------- */
+/* header */
+.header {
+  width: 100%;
+  background-color: #fff9fb;
+  margin-bottom: 2rem; }
+  .header__inner {
+    max-width: 1200px;
+    margin: 0 auto; }
+    @media screen and (max-width: 1024px) {
+      .header__inner {
+        width: 100%; } }
+  .header__title {
+    color: #ff7fa1;
+    font-size: 48px;
+    font-weight: 300;
+    padding: 2rem 0;
+    text-align: center; }
+  @media screen and (max-width: 768px) {
+    .header__sns-panel {
+      display: none; } }
+
+.header__global-nav {
+  background-color: #ff7fa1; }
+
+.header__global-nav-list {
+  max-width: 480px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 1rem 0; }
+  @media screen and (max-width: 1024px) {
+    .header__global-nav-list {
+      width: 90%; } }
+
+.header__global-nav-item {
+  color: #fff; }
+  .header__global-nav-item a {
+    display: block; }
+    .header__global-nav-item a:hover {
+      opacity: .7; }
+
+.sp-header__global-nav {
+  display: none; }
+
+/* footer */
+.footer {
+  background-color: #666;
+  padding: 2rem 0; }
+
+.footer__copylight {
+  margin: 0 auto;
+  color: #fff;
+  font-size: 14px; }
+
+/* --------------------------------------------------
+* 02.modules
+-------------------------------------------------- */
+/* button */
+/* --------------------------------------------------
+* 03.custom
+-------------------------------------------------- */
