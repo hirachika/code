@@ -1,0 +1,35 @@
+// Font stack
+$font: 'Lato', Helvetica, arial, sans-serif !default;
+
+// font-size
+$font-size-base: 14px !default;
+$font-size-large: ceil(($font-size-base * 1.25));
+$font-size-small: ceil(($font-size-base * 0.85));
+$font-size-h1: floor(($font-size-base * 2.6));
+$font-size-h2: floor(($font-size-base * 2.15));
+$font-size-h3: floor(($font-size-base * 1.7));
+$font-size-h4: floor(($font-size-base * 1.25));
+$font-size-h5: $font-size-base;
+$font-size-h6: ceil(($font-size-base * 0.85));
+
+// color
+$color-main: #ff7fa1;
+$color-base: #fff9fb;
+$color-sub: #666;
+$color-link: #000;
+
+html {
+  font-family: $font;
+  font-size: $font-size-base;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+h1 { font-size: $font-size-h1; }
+h2 { font-size: $font-size-h2; }
+h3 { font-size: $font-size-h3; }
+h4 { font-size: $font-size-h4; }
+h5 { font-size: $font-size-h5; }
+h6 { font-size: $font-size-h6; }
