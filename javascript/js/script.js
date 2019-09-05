@@ -54,3 +54,12 @@ age2.onchange = function(){
      break;
   }
 }
+
+//今日のラッキーカラーをランダムに表示する
+const colorArray = ['赤','青','黄色','緑','紫','黒','ピンク','茶色','灰色'];
+const color      = ['red','blue','yellow','green','purple','black','pink','brown','gray'];
+const value      = Math.floor(Math.random() * colorArray.length);
+document.getElementById('lucky-color').innerHTML = `あなたの今日のラッキーカラーは<span style="color:${color[value]}">${colorArray[value]}</span>です`;
+
+
+
