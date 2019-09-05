@@ -1,0 +1,37 @@
+- var title = "JSドリル";
+
+doctype
+html(lang="ja")
+  include template/_header.pug
+  script(src="https://unpkg.com/axios/dist/axios.min.js")
+
+  body
+    header
+      div.header-contents
+        h1 WORKSHOP
+        h2 JAVASCRIPT基礎の総合課題
+    div.main-wrapper
+      section.section
+        h3 短いプログラムで年齢をドロップダウンに表示する！
+        select#age-1 年齢
+      section.section
+        h3 メニューの内容をリストに表示する
+        ul#menu
+      section.section
+        h3 ボタンをクリックしたら確認ボックスを表示する①
+        p ウィンドウを閉じるには『close』ボタンを押してください
+        button#button-1 close
+      section.section
+        h3 ボタンをクリックしたら確認ボックスを表示する②
+        p ウィンドウを閉じるには『close』ボタンを押してください
+        button#button-2 close
+      section.section
+        h3 選ばれた年齢によって割引率を変える
+        select#age-2(name="age")
+          option(value="") お選びください
+          option(value="10") 10歳以下
+          option(value="30") 11-30歳
+          option(value="50") 31-50歳
+          option(value="51") 51歳以上
+
+  script(src="js/script.js")
