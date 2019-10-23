@@ -36,5 +36,30 @@ html(lang="ja")
       section.section
         h3 今日のラッキーカラーをランダムに表示する
         p#lucky-color
+      section.section
+        h3 ポケモンの数はいくつ？
+        p ポケモンが#[span.pokemon 10]匹やってきました
+        p ポケモンが#[span.pokemon 12]匹やってきました
+        p ポケモンが#[span.pokemon 36]匹やってきました
+        p ポケモンが#[span.pokemon 21]匹やってきました
+        p ポケモンは合計#[span#result]です。
+      section.section
+        h3 入力したテキストを表示する
+        p#input
+        button#input-button click me
+      section.section
+        h3 FizzBuzz
+        p コンソールログ内に1から100までを表示させる。ただし、3の倍数では「Fizz」と表示させる。5の倍数では「Buzz」と表示させる。3と5の倍数では「FizzBuzz」と表示させること。
+        button#start-button FizzBuzz
+      section.section
+        h3 各項目部分をクリックされたら10人分のアカウント情報を表示させる
+        table(style="border-color: #000000;" border="1")
+          tbody
+            tr
+              td.list#number(style="border-color: #000000; width:100px;") 番号
+              td.list#user(style="border-color: #000000; width:100px;") ユーザー名
+              td.list#id(style="border-color: #000000; width:100px;") ログインＩＤ
+              td.list#pw(style="border-color: #000000; width:100px;") パスワード
+
 
   script(src="js/script.js")

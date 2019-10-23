@@ -1,9 +1,8 @@
 //短いプログラムで年齢をドロップダウンに表示する！
 let age = document.getElementById('age-1');
-for (var i = 10; i <= 50; i++) {
-  age.innerHTML += `<option value="${i}">${i}歳</option>`;
+for (let i = 10; i <= 60; i++) {
+  age.innerHTML += `<option>${i}歳</option>`;
 }
-
 
 //メニューの内容をリストに表示する
 let menu = document.getElementById('menu');
@@ -17,7 +16,6 @@ let list = {
 for (var index in list) {
   menu.innerHTML += `<li><a href="${index}">${list[index]}</a></li>`;
 }
-
 //ボタンをクリックしたら確認ボックスを表示する①
 document.getElementById('button-1').onclick = function(){
   if(confirm('閉じてよろしいでしょうか？')){
@@ -62,4 +60,77 @@ const value      = Math.floor(Math.random() * colorArray.length);
 document.getElementById('lucky-color').innerHTML = `あなたの今日のラッキーカラーは<span style="color:${color[value]}">${colorArray[value]}</span>です`;
 
 
+//ポケモンの数はいくつ？
+const result  = document.getElementById('result');
+const pokemon = document.querySelectorAll('.pokemon');
+
+//変数は数値
+let total = 0;
+
+for (let i = 0; i < pokemon.length; i++) {
+  total += parseInt(pokemon[i].innerHTML);
+  result.innerHTML = total;
+}
+
+//入力したテキストを表示する
+let input       = document.getElementById('input');
+let inputbutton = document.getElementById('input-button');
+
+inputbutton.addEventListener('click', function() {
+  inputText = window.prompt('好きな言葉を入れてみて','');
+  input.innerHTML = inputText;
+  inputbutton.style.display = 'none';
+},false);
+
+
+//FizzBuzz
+let startButton = document.getElementById('start-button');
+
+function fizzBuzz(){
+  for (let i = 1; i <= 100; i++) {
+    if(i%3 === 0 && i%5 !== 0){
+      console.log('Fizz');
+    }else if(i%5 === 0 && i%3 !== 0){
+      console.log('Buzz');
+    }else if(i%5 === 0 && i%3 === 0){
+      console.log('FizzBuzz');
+    }else{
+      console.log(i);
+    }
+  }
+}
+
+startButton.addEventListener('click', () => {
+  fizzBuzz();
+},false);
+
+
+// 各項目部分をクリックされたら10人分のアカウント情報を表示
+let userList = document.querySelectorAll('.list');
+
+let data = {
+  "平岡": {
+    "id": "hdasdk",
+    "password": "fdsdgsf"
+  },
+  "高橋": {
+    "id": "sdad",
+    "password": "fkgd:"
+  },
+  "金沢": {
+    "id": "rtye@",
+    "password": "dfgj"
+  }
+}
+
+  for(let i = 0; i < 3; i++) {
+    console.log(data);
+  }
+
+  console.table(data);
+
+// function userListCheck(){
+// }
+
+// userListCheck();
 
