@@ -1,0 +1,55 @@
+- const title = "お問い合わせ内容確認｜株式会社ALCHEMY";
+
+doctype html
+html(lang="ja")
+  include parts/_head.pug
+  body
+    include parts/_header.pug
+    .container
+      section.description
+        .descriptionText
+          p 入力内容を確認します。
+      section.mailform
+        form#entry(method="post" action="./send.php" name="entry")
+          table.contact
+            tbody
+              tr
+                th 件名
+                td
+                  // SHOW_SUBJECT
+              tr
+                th 会社名
+                td
+                  // SHOW_COMPANY_NAME
+              tr
+                th ご担当者お名前
+                td
+                  // SHOW_OFFICER_NAME
+              tr
+                th 役職
+                td
+                  // SHOW_POSITION
+              tr
+                th メールアドレス
+                td
+                  // SHOW_MAIL
+              tr
+                th 電話番号
+                td
+                  // SHOW_TEL
+              tr
+                th 弊社を知ったきっかけ
+                td
+                  // SHOW_WAY_TO_KNOW
+              tr
+                th メッセージ本文
+                td
+                  // SHOW_BODY
+          .formBtnArea
+            input(type="hidden" name="privacy" value="同意する")
+            button(type="submit" value="入力内容を確認する")
+              p 送信
+                // SHOW_HIDDEN_INPUT
+    include parts/_entry.pug
+    include parts/_footer.pug
+    include parts/_script.pug
