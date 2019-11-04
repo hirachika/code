@@ -1,0 +1,73 @@
+- const title = "会社概要｜株式会社ALCHEMY";
+
+doctype html
+html(lang="ja")
+  include parts/_head.pug
+  body
+    include parts/_header.pug
+    .container
+      section.MainTitle
+        h1.mainBigTitle COMPANY
+        p.mainDescription
+          span #{title}
+      section.description
+        p.descriptionText ALCHEMYについてご紹介いたします。
+      section.basic
+        table.basicTable
+          tbody
+            tr
+              th 社名
+              td 株式会社ALCHEMY
+            tr
+              th 電話番号
+              td 03-6803-0297
+            tr
+              th 社員数
+              td 21名(2019年6月現在)
+            tr
+              th 設立
+              td 2017年10月
+            tr
+              th 代表取締役
+              td 都築崇
+            tr
+              th 資本金
+              td 300万円
+            tr
+              th 事業内容
+              td システムエンジニアリング事業 / IT・Web領域における教育事業 / Webコンテンツの企画・制作事業
+            tr
+              th 所在地
+              td
+                | 〒153-0044
+                br
+                | 東京都目黒区大橋2-7-7 RADIAN 4F
+            tr
+              th 福利厚生
+              td
+                | ■交通費
+                br
+                | 全額支給 (月2万円上限)
+                br
+                | ■昇給
+                br
+                | 年4回(3ヶ月ごと)
+                br
+                | ■マッサージ・はり
+                br
+                | BLBはり灸整骨院にて、月に1回無料で施術
+                br
+                | ■ジム
+                br
+                | オフィス真横のエニタイムフィットネスの利用
+                br
+                | ■スキルアップ手当
+                br
+                | 参考書の購入や外部の勉強会に参加する際、会社から5000円まで補助※入社半年たった従業員のみ
+                br
+                | ■家賃手当
+                br
+                | 15,000円の家賃補助※弊社の最寄り駅から前後2駅圏内にお住まいの場合
+    include parts/_entry.pug
+    include parts/_footer.pug
+    include parts/_script.pug

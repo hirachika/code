@@ -1,0 +1,195 @@
+- const title = "株式会社ALCHEMY";
+
+doctype html
+html(lang="ja")
+  include parts/_head.pug
+  body
+    include parts/_header.pug
+    .mainVisual
+      h1.heroTitle
+        span.heroTitleborder
+          | Welcome to 
+          span.heroTitleColor ALCHEMY
+          |  Web site
+        br
+        | Anyone Can Do It ,
+        br
+        |  Do It Yourself.
+      video#movie.mainVisualMovie(loop="" autoplay="" muted="" playsinline="")
+        source(src="images/top_01.mp4" type="video/mp4" loop="")
+    section.about.content
+      .aboutMessage.aboutMessageTop
+        .aboutText
+          h2.sectionTitle.sectionAbout ABOUT
+          p.sectionSubTitle.sectionAbout 私たちについて
+          h3.aboutTitle
+            | 永久不滅のサービスは存在しないが、
+            br
+            | テクノロジーに対するニーズは
+            br.brNone
+            | 尽きることがない
+          p
+            | 身近にいる大切な人を、遠くにいる誰かを、 
+            br
+            | 1人でも多くの人を楽しく、便利に、
+            br
+            | 笑顔になれる世の中を、技術の力で創っていきます。
+          .button
+            .hover
+            a(href="about.html") READ  MORE
+        .aboutImage.aboutImageNone
+          figure
+            img(src="images/top_about_01.jpg" alt="")
+      .aboutContent
+        a(href="company.html")
+          picture
+            source(srcset="images/top_about_02.jpg" alt="会社" media="(min-width: 480px)")
+            img(src="images/sp_top_about_02.jpg" alt="会社")
+        a(href="traning.html")
+          picture
+            source(srcset="images/top_about_03.jpg" alt="研修" media="(min-width: 480px)")
+            img(src="images/sp_top_about_03.jpg" alt="研修")
+        a(href="recruit.html")
+          picture
+            source(srcset="images/top_about_04.jpg" alt="採用" media="(min-width: 480px)")
+            img(src="images/sp_top_about_04.jpg" alt="採用")
+    section.member.content
+      h2.sectionTitle MEMBER
+      p.sectionSubTitle 社員紹介
+      .memberList
+        .memberCard
+          a(href="member/member01.html")
+            picture
+              source(srcset="images/top_member_01.jpg" alt="CHIKAKO HIRAOKA" media="(min-width:760px)")
+              img(src="images/sp_top_member_01.jpg" alt="CHIKAKO HIRAOKA")
+            .memberIntroduction
+              p.memberName CHIKAKO HIRAOKA
+              p.memberPosition デザイナー
+              p.memberCopy
+                | どこへいっても通用する技術を
+                br.brSp
+                | 身に付けていきたい
+        .memberCard
+          a(href="member/member02.html")
+            picture
+              source(srcset="images/top_member_02.jpg" alt="KAZUNORI JIN" media="(min-width:760px)")
+              img(src="images/sp_top_member_02.jpg" alt="KAZUNORI JIN")
+            .memberIntroduction
+              p.memberName KAZUNORI JIN
+              p.memberPosition デザイナー
+              p.memberCopy
+                | デザインの力で
+                br.brSp
+                | もっと便利で明るい世の中に
+        .memberCard
+          a(href="member/member03.html")
+            picture
+              source(srcset="images/top_member_03.jpg" alt="SHIORI HIRAO" media="(min-width:760px)")
+              img(src="images/sp_top_member_03.jpg" alt="SHIORI HIRAO")
+            .memberIntroduction
+              p.memberName SHIORI HIRAO
+              p.memberPosition デザイナー
+              p.memberCopy 人と人をつなぐデザインを作っていきたい
+        .memberCard
+          a(href="member/member03.html")
+            picture
+              source(srcset="images/top_member_03.jpg" alt="SHIORI HIRAO" media="(min-width:760px)")
+              img(src="images/sp_top_member_03.jpg" alt="SHIORI HIRAO")
+            .memberIntroduction
+              p.memberName SHIORI HIRAO
+              p.memberPosition デザイナー
+              p.memberCopy 人と人をつなぐデザインを作っていきたい
+        .memberCard
+          a(href="member/member03.html")
+            picture
+              source(srcset="images/top_member_03.jpg" alt="SHIORI HIRAO" media="(min-width:760px)")
+              img(src="images/sp_top_member_03.jpg" alt="SHIORI HIRAO")
+            .memberIntroduction
+              p.memberName SHIORI HIRAO
+              p.memberPosition デザイナー
+              p.memberCopy 人と人をつなぐデザインを作っていきたい
+    section.message.content
+      h2.sectionTitle MESSAGE
+      p.sectionSubTitle 代表メッセージ
+      .messageText
+        .messageContent
+          p.mesaseCopy
+            | 自分の為に頑張ったら、
+            br
+            | 会社の為にもなるような
+            br.brNone
+            | 会社を作りたい
+          p.mesageName 代表取締役 都築 崇
+          .button.messageButton
+            .hover
+            a(href="message.html") READ  MORE
+    section.blog.content
+      h2.sectionTitle BLOG
+      p.sectionSubTitle ブログ
+      a.frame(href="https://www.wantedly.com/companies/alchemy-lab/post_articles/106376" target="_blank")
+        .blogMain
+          .blogMainImage
+            figure
+              img(src="images/blog/01.jpg" alt="志さえあれば挑戦できる会社を目指して 未経験者採用を積極的に進める理由 ")
+          .blogMainText
+            p.blogCategory
+              span.category STORY
+              span.tag #Wantedly
+            p.blogMainTextCardTitle
+              | "志さえあれば挑戦できる会社を目指して" 
+              br.brSp
+              | 未経験者採用を積極的に進める理由
+            p.blogTime
+              time(datetime="") 2018/01/26
+      .blogList
+        .blogCard
+          a(href="https://www.wantedly.com/companies/alchemy-lab/post_articles/167758" target="_blank")
+            .blogImage
+              figure
+                img(src="images/blog/05.jpg" alt="「やさしさが循環する会社」を作って教育に強くなる")
+            .blogText
+              p.blogCategory
+                span.category STORY
+                span.tag #Wantedly
+              p.blogCardTitle 「やさしさが循環する会社」を作って教育に強くなる。
+              p.blogTime
+                time(datetime="") 2019/05/10
+        .blogCard
+          a(href="https://www.wantedly.com/companies/alchemy-lab/post_articles/151158" target="_blank")
+            .blogImage
+              figure
+                img(src="images/blog/04.jpg" alt="【勉強会レポート】実戦形式でデザイン力を身につける！デザインハッカソン開催！")
+            .blogText
+              p.blogCategory
+                span.category STORY
+                span.tag #Wantedly
+              p.blogCardTitle デザインハッカソン開催！
+              p.blogTime
+                time(datetime="") 2019/01/15
+        .blogCard
+          a(href="https://www.wantedly.com/companies/alchemy-lab/post_articles/107186" target="_blank")
+            .blogImage
+              figure
+                img(src="images/blog/03.jpg" alt="「想定外のスゲーことが起こるチーム」が一番面白い")
+            .blogText
+              p.blogCategory
+                span.category STORY
+                span.tag #Wantedly
+              p.blogCardTitle 「想定外のスゲーことが起こるチーム」が一番面白い
+              p.blogTime
+                time(datetime="") 2018/02/01
+        .blogCard
+          a(href="https://www.wantedly.com/companies/alchemy-lab/post_articles/106716" target="_blank")
+            .blogImage
+              figure
+                img(src="images/blog/02.jpg" alt="キャリアプランおよび想定月収に関して")
+            .blogText
+              p.blogCategory
+                span.category STORY
+                span.tag #Wantedly
+              p.blogCardTitle キャリアプランおよび想定月収に関して
+              p.blogTime
+                time(datetime="") 2018/01/29
+    include parts/_entry.pug
+    include parts/_footer.pug
+    include parts/_script.pug

@@ -1,0 +1,77 @@
+- const title = "社員紹介｜株式会社ALCHEMY";
+
+block const
+  - members = {}
+  - members.name = '平岡知佳子'
+  - members.url = 'https://alchemy-lab.jp/'
+  - members.image = 'https://alchemy-lab.jp/images/ogp.jpg'
+  - members.description = '株式会社ALCHEMYは2017年10月に設立しました。『永久不滅のサービスは存在しないが、テクノロジーに対するニーズは尽きることがない』をモットーに100人のクリエイター集団を目指しています。ご興味を持っていただけた方は、気軽にお問い合わせください。'
+
+
+doctype html
+html(lang="ja")
+  include ../parts/_head.pug
+  body
+    include ../parts/_header.pug
+    section.MainTitle
+      h1.mainBigTitle MEMBER
+      p.mainDescription
+        span #{title}
+    section.staff.member01
+      .staffMessage
+        p.staffMessageTitle
+          | どこへいっても通用する技術を
+          br
+          | 身に付けていきたい
+        p.staffMessageName
+          | デザイナー
+          br
+          | #{members.name}
+    section.staffChapter.content.container
+      h2.staffChapterTitle なぜALCHEMYに入社したのか
+      p.staffChapterText
+        | 最初はスタートアップというところに魅力を感じました。
+        br
+        | 転職活動で自己分析を重ねた結果、すでに決まりがあるところにジョインするというより、自分で新しいことを提案して組織を作っていくほうがよっぽど大変だけどやりがいがあって楽しそうだと思うようになりました。
+        br
+        | 前職では例えばこれやってみましょうとか、これやりたいですって提案していいねとかOKはもらえても、実現するまでの道のりがめちゃくちゃ遠かったのです。実際にALCHEMYでは提案してから実行されるまでが早く、短いスパンでちょっとした夢を叶えることができるのです。
+    section.staffChapter.content.container
+      h2.staffChapterTitle スキルアップ、キャリアアップしたことは
+      p.staffChapterText まず、色々な現場で色々な人とお仕事を一緒にさせていただいたことで、仕事への取り組み方とか考え方とかマインドの部分が大きく変化しました。
+      p.staffChapterText
+        | これまでも効率よく作業することは意識してきたつもりですが、刺激的な人との出会いを通して「頑張らないために努力する」という一貫したセオリーを持つようになり、例えばコーディングでは更新する人のことを考えあらゆることを想定して設計するとか、ディレクションではより無駄なく少ないコミュニケーションコストで回せるようになるとか、デザインではエンジニアへの細かい気遣いとか、そんな細部への取り組み方が大きく変わりました。それが結果的に自身の全体のスキルを引き上げていったように思います。
+    section.staffChapter.content
+      .staffChapterCard
+        .staffChapterCardImage
+          img(src="../images/member01_02.jpg" alt="")
+        .staffChapterCardText.container
+          h2.staffChapterTitle ALCHEMYにはどんな人がいますか
+          p.staffChapterText
+            | とにかく若いです。私がWeb業界に入った時の年齢よりさらに若い子がたくさんいるので、この子たちの3年後、5年後って一体どうなっているのだろうって思います。
+            br
+            | それぞれ個性豊かで、服装も髪型も性格も同じようなタイプの人が一人もいないのが不思議です。ただ共通点はあって、元気で素直。あんまり捻くれた人がいないです。
+    section.staffIntroduction.content.container
+      h2.sectionTitle MEMBER
+      p.sectionSubTitle 社員紹介
+      .staffList
+        .staffIntroductionCard
+          a(href="member02.html")
+            picture
+              source(srcset="../images/top_member_02.jpg" alt="KAZUNORI JIN" media="(min-width:760px)")
+              img(src="../images/sp_top_member_02.jpg" alt="KAZUNORI JIN")
+            .memberIntroduction
+              p.memberName KAZUNORI JIN
+              p.memberPosition デザイナー
+              p.memberCopy デザインの力でもっと便利で明るい世の中に
+        .staffIntroductionCard
+          a(href="member03.html")
+            picture
+              source(srcset="../images/top_member_03.jpg" alt="SHIORI HIRAO" media="(min-width:760px)")
+              img(src="../images/sp_top_member_03.jpg" alt="SHIORI HIRAO")
+            .memberIntroduction
+              p.memberName SHIORI HIRAO
+              p.memberPosition デザイナー
+              p.memberCopy 人と人をつなぐデザインを作っていきたい
+    include ../parts/_entry.pug
+    include ../parts/_footer.pug
+    include ../parts/_script.pug

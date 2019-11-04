@@ -106,31 +106,104 @@ startButton.addEventListener('click', () => {
 
 
 // 各項目部分をクリックされたら10人分のアカウント情報を表示
-let userList = document.querySelectorAll('.list');
+let extensionName = document.getElementById('extension-name');
+let row           = document.getElementById('row');
 
-let data = {
-  "平岡": {
-    "id": "hdasdk",
-    "password": "fdsdgsf"
+var data = [
+  {
+    "name": "QRコード",
+    "url": "https://chrome.google.com/webstore/detail/the-qr-code-extension/oijdcdmnjjgnnhgljmhkjlablaejfeeb"
   },
-  "高橋": {
-    "id": "sdad",
-    "password": "fkgd:"
+  {
+    "name": "マルチハイライト",
+    "url": "https://chrome.google.com/webstore/detail/multi-highlight/pfgfgjlejbbpfmcfjhdmikihihddeeji"
   },
-  "金沢": {
-    "id": "rtye@",
-    "password": "dfgj"
+  {
+    "name": "Pasty",
+    "url": "https://chrome.google.com/webstore/detail/pasty/hdjihnnclpjhfdbbinmgoiehhoehhlgf"
+  },
+  {
+    "name": "Window Resizer",
+    "url": "https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh"
+  },
+  {
+    "name": "OneTab",
+    "url": "https://chrome.google.com/webstore/detail/onetab/chphlpgkkbolifaimnlloiipkdnihall"
+  },
+  {
+    "name": "Image Downloader",
+    "url": "https://chrome.google.com/webstore/detail/image-downloader/cnpniohnfphhjihaiiggeabnkjhpaldj"
+  },
+  {
+    "name": "Alt & Meta viewer",
+    "url": "https://chrome.google.com/webstore/detail/alt-meta-viewer/jjcjblcbnjhgjlnclhficglfjedhpjhl"
+  },
+  {
+    "name": "HTMLエラーチェッカー",
+    "url": "https://chrome.google.com/webstore/detail/html%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%81%E3%82%A7%E3%83%83%E3%82%AB%E3%83%BC/ohdllebchmmponnofchalfkegpjojcaf?hl=ja"
+  },
+  {
+    "name": "Awesome Screenshot",
+    "url": "https://chrome.google.com/webstore/detail/awesome-screenshot-screen/nlipoenfbbikpbjkfpfillcgkoblgpmj"
+  },
+  {
+    "name": "FireShot",
+    "url": "https://chrome.google.com/webstore/detail/take-webpage-screenshots/mcbpblocgmgfnpjjppndjkmgjaogfceg"
+  },
+  {
+    "name": "Check My Links",
+    "url": "https://chrome.google.com/webstore/detail/check-my-links/ojkcdipcgfaekbeaelaapakgnjflfglf"
+  },
+  {
+    "name": "Open Graph Preview",
+    "url": "https://chrome.google.com/webstore/detail/open-graph-preview/ehaigphokkgebnmdiicabhjhddkaekgh"
+  },
+  {
+    "name": "Linkclump",
+    "url": "https://chrome.google.com/webstore/detail/linkclump/lfpjkncokllnfokkgpkobnkbkmelfefj"
+  },
+  {
+    "name": "Linkify JIRA Issues",
+    "url": "https://chrome.google.com/webstore/detail/linkify-jira-issues/ekbbnaokafbanjgmcbllligemhiclbcb"
+  },
+  {
+    "name": "pixel perfect",
+    "url": "https://chrome.google.com/webstore/detail/perfectpixel-by-welldonec/dkaagdgjmgdmbnecmcefdhjekcoceebi"
+  },
+  {
+    "name": "かんたん文字数カウント",
+    "url": "https://chrome.google.com/webstore/detail/%E3%81%8B%E3%82%93%E3%81%9F%E3%82%93%E6%96%87%E5%AD%97%E6%95%B0%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/lmmephjlhfdnijfigajbmemendbfhnha?hl=ja"
+  },
+  {
+    "name": "アプリ",
+    "url": "url（mac）"
+  },
+  {
+    "name": "dash",
+    "url": "https://kapeli.com/dash"
+  },
+  {
+    "name": "skitch",
+    "url": "https://apps.apple.com/jp/app/skitch-%E6%92%AE%E3%82%8B-%E6%8F%8F%E3%81%8D%E8%BE%BC%E3%82%80-%E5%85%B1%E6%9C%89%E3%81%99%E3%82%8B/id425955336?mt=12"
+  },
+  {
+    "name": "sublime",
+    "url": "https://www.sublimetext.com/3"
+  },
+  {
+    "name": "WinArchiver Lite",
+    "url": "https://www.sublimetext.com/3"
+  },
+  {
+    "name": "prepros",
+    "url": "https://prepros.io/"
+  },
+  {
+    "name": "Gazo",
+    "url": "https://gyazo.com/captures"
   }
+];
+
+for(let i = 0; i < data.length; i++) {
+  row.insertAdjacentHTML('afterend',`<tr><td><a href="${data[i].url}">${data[i].name}</a></td></tr>`);
 }
-
-  for(let i = 0; i < 3; i++) {
-    console.log(data);
-  }
-
-  console.table(data);
-
-// function userListCheck(){
-// }
-
-// userListCheck();
-
