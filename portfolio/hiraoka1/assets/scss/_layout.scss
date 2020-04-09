@@ -1,0 +1,93 @@
+/* header */
+.l-header{
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 3px 2px 0.1px rgba(#000, .3);
+  position: relative;
+  z-index: 1;
+}
+.l-header__inner{
+  @include width($width-container,90%);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2vw 0;
+  @include mq(md){
+    padding: 4vw 0;
+  }
+}
+.l-header__global-nav{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.l-header__global-nav__item{
+  padding-right: 50px;
+  font-size: $font-size-xs;
+  @include mq(md){
+    padding-right: 5vw;
+    font-size: $font-size-xss;    
+  }
+  h1{
+    width: 50px;
+    @include mq(md){
+      width: 7vw;
+    }
+    img{
+      width: 100%;
+    }
+  }
+  a{
+    transition:ease .2s;
+    display: block;
+    &.active{
+      color: $color-main;
+    }
+    &:hover{
+      color: $color-main;
+    }
+  }
+}
+.l-container{
+  background-image: linear-gradient(to top, $color-base 0%, #fff 100%);
+  padding-bottom:100px; 
+}
+.l-container__inner{
+  padding-top: 200px;
+}
+.l-container__inner--works{
+  padding-top:50px; 
+}
+.l-section{
+  @include width($width-main,90%);
+  margin: 0 auto 50px;
+}
+.l-seciton__title{
+  font-size: $font-size-lg;
+  margin-left: -22vh;
+  margin-bottom: 25px;
+  position: sticky;
+  top: 3%;
+  @include mq(xl){
+    position: static;
+    margin-left: 0;
+  }
+  @include mq(md){
+    font-size: $font-size-md;
+  }
+}
+/* footer */
+.l-footer{
+  background-color: $color-sub;
+  padding: 2rem 0;
+}
+
+.l-footer__copylight{
+  @include width($width-container,90%);
+  margin: 0 auto;
+  color: #fff;
+  font-size: $font-size-xss;
+}
