@@ -1,33 +1,35 @@
 /* button */
 .button{
   border:1px $color-link solid;
-  border-radius: 5px;
-  background-color: #fff;
   color: #000;
   display: inline-block;
-  font-size: $font-size-xs;
-  line-height: 1.2;
-  padding: .5rem 1.5rem;
+  font-size: $font-size-xss;
+  padding: .7rem 2rem;
   text-align: center;
-  transition:ease .2s;
   @include mq(md){
-    font-size: $font-size-xss;
     padding: .5rem 3vw;
-  }
-  &:hover{
-    border:1px $color-main solid;
-    background-color: $color-main;
-    color: #fff;
   }
 }
 .disable{
   pointer-events: none;
 }
+
 .paragraph{
+  margin-bottom: 1rem;
   font-size: $font-size-xss;
+  color: #000;
   line-height: 1.5;
-  margin-bottom: 25px;
   &:last-child{
     margin-bottom: 0;
   }
+}
+
+.copy {
+  font-size: $font-size-xs;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.vertica-line {
+  writing-mode: vertical-rl;
 }

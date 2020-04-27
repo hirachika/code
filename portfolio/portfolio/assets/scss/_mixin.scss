@@ -70,7 +70,7 @@ $breakpoints: (
 
 @mixin width($max-width:$width-container, $spWidth:100%) {
   max-width: $max-width;
-  @include mq(lg) {
+  @include mq(xl) {
     width: $spWidth;
   }
 }

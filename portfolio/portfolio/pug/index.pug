@@ -1,0 +1,164 @@
+doctype html
+include includes/head.pug
+body
+  include includes/header.pug
+  .hero
+    h1.hero__title CHIKAKO HIRAOKA
+      br
+      | PORTFOLIO 2020
+    p.hero__sub-title DESIGNER
+      span.vertica-line POSITION
+      | FRONT-END
+  .l-container
+    .l-container__inner
+      section#carrier.l-section
+        h2.l-seciton__title CARRIER
+        .carrier
+          .carrier__message
+            h3.copy 変わりゆく時代や環境に適応していきたい
+            p.paragraph
+              | 2015年よりWebデザイナーとして飲食事業のHP制作、人材事業で求人サービス、マーケティング事業のLP制作などでキャリアを積むと同時にデザインを言語化していく力を身につけました。
+            p.paragraph
+              | また、2017年からはSESとしてデザイン兼フロントのスキルを身につけるため様々な案件にジョインし、よりメンテナブルで拡張性の高いCSSの設計とプログラミングのスキルアップに注力しました（これによってWebデザインの設計について見直す機会を多く得ました）。
+            p.paragraph これまでの経験を生かし「そこでしか通用しない」ではなくどこへ行っても、またどんな変化に対応していける人材としてスキルアップし続けます。
+          .carrier__img
+            img(src="../assets/img/index/index_author.jpg", alt="CHIKAKO HIRAOKA")
+      section#works.l-section
+        h2.l-seciton__title WORKS
+        .grid
+          .column.column--works
+            .column__img
+              img(src="../assets/img/index/index_works_audi.png" alt="")
+            h3.column__name 自動車メーカー DLRランキングサイト
+            p.column__job coding / design
+            p.paragraph
+              | 某自動車メーカーDLR CEMランキングサイトです。毎月の手html更新と確認の手間を低減するため、設計改修を行いました。
+              br
+              | 主にDLRがチェックするサイトであるためPC版はママで良いとのとこでしたが、これを機にスマホ版のデザインとコーディングも対応しました。
+            .column__button-area
+              a.button(href="https://www.audi.jp/css/" target="_blank") More
+          .column.column--works
+            .column__img
+              img(src="../assets/img/index/index_works_atocare.png" alt="")
+            h3.column__name アトケアプロ
+            p.column__job design / coding / direction
+            p.paragraph
+              | アトピーの子供(小学校低学年)を持つ母親をターゲットとした健康サプリのランディングページです。
+              br
+              | プロポリスというと渋緑色や黄色の配色のLPが多いですが、苦いイメージを持たれにくくするため、緑ではなく緑に近い黄色をベースカラーにデザインしています。こちらの商品は梱包用冊子デザインも担当いたしました。ライターのリライトやディレクターの入れ替わりなどもあり、3ヶ月近い制作時間を要しました。
+          .column.column--works
+            .column__img
+              img(src="../assets/img/index/index_works_kurumi.png" alt="")
+            h3.column__name Kurumi
+            p.column__job design
+            p.paragraph
+              | 働く母親、働くシングルマザーをターゲットとした求人・情報収集アプリです。
+              br
+              | 働く女性向けかつ、男性もターゲットにしたいという要望でしたので、女性的向きすぎない色味でデザインしました。基本構成は約30ページからなり、グノシーなどのニュース系アプリやタウンワークなどの求人アプリなどを統合したような構成になっています。
+            .column__button-area
+              a.button(href="works.html#kurumi") More
+          .column.column--works
+            .column__img
+              img(src="../assets/img/index/index_works_aihada.png" alt="")
+            h3.column__name 愛肌ソープ
+            p.column__job design / direction
+            p.paragraph
+              | ECサイト『コイスルカラダ』で配信されたデリケートゾーン用ソープのランディングページです。デリケートゾーンの黒ずみや臭いに対して悩む女性の年齢層、性格を絞り込んで、経験豊富ではなく初めて恋人ができた、あるいは恋愛に自信がない女性を第1ターゲットとしました。また、他社の商品からののりかえを検討しているユーザーへのアプローチとして、ジャムウをより効果的に魅せるためハーブが凝縮されたイメージも盛り込んでいます。
+            .column__button-area
+              a.button(href="works.html#aihada") More
+          .column.column--works
+            .column__img
+              img(src="../assets/img/index/index_works_lovedict.png" alt="")
+            h3.column__name ラブディクト
+            p.column__job design / coding / direction
+            p.paragraph
+              | ECサイト『コイスルカラダ』で配信された媚薬商品のランディングページです。ターゲットは恋人・夫婦関のセックスレスに悩んでいる女性で、サイト内で実施されたアンケートを元に、可愛すぎずかつ大人っぽすぎない雰囲気でデザインしました。
+              br
+              | 制作期間はデザイン4日、コーディング1日という最短納期の案件でした。
+          .column.column--works
+            .column__img
+              img(src="../assets/img/index/index_works_lipty9.png" alt="")
+            h3.column__name リプティナイン
+            p.column__job design / coding / photo
+            p.paragraph
+              | 育毛剤のランディングページです。
+              br
+              | 薄毛に悩む男性をターゲットとし、当時流行っていたビルドマッスルのような力強いイメージを参考に黒ベースでデザインしました。こちらは商品のパッケージデザインも担当いたしました。
+      section#skills.l-section
+        h2.l-seciton__title SKILLS
+        .grid
+          .column.column--skills
+            .column__img
+              img(src="../assets/img/index/index_skills_ps.png" alt="フォトショップ")
+            .column__text-box
+              h3.column__name
+                | Photoshop
+                span.column__name__level ★★★★
+              p.paragraph 実務経験4年。Webサイトデザインき限らず、画像レタッチ 、キャラクターデザイン、厚塗り系のイラスト制作なども可能です。
+          .column.column--skills
+            .column__img
+              img(src="../assets/img/index/index_skills_ai.png" alt="イラストレーター")
+            .column__text-box
+              h3.column__name
+                | Illustrator
+                span.column__name__level ★★★★
+              p.paragraph 実務経験3年。印刷業界経験あり、photoshopと併用してロゴ、フライヤー、名刺、年賀状、DM、イラスト制作に使用します。
+          .column.column--skills
+            .column__img
+              img(src="../assets/img/index/index_skills_html5.png" alt="HTML5")
+            .column__text-box
+              h3.column__name
+                | HTML5
+                span.column__name__level ★★★★
+              p.paragraph セマンティクスを意識しSMACCSやBEMなどガイドラインに法ったメンテナブルなマークアップが可能です。
+          .column.column--skills
+            .column__img
+              img(src="../assets/img/index/index_skills_css3.png" alt="CSS3")
+            .column__text-box
+              h3.column__name
+                | CSS3
+                span.column__name__level ★★★★
+              p.paragraph 0からのコーディング、レスポンシブ対応、アニメーション可。また、SMACCSやOOCSSなどの概念、BEMに法った設計ができます。
+          .column.column--skills
+            .column__img
+              img(src="../assets/img/index/index_skills_scss.png" alt="SCSS")
+            .column__text-box
+              h3.column__name
+                | SCSS
+                span.column__name__level ★★★
+              p.paragraph パーシャルファイルを使用し、サイトの規模に合わせた構成でコーディング可能です。
+          .column.column--skills
+            .column__img
+              img(src="../assets/img/index/index_skills_git.png" alt="Git")
+            .column__text-box
+              h3.column__name
+                | Git
+                span.column__name__level ★★★
+              p.paragraph GitHubでの開発経験あり。
+          .column.column--skills
+            .column__img
+              img(src="../assets/img/index/index_skills_js.png" alt="Javascript")
+            .column__text-box
+              h3.column__name
+                | Javascript
+                span.column__name__level ★★★
+              p.paragraph モーダルやスライダーなどの簡単なプログラム、軽微なデバック対応、jQueryを使用した実装などが可能です。
+          .column.column--skills
+            .column__img
+              img(src="../assets/img/index/index_skills_nodejs.png" alt="Node.js")
+            .column__text-box
+              h3.column__name
+                | Node.js
+                span.column__name__level ★★★
+              p.paragraph モーダルやスライダーなどの簡単なプログラム、軽微なデバック対応、jQueryを使用した実装などが可能です。
+          .column.column--skills
+            .column__img
+              img(src="../assets/img/index/index_skills_cakephp.png" alt="cakePHP")
+            .column__text-box
+              h3.column__name
+                | CakePHP
+                span.column__name__level ★★★
+              p.paragraph モーダルやスライダーなどの簡単なプログラム、軽微なデバック対応、jQueryを使用した実装などが可能です。
+  include includes/footer.pug
+  script(src="../assets/js/jquery.min.js")
+  script(src="../assets/js/function.js")
