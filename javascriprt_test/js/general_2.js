@@ -1,60 +1,68 @@
 'use strict';
 
-//要素の準備
-  const value  = document.querySelectorAll('.value');
-  const button = document.querySelector('.button');
-  const result = document.querySelector('.result');
-  const error  = document.querySelector('.error');
+  //要素の準備
+  const ERROR  = document.querySelector('.error');
+  const RESULT = document.querySelector('.result');
+  const BUTTON = document.querySelector('.button');
+  const VALUE  = document.querySelectorAll('.value');
 
   // ボタン初期状態（無効）
-  button.disabled = 'disabled';
+  BUTTON.disabled = 'disabled';
 
   // エラーメッセージの表示と無効化
-  const showMessage = (message) => {
-    error.innerHTML = message;
-    button.disabled = 'disabled';
+  const showMessage = (message = '空白または入力に誤りがあります') => {
+    ERROR.innerHTML  = message;
+    BUTTON.disabled  = 'disabled';
+    RESULT.innerHTML = '';
   }
 
   // エラーメッセージの解除とボタンの有効化
   const hideMessage = () => {
-    error.innerHTML = '';
-    button.disabled = '';
+    ERROR.innerHTML = '';
+    BUTTON.disabled = '';
   }
 
   // フォーカスが外れたら入力内容チェック
-  value.forEach(target => {
-    target.onblur = () => {
-      const thisValue  = target.value;
-      const yearValue  = Number(value[0].value);
-      const monthValue = Number(value[1].value);
-      const dateValue  = Number(value[2].value);
+  VALUE.forEach(input => {
+    input.onblur = () => {
+      const year  = Number(VALUE[0].value);
+      const month = Number(VALUE[1].value);
+      const day   = Number(VALUE[2].value);
 
-      if (thisValue.match(/[^0-9]+/)) {
-        showMessage('半角数字で入力してください。');
+      // 空白と半角数字の正否判定
+      if (!Number(input.value) || input.value.match(/[^0-9]+/)) {
+        showMessage();
       }
-      else if (yearValue < 1000 || yearValue > 9999 || dateValue < 1 || dateValue > 31 || monthValue < 1 || monthValue > 12) {
-        showMessage('空白または入力に誤りがあります。');
+      // 西暦と月の正否判定
+      else if (year < 1000 || year > 9999 || month > 12) {
+        showMessage();
       }
-      // 30日の月チェック
-      else if (monthValue === 4 && dateValue > 30 || monthValue === 6 && dateValue > 30 || monthValue === 9 && dateValue > 30 || monthValue === 11 && dateValue > 30) {
-        showMessage('1～30の半角数字で入力してください。');
+      else if ((month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10  || month === 12) && day > 31) {
+        showMessage('1～31の半角数字で入力してください');
       }
-      // 2月チェック
-      else if (yearValue % 4 !== 0 && monthValue === 2 && dateValue > 28) {
-        showMessage('1～28の半角数字で入力してください。');
+      else if ((month === 4 || month === 6 || month === 9 || month === 11) && day > 30) {
+        showMessage('1～30の半角数字で入力してください');
       }
-      // 閏年チェック
-      else if ((yearValue % 4 === 0 && yearValue % 100 !== 0 && monthValue === 2 && dateValue > 29) || (yearValue % 400 === 0 && monthValue === 2 && dateValue > 29 )) {
-        showMessage('閏年です。1～29の半角数字で入力してください。');
+      else if (month === 2 && day > 29) {
+        showMessage('1～28の半角数字で入力してください');
       }
-      else{
+      else if (month === 2 && day > 28) {
+        showMessage('1～28の半角数字で入力してください');
+        if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+          hideMessage();
+        }
+        else {
+          showMessage('1～28の半角数字で入力してください');
+        }
+      }
+      else {
         hideMessage();
       }
     }
   });
 
   // クリックしたら誕生日を判定
-  button.addEventListener('click',(e) => {
+  BUTTON.addEventListener('click',(e) => {
     e.preventDefault();
 
     const yourBirthDay = {
