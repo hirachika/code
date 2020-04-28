@@ -12,8 +12,9 @@
 
   // エラーメッセージの表示と無効化
   const showMessage = (message) => {
-    ERROR.innerHTML = message;
-    BUTTON.disabled = 'disabled';
+    ERROR.innerHTML  = message;
+    BUTTON.disabled  = 'disabled';
+    RESULT.innerHTML = '';
   }
 
   // エラーメッセージの解除とボタンの有効化
@@ -24,30 +25,46 @@
 
   VALUE.forEach(input => {
     input.onblur = () => {
-      // 文字列で判定するもの
-      const year  = VALUE[0].value;
-      const month = VALUE[1].value;
-      const day   = VALUE[2].value;
-      const date  = `${year}/${month}/${day}`;
+      const year  = Number(VALUE[0].value);
+      const month = Number(VALUE[1].value);
+      const day   = Number(VALUE[2].value);
 
-      // else if(year < 1000 || year > 9999 || day < 1 || day > 31 || month < 1 || month > 12){
-      if(input.value.match(/[^0-9]+/) || !date.match(/^\d{4}\/\d{1,2}\/\d{1,2}$/)){
+      // 空白と半角数字の正否判定
+      if (!Number(input.value) || input.value.match(/[^0-9]+/)) {
+        console.log('空白と半角数字の正否判定');
         showMessage('空白または入力に誤りがあります');
       }
-      // 30日の月判定
-      else if(month.match(/(4|6|9|11)/) && date > 30){
-        showMessage('1～30の半角数字で入力してください');
+      // 西暦と月の正否判定
+      else if(year < 1000 || year > 9999 || month > 12 || day > 31){
+        console.log('西暦と月の正否判定');
+        showMessage('空白または入力に誤りがあります');
+        // 4,6,9,11月の日数の正否判定
+        if (day > 30) {
+          if (month === 4,6,9,11) {
+            showMessage('1～30の半角数字で入力してください');
+          }
+          else {
+            showMessage('1～31の半角数字で入力してください');
+          }
+        }
+        else {
+          hideMessage();
+        }
       }
+
       // 2月判定
-      else if(month == 2 && day > 28) {
+      else if (month == 2 && day > 28) {
         // 29日以上は閏年判定
-        if(day > 29) {
+        if (day > 29) {
           if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
             showMessage('閏年です。1～29の半角数字で入力してください');
           }
           else {
             showMessage('1～28の半角数字で入力してください');
           }
+        }
+        else {
+          hideMessage();
         }
       }
       else{
