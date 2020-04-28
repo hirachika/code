@@ -37,26 +37,22 @@
       else if (year < 1000 || year > 9999 || month > 12) {
         showMessage();
       }
-      else if (day > 31) {
+      else if ((month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10  || month === 12) && day > 31) {
         showMessage('1～31の半角数字で入力してください');
       }
       else if ((month === 4 || month === 6 || month === 9 || month === 11) && day > 30) {
         showMessage('1～30の半角数字で入力してください');
       }
-
-      // 2月判定
-      else if (month == 2 && day > 28) {
-        // 29日以上は閏年判定
-        if (day > 29) {
-          if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
-            showMessage('閏年です。1～29の半角数字で入力してください');
-          }
-          else {
-            showMessage('1～28の半角数字で入力してください');
-          }
+      else if (month === 2 && day > 29) {
+        showMessage('1～28の半角数字で入力してください');
+      }
+      else if (month === 2 && day > 28) {
+        showMessage('1～28の半角数字で入力してください');
+        if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+          hideMessage();
         }
         else {
-          hideMessage();
+          showMessage('1～28の半角数字で入力してください');
         }
       }
       else {
