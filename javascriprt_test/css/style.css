@@ -88,11 +88,23 @@ a:hover {
 CUSTOM STYLE
 -------------------------------------------------- */
 .form {
-  margin-top: 3rem; }
-  .form__list {
+  margin-top: 2rem; }
+  .form__wrap {
     border: none;
     padding: 0; }
   .form__item {
+    width: 50%;
+    margin: 0 auto;
+    display: -ms-grid;
+    display: grid;
+    gap: .5rem;
+    -ms-grid-rows: 30px .5rem 30px .5rem 30px;
+    -ms-grid-columns: 90% .5rem 1fr;
+    grid-template: ". ." 30px ". ." 30px ". ." 30px / 90% 1fr; }
+    @media (max-width: 500px) {
+      .form__item {
+        width: 100%; } }
+  .form span {
     color: #666;
     vertical-align: middle; }
 
@@ -120,10 +132,11 @@ textarea {
   opacity: .7; }
 
 .error {
-  margin: .5rem 0 0 .5rem;
-  height: 50px;
+  margin: .5rem 0;
+  height: 30px;
   color: #f06;
-  font-size: 80%; }
+  font-size: 80%;
+  text-align: center; }
 
 .note {
   display: inline;
