@@ -4,6 +4,7 @@
   const VALUE  = document.querySelectorAll('.value');
   const ERROR  = document.querySelector('.error');
   const BUTTON = document.querySelector('.button');
+  const RESULT = document.querySelector('.result');
   BUTTON.disabled = 'disabled';
 
   // エラーメッセージの表示と無効化
@@ -61,18 +62,32 @@
   BUTTON.addEventListener('click',(e) => {
     e.preventDefault();
 
-      // 今日と誕生日の差を取得
-      const TODAY    = new Date();
-      const BIRTHDAY = new Date(VALUE[0].value, VALUE[1].value - 1 , VALUE[2].value);
-      const SET_TIME = TODAY - BIRTHDAY;
-
-      // 日数にする
-      const DIFF_DAYS     = SET_TIME / (1000 * 3600 * 24);
-      console.log("DIFF_DAYS", DIFF_DAYS)
-      const MONTH_AVERAGE = 365 / 12;
-      const CURRENT_AGE   = Math.floor(DIFF_DAYS / 365);
-      const PASSED_MONTH  = Math.floor((DIFF_DAYS - 365 * CURRENT_AGE) / MONTH_AVERAGE);
-      const PASSED_DAYS   = Math.floor((DIFF_DAYS - 365 * CURRENT_AGE) - (PASSED_MONTH * MONTH_AVERAGE));
-
-      document.querySelector('.result').innerHTML = `あなたは現時点で${CURRENT_AGE}歳${PASSED_MONTH}ヶ月${PASSED_DAYS}日です`;
+      // 今日と誕生日の年と月と日にちをそれぞれ取得
+      const TODAY          = new Date();
+      const TODAY_YEAR     = TODAY.getUTCFullYear();
+      const TODAY_MONTH    = TODAY.getMonth()+1;   
+      const TODAY_DAYS     = TODAY.getDate();    
+      const BIRTHDAY_YEAR  = Number(VALUE[0].value);
+      const BIRTHDAY_MONTH = Number(VALUE[1].value);
+      const BIRTHDAY_DAYS  = Number(VALUE[2].value);
+      const NEXT_AGE       = TODAY_YEAR - BIRTHDAY_YEAR;
+      const LAST_DAY       = new Date(VALUE[0].value,VALUE[1].value-1,0).getDate();
+      
+      if (NEXT_AGE < 0) {
+        RESULT.innerHTML = `まだ生まれていません`;
+      }
+      else if (BIRTHDAY_MONTH > TODAY_MONTH) {
+        if (BIRTHDAY_DAYS > TODAY_DAYS) {
+          RESULT.innerHTML = `あなたは現時点で${NEXT_AGE-1}歳${TODAY_MONTH+11-BIRTHDAY_MONTH}ヶ月${TODAY_DAYS+LAST_DAY-BIRTHDAY_DAYS}日です`;
+        }
+        else if (BIRTHDAY_DAYS <= TODAY_DAYS) {
+          RESULT.innerHTML = `あなたは現時点で${NEXT_AGE-1}歳${TODAY_MONTH+12-BIRTHDAY_MONTH}ヶ月${TODAY_DAYS-BIRTHDAY_DAYS}日です`;
+        }
+      }
+      else if (BIRTHDAY_MONTH < TODAY_MONTH && BIRTHDAY_DAYS > TODAY_DAYS) {
+        RESULT.innerHTML = `あなたは現時点で${NEXT_AGE}歳${TODAY_MONTH-BIRTHDAY_MONTH-1}ヶ月${TODAY_DAYS+LAST_DAY-BIRTHDAY_DAYS}日です`;
+      }
+      else {
+        RESULT.innerHTML = `あなたは現時点で${NEXT_AGE}歳${TODAY_MONTH-BIRTHDAY_MONTH}ヶ月${TODAY_DAYS-BIRTHDAY_DAYS}日です`;
+      }
   });
