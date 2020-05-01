@@ -1,19 +1,15 @@
 'use strict';
 
-  //要素の準備
-  const ERROR  = document.querySelector('.error');
-  const RESULT = document.querySelector('.result');
-  const BUTTON = document.querySelector('.button');
+  // 初期設定
   const VALUE  = document.querySelectorAll('.value');
-
-  // ボタン初期状態（無効）
+  const ERROR  = document.querySelector('.error');
+  const BUTTON = document.querySelector('.button');
   BUTTON.disabled = 'disabled';
 
   // エラーメッセージの表示と無効化
-  const showMessage = (message = '空白または入力に誤りがあります') => {
+  const showMessage = (message = '空白または入力に誤りがあります') => {  
     ERROR.innerHTML  = message;
     BUTTON.disabled  = 'disabled';
-    RESULT.innerHTML = '';
   }
 
   // エラーメッセージの解除とボタンの有効化
@@ -65,31 +61,18 @@
   BUTTON.addEventListener('click',(e) => {
     e.preventDefault();
 
-    const yourBirthDay = {
-      year: year.value,
-      month: month.value,
-      date: date.value
-    };
+      // 今日と誕生日の差を取得
+      const TODAY    = new Date();
+      const BIRTHDAY = new Date(VALUE[0].value, VALUE[1].value - 1 , VALUE[2].value);
+      const SET_TIME = TODAY - BIRTHDAY;
 
-    const today        = new Date(); // 今日
-    const berthday     = new Date(yourBirthDay.year, yourBirthDay.month, yourBirthDay.date); // 誕生日年月日
-    const nextBerthday = new Date(today.getFullYear(),berthday.getMonth()-1,berthday.getDate()); // 今年の誕生日
-    const nextAge      = Number(today.getFullYear() - berthday.getFullYear()); // 今年迎える年齢
-    const diffMonth    = Number((today.getMonth() + 1) - berthday.getMonth()); // 誕生日までの差分（月）
-    const diffDate     = Number(today.getDate() - berthday.getDate()); // 誕生日までの差分（日）
-    const thisDate     = new Date(yourBirthDay.year,(yourBirthDay.month-1),0).getDate();
+      // 日数にする
+      const DIFF_DAYS     = SET_TIME / (1000 * 3600 * 24);
+      console.log("DIFF_DAYS", DIFF_DAYS)
+      const MONTH_AVERAGE = 365 / 12;
+      const CURRENT_AGE   = Math.floor(DIFF_DAYS / 365);
+      const PASSED_MONTH  = Math.floor((DIFF_DAYS - 365 * CURRENT_AGE) / MONTH_AVERAGE);
+      const PASSED_DAYS   = Math.floor((DIFF_DAYS - 365 * CURRENT_AGE) - (PASSED_MONTH * MONTH_AVERAGE));
 
-    if (Math.sign(nextAge) !== 1) {
-      result.innerHTML = `まだ生まれていません`;
-    }
-    else if (today < nextBerthday) {
-      result.innerHTML = `あなたは現時点で${nextAge-1}歳${diffMonth+12}ヶ月${diffDate}日です！`;
-    }
-    else if (today > nextBerthday && Math.sign(diffDate) == 1) {
-      console.log(Math.sign(diffDate));
-      result.innerHTML = `あなたは現時点で${nextAge}歳${diffMonth}ヶ月${diffDate}日です！！`;
-    }
-    else if(Math.sign(diffDate) == -1){
-      result.innerHTML = `あなたは現時点で${nextAge}歳${diffMonth-1}ヶ月${thisDate+diffDate}日です！！！`;
-    }
+      document.querySelector('.result').innerHTML = `あなたは現時点で${CURRENT_AGE}歳${PASSED_MONTH}ヶ月${PASSED_DAYS}日です`;
   });
