@@ -1,87 +1,95 @@
 'use strict';
 
-//要素の準備
-  const value  = document.querySelectorAll('.value');
-  const button = document.querySelector('.button');
-  const result = document.querySelector('.result');
-  const error  = document.querySelector('.error');
-
-  // ボタン初期状態（無効）
-  button.disabled = 'disabled';
+  // 初期設定
+  const VALUE  = document.querySelectorAll('.value');
+  const ERROR  = document.querySelector('.error');
+  const BUTTON = document.querySelector('.button');
+  const RESULT = document.querySelector('.result');
+  BUTTON.disabled = 'disabled';
 
   // エラーメッセージの表示と無効化
-  const showMessage = (message) => {
-    error.innerHTML = message;
-    button.disabled = 'disabled';
+  const showMessage = (message = '空白または入力に誤りがあります') => {  
+    ERROR.innerHTML  = message;
+    BUTTON.disabled  = 'disabled';
   }
 
   // エラーメッセージの解除とボタンの有効化
   const hideMessage = () => {
-    error.innerHTML = '';
-    button.disabled = '';
+    ERROR.innerHTML = '';
+    BUTTON.disabled = '';
   }
 
   // フォーカスが外れたら入力内容チェック
-  value.forEach(target => {
-    target.onblur = () => {
-      const thisValue  = target.value;
-      const yearValue  = Number(value[0].value);
-      const monthValue = Number(value[1].value);
-      const dateValue  = Number(value[2].value);
+  VALUE.forEach(input => {
+    input.onblur = () => {
+      const year  = Number(VALUE[0].value);
+      const month = Number(VALUE[1].value);
+      const day   = Number(VALUE[2].value);
 
-      if (thisValue.match(/[^0-9]+/)) {
-        showMessage('半角数字で入力してください。');
+      // 空白と半角数字の正否判定
+      if (!Number(input.value) || input.value.match(/[^0-9]+/)) {
+        showMessage();
       }
-      else if (yearValue < 1000 || yearValue > 9999 || dateValue < 1 || dateValue > 31 || monthValue < 1 || monthValue > 12) {
-        showMessage('空白または入力に誤りがあります。');
+      // 西暦と月の正否判定
+      else if (year < 1000 || year > 9999 || month > 12) {
+        showMessage();
       }
-      // 30日の月チェック
-      else if (monthValue === 4 && dateValue > 30 || monthValue === 6 && dateValue > 30 || monthValue === 9 && dateValue > 30 || monthValue === 11 && dateValue > 30) {
-        showMessage('1～30の半角数字で入力してください。');
+      else if ((month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10  || month === 12) && day > 31) {
+        showMessage('1～31の半角数字で入力してください');
       }
-      // 2月チェック
-      else if (yearValue % 4 !== 0 && monthValue === 2 && dateValue > 28) {
-        showMessage('1～28の半角数字で入力してください。');
+      else if ((month === 4 || month === 6 || month === 9 || month === 11) && day > 30) {
+        showMessage('1～30の半角数字で入力してください');
       }
-      // 閏年チェック
-      else if ((yearValue % 4 === 0 && yearValue % 100 !== 0 && monthValue === 2 && dateValue > 29) || (yearValue % 400 === 0 && monthValue === 2 && dateValue > 29 )) {
-        showMessage('閏年です。1～29の半角数字で入力してください。');
+      else if (month === 2 && day > 29) {
+        showMessage('1～28の半角数字で入力してください');
       }
-      else{
+      else if (month === 2 && day > 28) {
+        showMessage('1～28の半角数字で入力してください');
+        if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+          hideMessage();
+        }
+        else {
+          showMessage('1～28の半角数字で入力してください');
+        }
+      }
+      else {
         hideMessage();
       }
     }
   });
 
   // クリックしたら誕生日を判定
-  button.addEventListener('click',(e) => {
+  BUTTON.addEventListener('click',(e) => {
     e.preventDefault();
 
-    const yourBirthDay = {
-      year: year.value,
-      month: month.value,
-      date: date.value
-    };
-
-    const today        = new Date(); // 今日
-    const berthday     = new Date(yourBirthDay.year, yourBirthDay.month, yourBirthDay.date); // 誕生日年月日
-    const nextBerthday = new Date(today.getFullYear(),berthday.getMonth()-1,berthday.getDate()); // 今年の誕生日
-    const nextAge      = Number(today.getFullYear() - berthday.getFullYear()); // 今年迎える年齢
-    const diffMonth    = Number((today.getMonth() + 1) - berthday.getMonth()); // 誕生日までの差分（月）
-    const diffDate     = Number(today.getDate() - berthday.getDate()); // 誕生日までの差分（日）
-    const thisDate     = new Date(yourBirthDay.year,(yourBirthDay.month-1),0).getDate();
-
-    if (Math.sign(nextAge) !== 1) {
-      result.innerHTML = `まだ生まれていません`;
-    }
-    else if (today < nextBerthday) {
-      result.innerHTML = `あなたは現時点で${nextAge-1}歳${diffMonth+12}ヶ月${diffDate}日です！`;
-    }
-    else if (today > nextBerthday && Math.sign(diffDate) == 1) {
-      console.log(Math.sign(diffDate));
-      result.innerHTML = `あなたは現時点で${nextAge}歳${diffMonth}ヶ月${diffDate}日です！！`;
-    }
-    else if(Math.sign(diffDate) == -1){
-      result.innerHTML = `あなたは現時点で${nextAge}歳${diffMonth-1}ヶ月${thisDate+diffDate}日です！！！`;
-    }
+      // 今日と誕生日の年と月と日にちをそれぞれ取得
+      const TODAY          = new Date();
+      const TODAY_YEAR     = TODAY.getUTCFullYear();
+      const TODAY_MONTH    = TODAY.getMonth()+1;
+      const TODAY_DAYS     = TODAY.getDate();
+      const BIRTHDAY_YEAR  = Number(VALUE[0].value);
+      const BIRTHDAY_MONTH = Number(VALUE[1].value);
+      const BIRTHDAY_DAYS  = Number(VALUE[2].value);
+      const NEXT_AGE       = TODAY_YEAR - BIRTHDAY_YEAR;
+      const LAST_DAY       = new Date(VALUE[0].value,VALUE[1].value-1,0).getDate();
+      
+      if (NEXT_AGE < 0) {
+        RESULT.innerHTML = `まだ生まれていません`;
+      }
+      else if (BIRTHDAY_MONTH > TODAY_MONTH && BIRTHDAY_DAYS > TODAY_DAYS) {
+        RESULT.innerHTML = `あなたは現時点で${NEXT_AGE-1}歳${TODAY_MONTH+11-BIRTHDAY_MONTH}ヶ月${TODAY_DAYS+LAST_DAY-BIRTHDAY_DAYS}日です`;
+      }
+      else if (BIRTHDAY_MONTH > TODAY_MONTH && BIRTHDAY_DAYS <= TODAY_DAYS) {
+        RESULT.innerHTML = `あなたは現時点で${NEXT_AGE-1}歳${TODAY_MONTH+12-BIRTHDAY_MONTH}ヶ月${TODAY_DAYS-BIRTHDAY_DAYS}日です`;
+      }
+      else if (BIRTHDAY_MONTH === TODAY_MONTH && BIRTHDAY_DAYS > TODAY_DAYS) {
+        RESULT.innerHTML = `あなたは現時点で${NEXT_AGE-1}歳${TODAY_MONTH+11-BIRTHDAY_MONTH}ヶ月${TODAY_DAYS+LAST_DAY-BIRTHDAY_DAYS}日です`;
+      }
+      else if (BIRTHDAY_MONTH < TODAY_MONTH && BIRTHDAY_DAYS > TODAY_DAYS) {
+        console.log('検証5');
+        RESULT.innerHTML = `あなたは現時点で${NEXT_AGE}歳${TODAY_MONTH-BIRTHDAY_MONTH-1}ヶ月${TODAY_DAYS+LAST_DAY-BIRTHDAY_DAYS}日です`;
+      }
+      else {
+        RESULT.innerHTML = `あなたは現時点で${NEXT_AGE}歳${TODAY_MONTH-BIRTHDAY_MONTH}ヶ月${TODAY_DAYS-BIRTHDAY_DAYS}日です`;
+      }
   });
