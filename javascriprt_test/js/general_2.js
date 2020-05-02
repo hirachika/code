@@ -65,8 +65,8 @@
       // 今日と誕生日の年と月と日にちをそれぞれ取得
       const TODAY          = new Date();
       const TODAY_YEAR     = TODAY.getUTCFullYear();
-      const TODAY_MONTH    = TODAY.getMonth()+1;   
-      const TODAY_DAYS     = TODAY.getDate();    
+      const TODAY_MONTH    = TODAY.getMonth()+1;
+      const TODAY_DAYS     = TODAY.getDate();
       const BIRTHDAY_YEAR  = Number(VALUE[0].value);
       const BIRTHDAY_MONTH = Number(VALUE[1].value);
       const BIRTHDAY_DAYS  = Number(VALUE[2].value);
@@ -76,15 +76,17 @@
       if (NEXT_AGE < 0) {
         RESULT.innerHTML = `まだ生まれていません`;
       }
-      else if (BIRTHDAY_MONTH > TODAY_MONTH) {
-        if (BIRTHDAY_DAYS > TODAY_DAYS) {
-          RESULT.innerHTML = `あなたは現時点で${NEXT_AGE-1}歳${TODAY_MONTH+11-BIRTHDAY_MONTH}ヶ月${TODAY_DAYS+LAST_DAY-BIRTHDAY_DAYS}日です`;
-        }
-        else if (BIRTHDAY_DAYS <= TODAY_DAYS) {
-          RESULT.innerHTML = `あなたは現時点で${NEXT_AGE-1}歳${TODAY_MONTH+12-BIRTHDAY_MONTH}ヶ月${TODAY_DAYS-BIRTHDAY_DAYS}日です`;
-        }
+      else if (BIRTHDAY_MONTH > TODAY_MONTH && BIRTHDAY_DAYS > TODAY_DAYS) {
+        RESULT.innerHTML = `あなたは現時点で${NEXT_AGE-1}歳${TODAY_MONTH+11-BIRTHDAY_MONTH}ヶ月${TODAY_DAYS+LAST_DAY-BIRTHDAY_DAYS}日です`;
+      }
+      else if (BIRTHDAY_MONTH > TODAY_MONTH && BIRTHDAY_DAYS <= TODAY_DAYS) {
+        RESULT.innerHTML = `あなたは現時点で${NEXT_AGE-1}歳${TODAY_MONTH+12-BIRTHDAY_MONTH}ヶ月${TODAY_DAYS-BIRTHDAY_DAYS}日です`;
+      }
+      else if (BIRTHDAY_MONTH === TODAY_MONTH && BIRTHDAY_DAYS > TODAY_DAYS) {
+        RESULT.innerHTML = `あなたは現時点で${NEXT_AGE-1}歳${TODAY_MONTH+11-BIRTHDAY_MONTH}ヶ月${TODAY_DAYS+LAST_DAY-BIRTHDAY_DAYS}日です`;
       }
       else if (BIRTHDAY_MONTH < TODAY_MONTH && BIRTHDAY_DAYS > TODAY_DAYS) {
+        console.log('検証5');
         RESULT.innerHTML = `あなたは現時点で${NEXT_AGE}歳${TODAY_MONTH-BIRTHDAY_MONTH-1}ヶ月${TODAY_DAYS+LAST_DAY-BIRTHDAY_DAYS}日です`;
       }
       else {
