@@ -62,23 +62,18 @@
   BUTTON.addEventListener('click',(e) => {
     e.preventDefault();
 
-    //入力されたデータの取得
-    var year         = document.getElementById("year").value;
-    var month        = document.getElementById("month").value;
-    var date         = document.getElementById("date").value;
+    const START       = new Date(1990,0,2);
+    const END         = new Date(2010,11,30);
+    const INPUT_VALUE = new Date(VALUE[0].value,VALUE[1].value-1,VALUE[2].value);
 
-    //1990/01/01
-    var start = new Date(1990,0,1);
-    var goal = new Date(2010,11,31);
-
-    //全て入力された日付を日付オブジェクトに変換
-    var  scope = new Date(year,month-1,date);
-
-    if(start <=  scope && goal >=  scope){
-      result.style.color = 'red';
-      result.innerHTML  = '＼範囲内です／';
-    }else{
-      result.style.color = 'blue';
-      result.innerHTML  = '＼範囲外です／';
+    if (START <= INPUT_VALUE && END >= INPUT_VALUE) {
+      RESULT.style.color = '#f06';
+      RESULT.innerHTML  = '範囲内です';
+    }
+    else {
+      RESULT.style.color = '#1e90ff';
+      RESULT.innerHTML  = '範囲外です';
     }
   });
+
+
