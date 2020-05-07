@@ -6,7 +6,7 @@
   <meta property="og:title" content="株式会社ALCHEMY">
   <meta property="og:type" content="Website">
   <meta property="og:url" content="https://alchemy-lab.jp/">
-  <meta property="og:image" content="https://alchemy-lab.jp/images/ogp.jpg"/>
+  <meta property="og:image" content="https://alchemy-lab.jp/images/ogp.jpg" />
   <meta property="og:site_name" content="株式会社ALCHEMY">
   <meta property="og:description" content="ALCHEMYは2017年10月に設立したスタートアップ企業です。我々の一番の強みは「教育」です。代表の都築は、未経験者中心に300名近い技術者の育成に携わりました。 デザインからプログラミングまで研修があり、幅広いスキルが身に付きます。">
   <meta property="og:locale" content="ja_JP">
@@ -18,103 +18,118 @@
   <link rel="stylesheet" href="https://alchemy-lab.jp/css/style.css">
   <link rel="stylesheet" href="css/animation.css">
   <link href="https://fonts.googleapis.com/css?family=Prata" rel="stylesheet">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150750380-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-150750380-1');
+  </script>
 </head>
 <body>
-<header class="header" id="header">
+  <header class="header" id="header">
     <div class="headerInner">
-      <p class="headerTitle">
-        <a href="index.html" target="blank"><img src="../images/common/logo_01.png" alt="ロゴ"></a>
-      </p>
+      <p class="headerTitle"><a href="index.html"><img src="images/common/logo_01.png" alt="株式会社ALCHEMY"></a></p>
       <div class="headerButton">
-          <div>
-              <span></span>
-              <span></span>
-              <span></span>
-          </div>
+        <div>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
-		<nav class="globalNav">
-			<ul class="globalNavList">
-				<li><a href="../about.html">ABOUT</a></li>
-				<li><a href="../message.html">MESSAGE</a></li>
-				<li><a href="../company.html">COMPANY</a></li>
-				<li><a href="../recruit.html">RECRUIT</a></li>
-				<li><a href="../contact.html" class="active">CONTACT</a></li>
-			</ul>
-		</nav><!-- globalNav -->
-    </div><!-- inner -->
-</header>
-<div class="container">
-	<section class="MainTitle">
-		<h1 class="mainBigTitle">CONTACT</h1>
-		<p class="mainDescription"><span>お問い合わせ</span></p>
-	</section>
+      <nav class="globalNav">
+        <ul class="globalNavList">
+          <li><a href="about.html">ABOUT</a></li>
+          <li><a href="message.html">MESSAGE</a></li>
+          <li><a href="company.html">COMPANY</a></li>
+          <li><a href="recruit.html">RECRUIT</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <section class="MainTitle">
+      <h1 class="mainBigTitle">CONTACT</h1>
+      <p class="mainDescription"><span>お問い合わせ</span></p>
+    </section>
+    <section class="description">
+      <div class="descriptionText">
+        <p>入力内容を確認します。</p>
+      </div>
+    </section>
+    <section class="mailform">
+      <form id="entry" method="post" action="./send.php" name="entry">
+        <table class="contact">
+          <tbody>
+            <tr>
+              <th>件名</th>
+              <td>
+                <!--SHOW_SUBJECT-->
+              </td>
+            </tr>
+            <tr>
+              <th>会社名</th>
+              <td>
+                <!--SHOW_COMPANY_NAME-->
+              </td>
+            </tr>
+            <tr>
+              <th>ご担当者お名前</th>
+              <td>
+                <!--SHOW_OFFICER_NAME-->
+              </td>
+            </tr>
+            <tr>
+              <th>役職</th>
+              <td>
+                <!--SHOW_POSITION-->
+              </td>
+            </tr>
+            <tr>
+              <th>メールアドレス</th>
+              <td>
+                <!--SHOW_MAIL-->
+              </td>
+            </tr>
+            <tr>
+              <th>電話番号</th>
+              <td>
+                <!--SHOW_TEL-->
+              </td>
+            </tr>
+            <tr>
+              <th>弊社を知ったきっかけ</th>
+              <td>
+                <!--SHOW_WAY_TO_KNOW-->
+              </td>
+            </tr>
+            <tr>
+              <th>メッセージ本文</th>
+              <td>
+                <!--SHOW_BODY-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="formBtnArea">
+          <input type="hidden" name="privacy" value="同意する">
+          <button type="submit" value="入力内容を確認する"><p>送信</p></button>
+        </div>
+        <!--SHOW_HIDDEN_INPUT-->
+      </form>
+    </section>
+  </div>
 
-	<section class="description">
-		<div class="descriptionText">
-			<p>入力内容を確認します。</p>
-		</div>
-	</section>
-
-
-	<section class="mailform">
-		<form id="entry" method="post" action="./send.php" name="entry">
-			<table class="contact">
-				<tbody>
-					<tr>
-						<th>件名</th>
-						<td><!--SHOW_SUBJECT--></td>
-					</tr>
-
-					<tr>
-						<th>会社名</th>
-						<td><!--SHOW_COMPANY_NAME--></td>
-					</tr>
-
-					<tr>
-						<th>ご担当者お名前</th>
-						<td><!--SHOW_OFFICER_NAME--></td>
-					</tr>
-
-					<tr>
-						<th>役職</th>
-						<td><!--SHOW_POSITION--></td>
-					</tr>
-
-					<tr>
-						<th>メールアドレス</th>
-						<td><!--SHOW_MAIL--></td>
-					</tr>
-
-					<tr>
-						<th>電話番号</th>
-						<td><!--SHOW_TEL--></td></tr>
-
-					<tr>
-						<th>弊社を知ったきっかけ</th>
-						<td><!--SHOW_WAY_TO_KNOW--></td>
-					</tr>
-
-					<tr>
-						<th>メッセージ本文</th>
-						<td><!--SHOW_BODY--></td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="formBtnArea">
-				<input type="hidden" name="privacy" value="同意する">
-				<button type="submit" value="入力内容を確認する"><p>送信</p></button>
-			</div>
-			<!--SHOW_HIDDEN_INPUT-->
-		</form>
-	</section>
-</div>
-
-	<footer class="footer">
-		<div class="footerInner">
-			<p class="copyright">&#169; 2019 ALCHEMY inc.</p>
-		</div>
-	</footer>
-	<script src="js/jquery.min.js"></script>
+  <footer class="footer">
+    <div class="footerInner">
+      <p class="copyright ">&#169; 2019 ALCHEMY inc.</p>
+    </div>
+  </footer>
+        
+  <script src="js/jquery.min.js"></script>
   <script src="js/function.js"></script>
 </body>
 </html>
