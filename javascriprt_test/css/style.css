@@ -120,7 +120,8 @@ CUSTOM STYLE
   margin-top: 2rem;
 }
 
-.form__wrap {
+.form__wrap,
+.form2__wrap {
   border: none;
   padding: 0;
 }
@@ -148,13 +149,19 @@ CUSTOM STYLE
 }
 
 input[type="text"],
+input[type="email"],
 textarea {
+  width: 100px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border: none;
   background-color: #eee;
   padding: .5rem 1rem;
+}
+
+.form2__item {
+  padding-bottom: .5rem;
 }
 
 .button {
@@ -184,7 +191,7 @@ textarea {
 .note {
   display: inline;
   margin-left: 1rem;
-  font-size: 90%;
+  font-size: 80%;
 }
 
 .result {
