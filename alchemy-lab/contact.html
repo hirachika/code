@@ -55,9 +55,11 @@
       <h1 class="mainBigTitle">CONTACT</h1>
       <p class="mainDescription"><span>お問い合わせ</span></p>
     </section>
+
     <section class="description">
       <p class="descriptionText">当社へのお問い合わせの際は、必要事項をご記入ください。<br>担当者よりご記入頂いたメールアドレス宛に返信させて頂きます。<br>※個人の方は会社名は結構です。</p>
     </section>
+
     <section class="mailform">
       <form id="entry" method="post" action="entry/confirm.php" name="entry">
         <table class="contact">
@@ -65,82 +67,86 @@
             <tr>
               <th>件名<span class="mustspan">必須</span></th>
               <td>
-                <div class="selectbox_s01"> <select name="subject" id="subject">
-									<option value="" selected>いずれかの中からお選びください</option>
-									<option value="案件や人材のご協業について">案件や人材のご協業について</option>
-									<option value="採用について">採用について</option>
-									<option value="受託開発について">受託開発について</option>
-									<option value="その他の事業について">その他の事業について</option>
-								</select> </div>
+                <div class="selectbox_s01">
+                  <select name="subject" id="subject">
+                    <option value="" selected>いずれかの中からお選びください</option>
+                    <option value="案件や人材のご協業について">案件や人材のご協業について</option>
+                    <option value="採用について">採用について</option>
+                    <option value="受託開発について">受託開発について</option>
+                    <option value="その他の事業について">その他の事業について</option>
+                  </select>
+                </div>
               </td>
             </tr>
             <tr>
               <th>会社名</th>
               <td>
-								<p id="error_furigana"></p>
-								<input type="text" name="companyName" id="companyName" required>
-							</td>
+                <p id="error_furigana"></p>
+                <input type="text" name="companyName" id="companyName" required>
+              </td>
             </tr>
             <tr>
               <th>ご担当者お名前<span class="mustspan">必須</span></th>
               <td>
-								<p id="error_name"></p>
-								<input type="text" name="officerName" id="officerName" required>
-							</td>
+                <p id="error_name"></p>
+                <input type="text" name="officerName" id="officerName" required>
+              </td>
             </tr>
             <tr>
               <th>役職</th>
               <td>
-								<p id="error_birthday"></p>
-								<input type="text" name="position" id="position" required>
-							</td>
+                <p id="error_birthday"></p>
+                <input type="text" name="position" id="position" required>
+              </td>
             </tr>
             <tr>
               <th>メールアドレス<span class="mustspan">必須</span></th>
               <td>
-								<p id="error_email"></p>
-								<input type="text" name="mail" class="formText email required" id="mail" required>
-							</td>
+                <p id="error_email"></p>
+                <input type="text" name="mail" class="formText email required" id="mail" required>
+              </td>
             </tr>
             <tr>
               <th>電話番号<span class="mustspan">必須</span></th>
               <td>
-								<p id="error_tel"></p><input type="text" name="tel" id="tel">
-							</td>
+                <p id="error_tel"></p><input type="text" name="tel" id="tel">
+              </td>
             </tr>
             <tr>
               <th>弊社を知ったきっかけ</th>
               <td>
-								<p id="error_qualification"></p>
-								<textarea name="wayToKnow" type="text" id="wayToKnow"></textarea>
-								<span class="formSmall">※弊社を知ったきっかけがあればご記入ください。</span>
-							</td>
+              	<p id="error_qualification"></p>
+              	<textarea name="wayToKnow" type="text" id="wayToKnow"></textarea>
+                <span class="formSmall">※弊社を知ったきっかけがあればご記入ください。</span>
+              </td>
             </tr>
             <tr>
               <th>メッセージ本文<span class="mustspan">必須</span></th>
               <td>
-								<p id="error_career_history"></p>
-								<textarea name="body" type="text" id="body"></textarea>
-								<span class="formSmall">※お問い合わせ内容をご記入ください。</span>
-							</td>
+                <p id="error_career_history"></p>
+                <textarea name="body" type="text" id="body"></textarea>
+                <span class="formSmall">※お問い合わせ内容をご記入ください。</span>
+              </td>
             </tr>
           </tbody>
         </table>
+
         <div class="formAgree">
           <p>当社（株式会社ALCHEMY）は、お客様より取得する個人情報を、<br>お問い合わせいただいたご質問やご要望へ回答する目的でのみ利用いたします。</p>
           <p>なお、当社の個人情報保護に関する基本方針については、<br>以下の<a href="privacy.html" target="_blank">プライバシーポリシー</a>をご確認ください。</p>
           <p>記入内容に問題がなければ「確認する」ボタンを押してください。</p>
         </div>
+
         <div class="formBtnArea">
-					<input type="hidden" name="privacy" value="同意する" id="confirm_button">
-					<div class="button-hover"></div>
-					<button type="button" value="入力内容を確認する" id="sendButton"><p>入力内容を確認する</p></button>
-				</div>
+          <input type="hidden" name="privacy" value="同意する" id="confirm_button">
+          <div class="button-hover"></div>
+          <button type="button" value="入力内容を確認する" id="sendButton"><p>入力内容を確認する</p></button>
+        </div>
       </form>
     </section>
   </div>
 
-	<footer class="footer ">
+	<footer class="footer">
 		<div class="footerInner">
 			<p class="copyright ">&#169; 2019 ALCHEMY inc.</p>
 		</div>
@@ -148,5 +154,5 @@
         
 	<script src="js/jquery.min.js"></script>
 	<script src="js/function.js"></script>
-	</body>
+</body>
 </html>
