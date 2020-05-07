@@ -51,6 +51,7 @@
       </nav>
     </div>
   </header>
+
   <div class="mainVisual">
     <h1 class="heroTitle">
       <span class="heroTitleborder">Welcome to <span class="heroTitleColor">ALCHEMY</span> Web site</span><br>Do it Ourselves.
@@ -58,6 +59,7 @@
     <video loop class="mainVisualMovie" id="movie" autoplay muted playsinline>
       <source src="images/top_01.mp4" type="video/mp4" loop></video>
   </div>
+
   <section class="about content">
     <div class="aboutMessage aboutMessageTop">
       <div class="aboutText">
@@ -78,23 +80,24 @@
       <a href="company.html">
         <picture>
           <source srcset="images/top_about_02.jpg" alt="会社" media="(min-width: 480px)">
-            <img src="images/sp_top_about_02.jpg" alt="会社">
-          </picture>
+          <img src="images/sp_top_about_02.jpg" alt="会社">
+        </picture>
       </a>
       <a href="traning.html">
         <picture>
           <source srcset="images/top_about_03.jpg" alt="研修" media="(min-width: 480px)">
-            <img src="images/sp_top_about_03.jpg" alt="研修">
-          </picture>
+          <img src="images/sp_top_about_03.jpg" alt="研修">
+        </picture>
       </a>
       <a href="recruit.html">
         <picture>
           <source srcset="images/top_about_04.jpg" alt="採用" media="(min-width: 480px)">
-            <img src="images/sp_top_about_04.jpg" alt="採用">
-          </picture>
+          <img src="images/sp_top_about_04.jpg" alt="採用">
+        </picture>
       </a>
     </div>
   </section>
+
   <section class="member content">
     <h2 class="sectionTitle">MEMBER</h2>
     <p class="sectionSubTitle">社員紹介</p>
@@ -103,8 +106,8 @@
         <a href="member/member01.html">
           <picture>
             <source srcset="images/top_member_01.jpg" alt="CHIKAKO HIRAOKA" media="(min-width:760px)">
-              <img src="images/sp_top_member_01.jpg" alt="CHIKAKO HIRAOKA">
-            </picture>
+            <img src="images/sp_top_member_01.jpg" alt="CHIKAKO HIRAOKA">
+          </picture>
           <div class="memberIntroduction">
             <p class="memberName">CHIKAKO HIRAOKA</p>
             <p class="memberPosition">デザイナー</p>
@@ -116,8 +119,8 @@
         <a href="member/member02.html">
           <picture>
             <source srcset="images/top_member_02.jpg" alt="KAZUNORI JIN" media="(min-width:760px)">
-              <img src="images/sp_top_member_02.jpg" alt="KAZUNORI JIN">
-            </picture>
+            <img src="images/sp_top_member_02.jpg" alt="KAZUNORI JIN">
+          </picture>
           <div class="memberIntroduction">
             <p class="memberName">KAZUNORI JIN</p>
             <p class="memberPosition">デザイナー</p>
@@ -129,8 +132,8 @@
         <a href="member/member03.html">
           <picture>
             <source srcset="images/top_member_03.jpg" alt="SHIORI HIRAO" media="(min-width:760px)">
-              <img src="images/sp_top_member_03.jpg" alt="SHIORI HIRAO">
-            </picture>
+            <img src="images/sp_top_member_03.jpg" alt="SHIORI HIRAO">
+          </picture>
           <div class="memberIntroduction">
             <p class="memberName">SHIORI HIRAO</p>
             <p class="memberPosition">デザイナー</p>
@@ -140,6 +143,7 @@
       </div>
     </div>
   </section>
+
   <section class="message content">
     <h2 class="sectionTitle">MESSAGE</h2>
     <p class="sectionSubTitle">会社の成長やビジョン</p>
@@ -148,11 +152,12 @@
         <p class="mesaseCopy">自分の為に頑張ったら、<br>会社の為にもなるような<br class="brNone">会社を作りたい</p>
         <p class="mesageName">代表取締役 都築 崇</p>
         <div class="button messageButton">
-          <div class="hover"></div> <a href="message.html">READ  MORE</a>
+          <div class="hover"></div> <a href="message.html">READ MORE</a>
         </div>
       </div>
     </div>
   </section>
+
   <section class="blog content">
     <h2 class="sectionTitle">BLOG</h2>
     <p class="sectionSubTitle">ALCHEMYがお届けするwantedly掲載ブログです</p><a class="frame" href="https://www.wantedly.com/companies/alchemy-lab/post_articles/106376" target="_blank">
@@ -162,7 +167,7 @@
         </div>
         <div class="blogMainText">
           <p class="blogCategory"><span class="category">STORY</span><span class="tag">#Wantedly</span></p>
-          <p class="blogMainTextCardTitle">"志さえあれば挑戦できる会社を目指して" <br class="brSp">未経験者採用を積極的に進める理由</p>
+          <p class="blogMainTextCardTitle">"志さえあれば挑戦できる会社を目指して"<br class="brSp">未経験者採用を積極的に進める理由</p>
           <p class="blogTime"><time datetime="">2018/01/26</time></p>
         </div>
       </div>
@@ -227,11 +232,13 @@
 		</div>
   </footer>
 
+	<script src="js/jquery.min.js"></script>
+	<script src="js/function.js"></script>
   <script>
-  jQuery(function($) {
-    var movie = document.getElementById("movie");
-    movie.controls = false;
-  });
+    jQuery(function($) {
+      var movie = document.getElementById("movie");
+      movie.controls = false;
+    });
   </script>
 </body>
 </html>
