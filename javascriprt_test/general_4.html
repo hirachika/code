@@ -23,37 +23,37 @@
             <fieldset class="form2__wrap">
               <dl class="form2__item">
                 <dt><p class="form2__name">ユーザー名</p></dt>
-                <dd><input type="text" id="user" name="user" required></dd>
+                <dd><input type="text" class="value" name="user" required></dd>
               </dl>
               <p class="note">※半角英数のみ6文字以上32文字以内</p>
 
               <dl class="form2__item">
                 <dt><p class="form2__name">パスワード</p></dt>
-                <dd><input type="text" class="password" name="password" required></dd>
+                <dd><input type="text" class="value" name="password" required></dd>
               </dl>
               <p class="note">※半角英数のみ8文字以上</p>
 
               <dl class="form2__item">
                 <dt><p class="form2__name">パスワード（確認用）</p></dt>
-                <dd><input type="text" class="password" name="passwordConfirm" required></dd>
+                <dd><input type="text" class="value" name="passwordConfirm" required></dd>
               </dl>
               <p class="note">※半角英数のみ8文字以上</p>
 
               <dl class="form2__item">
                 <dt><p class="form2__name">メールアドレス</p></dt>
-                <dd><input type="email" class="email" name="email1" required> @ <input type="email" class="email2" name="email" required></dd>
+                <dd><input type="email" class="value" name="email-first" required> @ <input type="email" class="value" name="email-last" required></dd>
               </dl>
+
               <dl class="form2__item">
                 <dt><p class="form2__name">電話番号</p></dt>
-                <dd><input type="text" name="tel" class="tel" required> - <input type="text" name="tel" class="tel" required> - <input type="text" name="tel" class="tel" required></dd>
+                <dd><input type="text" class="value" name="tel-first" required> - <input type="text" class="value" name="tel-middle" required> - <input type="text" name="tel" class="tel-last" required></dd>
               </dl>
             </fieldset>
             <p class="error"></p>
-            <button class="button" type="submit">送信</button>
+            <button class="button" type="submit">登録する</button>
           </form>
-          <p class="result"></p>
         </section>
       </div>
-    <script src="./js/general_3.js"></script>
+    <script src="./js/general_4.js"></script>
   </body>
 </html>

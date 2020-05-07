@@ -151,17 +151,24 @@ CUSTOM STYLE
 input[type="text"],
 input[type="email"],
 textarea {
-  width: 100px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border: none;
   background-color: #eee;
-  padding: .5rem 1rem;
+  padding: .5rem;
 }
 
 .form2__item {
-  padding-bottom: .5rem;
+  margin: 1rem 0;
+}
+
+.form2__item dd{
+  margin: 0;
+}
+
+.form2__name {
+  margin: .5rem 0;
 }
 
 .button {
@@ -189,9 +196,9 @@ textarea {
 }
 
 .note {
-  display: inline;
-  margin-left: 1rem;
+  margin-left: .5rem;
   font-size: 80%;
+  color: #666;
 }
 
 .result {
