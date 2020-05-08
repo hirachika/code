@@ -149,7 +149,6 @@ CUSTOM STYLE
 }
 
 input[type="text"],
-input[type="email"],
 textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
