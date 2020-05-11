@@ -23,10 +23,8 @@
   INPUT_VALUE.forEach(input => {
     input.onblur = (e) => {
       e.preventDefault();
-
       const inputValue   = input.value;
       const inputName    = input.name;
-      const DIGIT_NUMBER = (INPUT_VALUE[5].value+INPUT_VALUE[6].value+INPUT_VALUE[7].value).length;
       
       if (inputName === 'user' && inputValue.match(/[^a-zA-Z0-9]/)) {
         showMessage('半角英数で入力してください');
@@ -50,11 +48,11 @@
         showMessage();
       }
       else if (inputName === 'tel-first') {
-        if (inputValue.length === 2 && !inputValue.match(/^0\d{1}$/) || DIGIT_NUMBER <= 9) {
-          showMessage();
+        if (inputValue.length <= 2 && !inputValue.match(/^0\d{1}$/)) {
+          showMessage('電話番号の入力に誤りがあります');
         }
-        else if (inputValue.length === 3 && !inputValue.match(/^(050|060|070|080|090)$/) || DIGIT_NUMBER <= 9) {
-          showMessage();
+        else if (inputValue.length > 2 && !inputValue.match(/^(050|060|070|080|090)$/)) {
+          showMessage('電話番号の入力に誤りがあります');
         }
         else {
           hideMessage();
@@ -63,7 +61,7 @@
       else if (inputName === 'tel-middle' && !inputValue.match(/^\d{2,4}$/)) {
         showMessage('電話番号の入力に誤りがあります');
       }
-      else if (inputName === 'tel-last' && !inputValue.match(/\d{3,4}$/)) {
+      else if (inputName === 'tel-last' && !inputValue.match(/^\d{3,4}$/)) {
         showMessage('電話番号の入力に誤りがあります');
       }
       else{
