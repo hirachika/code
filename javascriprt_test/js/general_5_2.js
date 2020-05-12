@@ -14,7 +14,7 @@
   BUTTON[0].disabled   = 'disabled';
   
   // エラーメッセージの表示と無効化
-  const showMessage = (message = '空白または入力に誤りがあります') => {  
+  const showMessage = (message) => {  
     ERROR[0].innerHTML  = message;
     BUTTON[0].disabled  = 'disabled';
   }
