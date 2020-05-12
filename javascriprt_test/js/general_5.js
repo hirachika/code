@@ -11,7 +11,7 @@
 
   // ボタン初期状態
   const BUTTON         = document.getElementsByClassName('button');
-  BUTTON.disabled      = 'disabled';
+  BUTTON[0].disabled      = 'disabled';
   
   // エラーメッセージの表示と無効化
   const showMessage = (message = '空白または入力に誤りがあります') => {  
@@ -26,10 +26,9 @@
   }
 
   // 配列をシャッフルそのうち3つ取り出す
-  const ARRAY = [0,1,2,3,4,5,6,7,8,9];
-  let numbers = ARRAY.sort(function(){ return Math.random() - 0.5});
+  const NUMBER_ARRAY = [0,1,2,3,4,5,6,7,8,9];
+  let numbers = NUMBER_ARRAY.sort(function(){ return Math.random() - 0.5});
       numbers = numbers.slice(0,3);
-      numbers = [1,3,2];
 
   INPUT_VALUE.forEach(input => {
     input.onblur = (e) => {
@@ -48,34 +47,30 @@
     e.preventDefault();
     WINNING_RESULT.classList.add('active');
     
-    let INPUT_ARRAY = [
+    let inputNumbers = [
       Number(INPUT_VALUE[0].value),
       Number(INPUT_VALUE[1].value),
       Number(INPUT_VALUE[2].value)
     ];
 
-    USER_NUMBER.innerHTML    = INPUT_ARRAY;
+    USER_NUMBER.innerHTML    = inputNumbers;
     WINNING_NUMBER.innerHTML = numbers;
 
-    if (INPUT_ARRAY.join('') === numbers.join('')) {
-      RESULT[0].innerHTML = 'おめでとう！ストレート当選です';
+    if (inputNumbers.join('') === numbers.join('')) {
+      RESULT[0].innerHTML = 'おめでとうございます！ストレート当選です！';
     }
-    else if (INPUT_ARRAY.join('') !== numbers.join('')) {
-      INPUT_ARRAY.sort(
-        function(a,b){
-          return (a < b ? -1 : 1);
-        }
-      );
-      numbers.sort(
-        function(a,b){
-          return (a < b ? -1 : 1);
-        }
-      );
-      if (INPUT_ARRAY.join('') === numbers.join('')) {
-        RESULT[0].innerHTML = 'ボックス当選だよ！';
+    else if (inputNumbers.join('') !== numbers.join('')) {
+      inputNumbers.sort((a, b) => {return a - b});
+      numbers.sort((a, b) => {return a - b});
+
+      if (inputNumbers.join('') === numbers.join('')) {
+        RESULT[0].innerHTML = 'おしい！ボックス当選です！';
+      }
+      else {
+        RESULT[0].innerHTML = '残念！ハズレです…';
       }
     }
     else {
-      RESULT[0].innerHTML = '残念！ハズレです＞＜';
+      RESULT[0].innerHTML = '残念！ハズレです…';
     }
   });
