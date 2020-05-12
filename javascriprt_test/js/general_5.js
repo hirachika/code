@@ -11,7 +11,7 @@
 
   // ボタン初期状態
   const BUTTON         = document.getElementsByClassName('button');
-  BUTTON[0].disabled      = 'disabled';
+  BUTTON[0].disabled   = 'disabled';
   
   // エラーメッセージの表示と無効化
   const showMessage = (message = '空白または入力に誤りがあります') => {  
@@ -47,6 +47,7 @@
     e.preventDefault();
     WINNING_RESULT.classList.add('active');
 
+    // ボタンを押したらテキストエリアを無効化
     for (const iterator of VALUES) {
       iterator.disabled = true;
     }
