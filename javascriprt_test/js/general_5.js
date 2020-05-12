@@ -1,12 +1,17 @@
 'use strict';
 
   // 初期設定
-  const ERROR  = document.getElementsByClassName('error');
-  const BUTTON = document.getElementsByClassName('button');
-  BUTTON.disabled = 'disabled';
+  const WINNING_RESULT = document.querySelector('.winning-result');
+  const USER_NUMBER    = document.querySelector('.winning-result__user');
+  const WINNING_NUMBER = document.querySelector('.winning-result__com');
+  const ERROR          = document.getElementsByClassName('error');
+  const RESULT         = document.getElementsByClassName('result');
+  const VALUES         = document.getElementsByClassName('value');
+  const INPUT_VALUE    = Array.from(VALUES);
 
-  const VALUE  = document.getElementsByClassName('value');
-  const INPUT_VALUE = Array.from(VALUE);
+  // ボタン初期状態
+  const BUTTON         = document.getElementsByClassName('button');
+  BUTTON.disabled      = 'disabled';
   
   // エラーメッセージの表示と無効化
   const showMessage = (message = '空白または入力に誤りがあります') => {  
@@ -20,52 +25,57 @@
     BUTTON[0].disabled = '';
   }
 
+  // 配列をシャッフルそのうち3つ取り出す
+  const ARRAY = [0,1,2,3,4,5,6,7,8,9];
+  let numbers = ARRAY.sort(function(){ return Math.random() - 0.5});
+      numbers = numbers.slice(0,3);
+      numbers = [1,3,2];
+
   INPUT_VALUE.forEach(input => {
     input.onblur = (e) => {
       e.preventDefault();
-      const inputValue   = input.value;
-      const inputName    = input.name;
-      
-      if (inputName === 'user' && inputValue.match(/[^a-zA-Z0-9]/)) {
-        showMessage('半角英数で入力してください');
-      }
-      else if (inputName === 'user' && 6 > inputValue.length || inputValue.length > 32) {
-        showMessage('6〜32文字以内で入力してください');
-      }
-      else if (inputName === 'password' && inputValue.match(/[^a-zA-Z0-9]/)) {
-        showMessage('半角英数で入力してください');
-      }
-      else if (inputName === 'password' && 8 > inputValue.length) {
-        showMessage('8文字以上で入力してください');
-      }
-      else if (inputName === 'passwordConfirm' && INPUT_VALUE[1].value !== INPUT_VALUE[2].value) {
-        showMessage('入力されたパスワードが一致しません');
-      }
-      else if (inputName === 'email-first' && !inputValue.match(/^([a-zA-Z0-9._-])+$/)) {
-        showMessage();
-      }
-      else if (inputName === 'email-last' && !inputValue.match(/^[a-zA-Z0-9]{1}[a-zA-Z0-9.-]*\.[a-zA-Z]{1,}$/)) {
-        showMessage();
-      }
-      else if (inputName === 'tel-first') {
-        if (inputValue.length <= 2 && !inputValue.match(/^0\d{1}$/)) {
-          showMessage('電話番号の入力に誤りがあります');
-        }
-        else if (inputValue.length > 2 && !inputValue.match(/^(050|060|070|080|090)$/)) {
-          showMessage('電話番号の入力に誤りがあります');
-        }
-        else {
-          hideMessage();
-        }
-      }
-      else if (inputName === 'tel-middle' && !inputValue.match(/^\d{2,4}$/)) {
-        showMessage('電話番号の入力に誤りがあります');
-      }
-      else if (inputName === 'tel-last' && !inputValue.match(/^\d{3,4}$/)) {
-        showMessage('電話番号の入力に誤りがあります');
+      const inputValue = input.value;
+      if (!inputValue.match(/^[0-9]{1}$/)) {
+        showMessage('0〜9の数値を一桁ずつ入力してください');
       }
       else{
         hideMessage();
       }
+    }
+  });
+
+  BUTTON[0].addEventListener('click', (e) => {
+    e.preventDefault();
+    WINNING_RESULT.classList.add('active');
+    
+    let INPUT_ARRAY = [
+      Number(INPUT_VALUE[0].value),
+      Number(INPUT_VALUE[1].value),
+      Number(INPUT_VALUE[2].value)
+    ];
+
+    USER_NUMBER.innerHTML    = INPUT_ARRAY;
+    WINNING_NUMBER.innerHTML = numbers;
+
+    if (INPUT_ARRAY.join('') === numbers.join('')) {
+      RESULT[0].innerHTML = 'おめでとう！ストレート当選です';
+    }
+    else if (INPUT_ARRAY.join('') !== numbers.join('')) {
+      INPUT_ARRAY.sort(
+        function(a,b){
+          return (a < b ? -1 : 1);
+        }
+      );
+      numbers.sort(
+        function(a,b){
+          return (a < b ? -1 : 1);
+        }
+      );
+      if (INPUT_ARRAY.join('') === numbers.join('')) {
+        RESULT[0].innerHTML = 'ボックス当選だよ！';
+      }
+    }
+    else {
+      RESULT[0].innerHTML = '残念！ハズレです＞＜';
     }
   });

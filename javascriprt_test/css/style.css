@@ -167,8 +167,10 @@ textarea {
   margin: 1rem 0;
 }
 
-.form2__item dd{
+.form2__item dd,
+.form2__item dt{
   margin: 0;
+  text-align: left;
 }
 
 .form2__name {
@@ -203,6 +205,7 @@ textarea {
   margin-left: .5rem;
   font-size: 80%;
   color: #666;
+  text-align: left;
 }
 
 .result {
@@ -213,6 +216,35 @@ textarea {
 }
 
 .supplement {
+  margin: 0;
   color: #666;
+  font-size: 14px;
+  text-align: center;
+}
+
+.winning-result {
+  width: 60%;
+  margin: 0 auto 2rem;
+  background: #eee;
+  border: #00cdac 2px dashed;
+  display: none;
+}
+
+.winning-result.active {
+  animation: fadeIn .5s ease-in;
+  display: block;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.winning-result p {
+  margin: 1rem 0;
   text-align: center;
 }
