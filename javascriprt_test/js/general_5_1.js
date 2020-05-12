@@ -61,14 +61,14 @@
     USER_NUMBER.innerHTML    = inputNumbers;
     WINNING_NUMBER.innerHTML = numbers;
 
-    if (inputNumbers.join('') === numbers.join('')) {
+    if (inputNumbers.toString() === numbers.toString()) {
       RESULT[0].innerHTML = 'おめでとうございます！ストレート当選です！';
     }
-    else if (inputNumbers.join('') !== numbers.join('')) {
+    else if (inputNumbers.toString() !== numbers.toString()) {
       inputNumbers.sort((a, b) => {return a - b});
       numbers.sort((a, b) => {return a - b});
 
-      if (inputNumbers.join('') === numbers.join('')) {
+      if (inputNumbers.toString() === numbers.toString()) {
         RESULT[0].innerHTML = 'おしい！ボックス当選です！';
       }
       else {
