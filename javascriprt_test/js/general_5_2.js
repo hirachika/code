@@ -28,7 +28,7 @@
   // 配列をシャッフルそのうち3つ取り出す
   const NUMBER_ARRAY = [0,1,2,3,4,5,6,7,8,9];
   let numbers = NUMBER_ARRAY.sort(function(){ return Math.random() - 0.5});
-      numbers = numbers.slice(0,3);
+      numbers = numbers.slice(0,10);
 
   INPUT_VALUE.forEach(input => {
     input.onblur = (e) => {
@@ -68,14 +68,14 @@
     USER_NUMBER.innerHTML    = inputNumbers;
     WINNING_NUMBER.innerHTML = numbers;
 
-    if (inputNumbers.join('') === numbers.join('')) {
+    if (inputNumbers.toString() === numbers.toString()) {
       RESULT[0].innerHTML = 'おめでとうございます！ストレート当選です！';
     }
-    else if (inputNumbers.join('') !== numbers.join('')) {
+    else if (inputNumbers.toString() !== numbers.toString()) {
       inputNumbers.sort((a, b) => {return a - b});
       numbers.sort((a, b) => {return a - b});
 
-      if (inputNumbers.join('') === numbers.join('')) {
+      if (inputNumbers.toString() === numbers.toString()) {
         RESULT[0].innerHTML = 'おしい！ボックス当選です！';
       }
       else {
