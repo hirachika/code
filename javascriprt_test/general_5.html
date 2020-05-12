@@ -22,15 +22,16 @@
           <p class="supplement">各テキストエリアに0〜9の数値を入力してください</p>
           <form class="form2" id="form" method="post" >
             <fieldset class="form2__wrap">
-              <input type="text" class="value" name="number1" required>
-              <input type="text" class="value" name="number2" required>
-              <input type="text" class="value" name="number3" required>
+              <input type="text" class="value" name="number" required>
+              <input type="text" class="value" name="number" required>
+              <input type="text" class="value" name="number" required>
             </fieldset>
             <p class="error"></p>
             <button class="button" type="submit">当たっているかな？</button>
             <div class="winning-result">
               <p>入力番号：<span class="winning-result__user"></span></p>
               <p>当選番号：<span class="winning-result__com"></span></p>
+              <p class="supplement">※もう一度挑戦したいときはリロードしてください</p>
             </div>
             <p class="result"></p>
           </form>

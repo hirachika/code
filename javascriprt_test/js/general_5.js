@@ -46,7 +46,11 @@
   BUTTON[0].addEventListener('click', (e) => {
     e.preventDefault();
     WINNING_RESULT.classList.add('active');
-    
+
+    for (const iterator of VALUES) {
+      iterator.disabled = true;
+    }
+
     let inputNumbers = [
       Number(INPUT_VALUE[0].value),
       Number(INPUT_VALUE[1].value),
