@@ -15,6 +15,16 @@ body {
   height: 100vh;
 }
 
+input[type="text"],
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  background-color: #eee;
+  padding: .5rem;
+}
+
 .wrapper {
   background-image: -webkit-linear-gradient(110deg, #00cdac 0%, #8ddad5 100%);
   background-image: -o-linear-gradient(110deg, #00cdac 0%, #8ddad5 100%);
@@ -116,19 +126,13 @@ a:hover {
 CUSTOM STYLE
 -------------------------------------------------- */
 
-.form,
-.form2 {
+.form {
   margin-top: 2rem;
 }
 
-.form__wrap,
-.form2__wrap {
+.form__wrap {
   border: none;
   padding: 0;
-}
-
-.form2__wrap {
-  text-align: center;
 }
 
 .form__item {
@@ -153,16 +157,6 @@ CUSTOM STYLE
   vertical-align: middle;
 }
 
-input[type="text"],
-textarea {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: none;
-  background-color: #eee;
-  padding: .5rem;
-}
-
 .form2__item {
   margin: 1rem 0;
 }
@@ -175,6 +169,15 @@ textarea {
 
 .form2__name {
   margin: .5rem 0;
+}
+
+.form3__item {
+  width: 100%;
+  margin: 0 auto;
+  display: -ms-grid;
+  display: grid;
+  gap: .5rem;
+  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
 }
 
 .button {
