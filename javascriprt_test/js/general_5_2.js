@@ -25,7 +25,7 @@
     BUTTON[0].disabled = '';
   }
 
-  // 配列をシャッフルそのうち3つ取り出す
+  // 配列をシャッフルそのうち10個取り出す
   const NUMBER_ARRAY = [0,1,2,3,4,5,6,7,8,9];
   let numbers = NUMBER_ARRAY.sort(function(){ return Math.random() - 0.5});
       numbers = numbers.slice(0,10);
