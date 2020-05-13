@@ -3,7 +3,7 @@
   var $body   = $('body');
   var $btn   = $('.toggleButton');
   var $mask  = $('#mask');
-  var open   = 'open'; // class
+  var open   = 'open';
   // menu open close
   $btn.on( 'click', function() {
     if ( ! $body.hasClass( open ) ) {

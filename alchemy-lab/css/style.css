@@ -78,15 +78,21 @@ button {
   margin-top: 3rem;
 }
 
-.contactButton a {
+
+.contactButton a{
   display: block;
-  padding: 1.5rem 4rem;
-  font-size: 30px;
+  padding: 1.5rem 3rem;
+  font-size: 20px;
   font-weight: bold;
-  text-align: center;
-  color: #fff;
-  box-sizing: border-box;
   background-color: #781103;
+  border: 2px solid #781103;
+  color: #fff;
+  transition: all .3s;
+}
+.contactButton a:hover {
+  background-color: #fff;
+  border-color: #781103;
+  color: #781103;
 }
 
 .hover {
@@ -1840,6 +1846,10 @@ MENU
   z-index: 5;
 }
 
+.open .headerLogo {
+  position: fixed;
+}
+
 .headerLogo img {
   width: 100%;
 }
@@ -1886,13 +1896,15 @@ MENU
 @media screen and (max-width: 1024px) {
   .globalNavInner {
     padding: 20vh 10vw;
+    align-content: space-between;
   }
 }
 
 @media screen and (max-width: 768px) {
   .globalNavInner {
-    height: 90vh;
-    padding: 5vh 10vw;
+    height: 84vh;
+    padding: 10vh 10vw 6vh;
+    align-content: space-between;
   }
 }
 
@@ -1942,6 +1954,12 @@ MENU
   margin-bottom: 4rem;
 }
 
+@media screen and (max-width: 768px) {
+  .globalMenuList li {
+    margin-bottom: 3rem;
+  }
+}
+
 .globalMenuList li a {
   display: block;
   color: #fff;
@@ -1970,8 +1988,8 @@ MENU
   .vision {
     margin-bottom: 0;
     flex-basis: 80%;
-    width: 80%;
-    margin: 0 auto;
+    /* width: 80%; */
+    /* margin: 0 auto; */
     order: 2;
   }
 }
@@ -1987,12 +2005,13 @@ MENU
 @media screen and (max-width: 768px) {
   .visionTitle {
     font-size: 4rem;
+    margin-bottom: 2rem;
   }
 }
 
 .visionText {
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -2079,15 +2098,7 @@ MENU
   transform: translateY(-20px) scale(0);
 }
 
-@media screen and (max-width: 768px) {
-  .open .toggleButton {
-    left: 250px;
-  }
-}
-
-
 /* #mask */
-
 #mask {
   display: none;
   transition: all .5s;
