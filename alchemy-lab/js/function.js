@@ -1,7 +1,7 @@
-//navigation
+// ハンバーガーメニュー
 (function($) {
   var $body   = $('body');
-  var $btn   = $('.toggle_btn');
+  var $btn   = $('.toggleButton');
   var $mask  = $('#mask');
   var open   = 'open'; // class
   // menu open close
@@ -18,7 +18,7 @@
   });
 } )(jQuery);
 
-//scroll
+// スクロールアニメーション
 $(function(){
   $('.content').addClass('move');
   $(window).scroll(function(){
