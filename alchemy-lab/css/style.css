@@ -75,13 +75,13 @@ button {
 }
 
 .contactButton {
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .contactButton a {
   display: block;
-  padding: 1.5rem 3rem;
-  font-size: 24px;
+  padding: 1.5rem 4rem;
+  font-size: 30px;
   font-weight: bold;
   text-align: center;
   color: #fff;
@@ -1861,6 +1861,12 @@ MENU
   opacity: 0;
 }
 
+@media screen and (max-width: 768px) {
+  .globalNav {
+    order: 1;
+  }
+}
+
 .open .globalNav {
   top: 0;
   opacity: 1;
@@ -1870,14 +1876,35 @@ MENU
 
 .globalNavInner {
   display: flex;
+  flex-wrap: wrap;
   height: 60vh;
   padding: 20vh 15vw;
   justify-content: space-between;
   align-items: flex-end;
 }
 
+@media screen and (max-width: 1024px) {
+  .globalNavInner {
+    padding: 20vh 10vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .globalNavInner {
+    height: 90vh;
+    padding: 5vh 10vw;
+  }
+}
+
 .globalMenu {
   position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .globalMenu {
+    margin: 0 auto;
+    text-align: center;
+  }
 }
 
 .globalMenuText {
@@ -1887,6 +1914,12 @@ MENU
   color: #fff;
   -ms-writing-mode: tb-rl;
   writing-mode: vertical-rl;
+}
+
+@media screen and (max-width: 768px) {
+  .globalMenuText {
+    display: none;
+  }
 }
 
 .globalMenuText:before {
@@ -1917,30 +1950,55 @@ MENU
   transition-duration: 0.2s;
 }
 
-.globalMenuList li a:hover {
-  opacity: .7;
+@media screen and (max-width: 768px) {
+  .globalMenuList li a {
+    font-size: 24px;
+  }
 }
 
-@media screen and (max-width: 767px) {
-  /* .globalNav {
-    left: -220px;
-    width: 220px;
-  } */
+.globalMenuList li a:hover {
+  letter-spacing: .3rem;
 }
 
 .vision {
   margin-bottom: 5vh;
+  flex-basis: 55%;
+  width: 55%;
+}
+
+@media screen and (max-width: 768px) {
+  .vision {
+    margin-bottom: 0;
+    flex-basis: 80%;
+    width: 80%;
+    margin: 0 auto;
+    order: 2;
+  }
 }
 
 .visionTitle {
   color: #fff;
-  font-size: 6rem;
+  font-size: 7rem;
   font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 4rem;
+}
+
+@media screen and (max-width: 768px) {
+  .visionTitle {
+    font-size: 4rem;
+  }
 }
 
 .visionText {
   color: #fff;
   font-size: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+  .visionText {
+    font-size: 16px;
+  }
 }
 
 /* .toggleButton */
@@ -2021,7 +2079,7 @@ MENU
   transform: translateY(-20px) scale(0);
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .open .toggleButton {
     left: 250px;
   }
