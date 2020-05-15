@@ -1897,6 +1897,8 @@ MENU
   .globalNavInner {
     padding: 20vh 10vw;
     align-content: space-between;
+    /* background-color: white; */
+    /* align-items: center; */
   }
 }
 
@@ -1951,12 +1953,18 @@ MENU
 
 .globalMenuList li {
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
 }
 
 @media screen and (max-width: 768px) {
   .globalMenuList li {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .globalMenuList li{
+    margin-bottom: 2.5rem;
   }
 }
 
@@ -1968,9 +1976,16 @@ MENU
   transition-duration: 0.2s;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .globalMenuList li a {
     font-size: 24px;
+  }
+}
+
+
+@media screen and (max-width: 320px) {
+  .globalMenuList li a{
+    font-size: 20px;
   }
 }
 
@@ -1981,16 +1996,14 @@ MENU
 .vision {
   margin-bottom: 5vh;
   flex-basis: 55%;
-  width: 55%;
 }
 
 @media screen and (max-width: 768px) {
   .vision {
     margin-bottom: 0;
-    flex-basis: 80%;
-    /* width: 80%; */
-    /* margin: 0 auto; */
+    flex-basis: 100%;
     order: 2;
+    align-content: space-between;
   }
 }
 
@@ -2002,9 +2015,21 @@ MENU
   margin-bottom: 4rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1440px) {
+  .visionTitle {
+    font-size: 5rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
   .visionTitle {
     font-size: 4rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .visionTitle {
+    font-size: 3rem;
     margin-bottom: 2rem;
   }
 }
@@ -2019,6 +2044,19 @@ MENU
     font-size: 16px;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .visionText {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .visionText {
+    font-size: 12px;
+  }
+}
+
 
 /* .toggleButton */
 
@@ -2135,4 +2173,3 @@ main h1 {
   font-weight: 400;
   text-align: center;
 }
-
