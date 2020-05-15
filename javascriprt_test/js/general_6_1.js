@@ -29,7 +29,10 @@
   const NUMBER_ARRAY = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43];
   let numbers = NUMBER_ARRAY.sort(function(){ return Math.random() - 0.5});
       numbers = numbers.slice(0,6);
-      numbers = [1,2,3,4,5,6];
+
+      // テスト番号（あとで消す）
+      numbers = [3,1,3,4,5,6];
+      numbers.sort((a, b) => {return a - b});
 
   // ボーナス数字を設定
   const BONUS_NUMBER = numbers[0];
@@ -57,6 +60,7 @@
       iterator.disabled = true;
     }
 
+    // ユーザーが入力した数字を格納
     let inputNumbers = [
       Number(INPUT_VALUE[0].value),
       Number(INPUT_VALUE[1].value),
@@ -69,21 +73,33 @@
     USER_NUMBER.innerHTML    = inputNumbers;
     WINNING_NUMBER.innerHTML = numbers;
 
-    if (inputNumbers.toString() === numbers.toString()) {
-      RESULT[0].innerHTML = 'おめでとうございます！1等当選です！！';
-    }
-    else if (inputNumbers.toString() !== numbers.toString()) {
-      inputNumbers.sort((a, b) => {return a - b});
-      numbers.sort((a, b) => {return a - b});
+    const NEW_ARRAY = [];
+    console.log("NEW_ARRAY", NEW_ARRAY)
 
-      if (inputNumbers.toString() === numbers.toString()) {
-        RESULT[0].innerHTML = 'おめでとうございます！1等当選です！！';
-      }
-      else {
-        RESULT[0].innerHTML = '残念！ハズレです…';
-      }
-    }
-    else {
-      RESULT[0].innerHTML = '残念！ハズレです…';
-    }
+    // numbers.concat(inputNumbers).forEach(item => {
+    //   if (numbers.includes(item) && !inputNumbers.includes(item)) {
+    //     NEW_ARRAY.push(item);
+    //     console.log(NEW_ARRAY);
+    //   } 
+    //   else if (!numbers.includes(item) && inputNumbers.includes(item)) {
+    //     NEW_ARRAY.push(item);
+    //     console.log(NEW_ARRAY);
+    //   }
+    // })
+
+    // if (inputNumbers.toString() === numbers.toString()) {
+    //   RESULT[0].innerHTML = 'おめでとうございます！1等当選です！！';
+    // }
+    // else if (inputNumbers.toString() !== numbers.toString()) {
+    //   // ソートする
+    //   inputNumbers.sort((a, b) => {return a - b});
+      
+
+    //   if ()) {
+    //     RESULT[0].innerHTML = '2等当選です！';
+    //   }
+    // }
+    // else {
+    //   RESULT[0].innerHTML = '残念！ハズレです…';
+    // }
   });
