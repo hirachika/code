@@ -1881,13 +1881,11 @@ MENU
   top: 0;
   opacity: 1;
   position: fixed;
-  overflow: hidden;
 }
 
 .globalNavInner {
   display: flex;
   flex-wrap: wrap;
-  height: 60vh;
   padding: 20vh 15vw;
   justify-content: space-between;
   align-items: flex-end;
@@ -1897,14 +1895,11 @@ MENU
   .globalNavInner {
     padding: 20vh 10vw;
     align-content: space-between;
-    /* background-color: white; */
-    /* align-items: center; */
   }
 }
 
 @media screen and (max-width: 768px) {
   .globalNavInner {
-    height: 84vh;
     padding: 10vh 10vw 6vh;
     align-content: space-between;
   }
@@ -1916,7 +1911,7 @@ MENU
 
 @media screen and (max-width: 768px) {
   .globalMenu {
-    margin: 0 auto;
+    margin: 2rem auto 0;
     text-align: center;
   }
 }
@@ -2000,10 +1995,7 @@ MENU
 
 @media screen and (max-width: 768px) {
   .vision {
-    margin-bottom: 0;
-    flex-basis: 100%;
-    order: 2;
-    align-content: space-between;
+    display: none;
   }
 }
 
@@ -2152,7 +2144,6 @@ MENU
   height: 100%;
   opacity: .8;
   cursor: pointer;
-  overflow: hidden;
 }
 
 
