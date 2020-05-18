@@ -8,6 +8,7 @@
   const RESULT         = document.getElementsByClassName('result');
   const VALUES         = document.getElementsByClassName('value');
   const INPUT_VALUE    = Array.from(VALUES);
+  const COUNT          = 10;
 
   // ボタン初期状態
   const BUTTON         = document.getElementsByClassName('button');
@@ -25,10 +26,10 @@
     BUTTON[0].disabled = '';
   }
 
-  // 配列をシャッフルそのうち10個取り出す
+  // 配列をシャッフルそのうち固定数を格納
   const NUMBER_ARRAY = [0,1,2,3,4,5,6,7,8,9];
   let numbers = NUMBER_ARRAY.sort(function(){ return Math.random() - 0.5});
-      numbers = numbers.slice(0,10);
+      numbers = numbers.slice(0,COUNT);
 
   INPUT_VALUE.forEach(input => {
     input.onblur = (e) => {
@@ -52,18 +53,11 @@
       iterator.disabled = true;
     }
 
-    let inputNumbers = [
-      Number(INPUT_VALUE[0].value),
-      Number(INPUT_VALUE[1].value),
-      Number(INPUT_VALUE[2].value),
-      Number(INPUT_VALUE[3].value),
-      Number(INPUT_VALUE[4].value),
-      Number(INPUT_VALUE[5].value),
-      Number(INPUT_VALUE[6].value),
-      Number(INPUT_VALUE[7].value),
-      Number(INPUT_VALUE[8].value),
-      Number(INPUT_VALUE[9].value)
-    ];
+    // ユーザーの入力数字を格納
+    let inputNumbers = new Array();
+    for (let i = 0; i < COUNT; i++) {
+      inputNumbers.push(Number(INPUT_VALUE[i].value));
+    }
 
     USER_NUMBER.innerHTML    = inputNumbers;
     WINNING_NUMBER.innerHTML = numbers;
