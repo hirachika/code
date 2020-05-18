@@ -15,11 +15,21 @@ body {
   height: 100vh;
 }
 
+input[type="text"],
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  background-color: #eee;
+  padding: .5rem;
+}
+
 .wrapper {
   background-image: -webkit-linear-gradient(110deg, #00cdac 0%, #8ddad5 100%);
   background-image: -o-linear-gradient(110deg, #00cdac 0%, #8ddad5 100%);
   background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
-  padding-bottom: 5rem;
+  height: 100%;
 }
 
 .header {
@@ -120,8 +130,7 @@ CUSTOM STYLE
   margin-top: 2rem;
 }
 
-.form__wrap,
-.form2__wrap {
+.form__wrap {
   border: none;
   padding: 0;
 }
@@ -148,26 +157,27 @@ CUSTOM STYLE
   vertical-align: middle;
 }
 
-input[type="text"],
-textarea {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: none;
-  background-color: #eee;
-  padding: .5rem;
-}
-
 .form2__item {
   margin: 1rem 0;
 }
 
-.form2__item dd{
+.form2__item dd,
+.form2__item dt{
   margin: 0;
+  text-align: left;
 }
 
 .form2__name {
   margin: .5rem 0;
+}
+
+.form3__item {
+  width: 100%;
+  margin: 0 auto;
+  display: -ms-grid;
+  display: grid;
+  gap: .5rem;
+  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
 }
 
 .button {
@@ -198,6 +208,7 @@ textarea {
   margin-left: .5rem;
   font-size: 80%;
   color: #666;
+  text-align: left;
 }
 
 .result {
@@ -205,4 +216,42 @@ textarea {
   color: #f06;
   text-align: center;
   font-size: 20px;
+}
+
+.supplement {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+}
+
+.winning-result {
+  width: 80%;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #eee;
+  display: none;
+}
+
+.winning-result.active {
+  animation: fadeIn .5s ease-in;
+  display: block;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.winning-result p {
+  margin: 0 0 .5rem;
+  text-align: center;
+}
+
+.winning-result p:last-child{
+  margin: 0;
 }
