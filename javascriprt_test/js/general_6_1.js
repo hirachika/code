@@ -44,34 +44,47 @@
     input.onblur = (e) => {
       e.preventDefault();
       const inputValue = input.value;
-      if (!inputValue.match(/^[1-9]{1,2}$/) || inputValue.length > 43) {
+
+      if (!inputValue.match(/^[1-9]{1,2}$/) || inputValue > 43) {
         showMessage('1〜43の異なる数字を入力してください');
       }
-      else{
-        hideMessage();
+      else {
+        // 入寮された数字の配列を定義
+        let inputNumbers = [];
+        for (let i = 0; i < COUNT; i++) {
+          inputNumbers.push(Number(INPUT_VALUE[i].value));
+
+          // Set型で重複する値は格納させない
+          let newInputNumbers = new Set(inputNumbers);
+          if (newInputNumbers.size !== COUNT) {
+            showMessage('重複している数字があります');
+          }
+          else {
+            hideMessage();
+          }
+        }
       }
     }
   });
+
+  // 入寮された数字の配列を定義
+  // let inputNumbers = [];
+  // for (let i = 0; i < COUNT; i++) {
+  //   inputNumbers.push(Number(INPUT_VALUE[i].value));
+  // }
+
+  // let newInputNumbers = new Set(inputNumbers);
+  // console.log("newInputNumbers", newInputNumbers);
+  // if (newInputNumbers.size != inputNumbers.length) {
+  //   showMessage('数字が重複しています。入力し直してください');
+  // }
 
   BUTTON[0].addEventListener('click', (e) => {
     e.preventDefault();
     WINNING_RESULT.classList.add('active');
 
-    // ユーザーが入力した数字を格納
-    let inputNumbers = new Array();
-    for (let i = 0; i < COUNT; i++) {
-      inputNumbers.push(Number(INPUT_VALUE[i].value));
-    }
 
-    let inputNumbers = new Set(inputNumbers);
-    console.log("inputNumbers", inputNumbers)
-    if () {
 
-    }
-    return newInputNumbers.size != inputNumbers.length;
-    console.log("newInputNumbers", newInputNumbers)
-
-      // showMessage('数字が重複しています。入力し直してください');
       // let NEW_NUMBER_ARRAY = NUMBER_ARRAY.filter(value => value !== Number(INPUT_VALUE[i].value));
 
       // ボタンを押したらテキストエリアを無効化
