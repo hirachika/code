@@ -35,9 +35,8 @@
   let bonusNumber = numbers.slice(0,1);
 
   // 検証用数字（あとで消す）
-  numbers = [3,1,3,4,5,6];
-  console.log("numbers", numbers)
-  bonusNumber = [1];
+  numbers = [2,1,3,4,5,6];
+  bonusNumber = 8;
 
   // 入力チェック
   INPUT_VALUE.forEach(input => {
@@ -45,92 +44,77 @@
       e.preventDefault();
       const inputValue = input.value;
 
-      if (!inputValue.match(/^[1-9]{1,2}$/) || inputValue > 43) {
+      // 入力数字を配列に格納
+      let equalsNumbers = [];
+      for (let i = 0; i < COUNT; i++) {
+        equalsNumbers.push(Number(INPUT_VALUE[i].value));
+      }
+
+      // Set型で重複する数字を省く
+      let validateNumbers = new Set(equalsNumbers);
+
+      if (!inputValue.match(/^[0-9]{1,2}$/) || inputValue > 43 || inputValue == 0) {
         showMessage('1〜43の異なる数字を入力してください');
       }
+      else if (validateNumbers.size !== COUNT) {
+        showMessage('空欄または重複している数字があります');
+      }
       else {
-        // 入寮された数字の配列を定義
-        let inputNumbers = [];
-        for (let i = 0; i < COUNT; i++) {
-          inputNumbers.push(Number(INPUT_VALUE[i].value));
-
-          // Set型で重複する値は格納させない
-          let newInputNumbers = new Set(inputNumbers);
-          if (newInputNumbers.size !== COUNT) {
-            showMessage('重複している数字があります');
-          }
-          else {
-            hideMessage();
-          }
-        }
+        hideMessage();
       }
     }
   });
-
-  // 入寮された数字の配列を定義
-  // let inputNumbers = [];
-  // for (let i = 0; i < COUNT; i++) {
-  //   inputNumbers.push(Number(INPUT_VALUE[i].value));
-  // }
-
-  // let newInputNumbers = new Set(inputNumbers);
-  // console.log("newInputNumbers", newInputNumbers);
-  // if (newInputNumbers.size != inputNumbers.length) {
-  //   showMessage('数字が重複しています。入力し直してください');
-  // }
 
   BUTTON[0].addEventListener('click', (e) => {
     e.preventDefault();
     WINNING_RESULT.classList.add('active');
 
+    // 入力数字を格納
+    let inputNumbers = [];
+    for (let i = 0; i < COUNT; i++) {
+      inputNumbers.push(Number(INPUT_VALUE[i].value));
+    }
 
+    let eureka = new Set(inputNumbers.concat(numbers));
+    console.log("eureka.size", eureka,eureka.size)
 
-      // let NEW_NUMBER_ARRAY = NUMBER_ARRAY.filter(value => value !== Number(INPUT_VALUE[i].value));
-
-      // ボタンを押したらテキストエリアを無効化
-      // for (const iterator of VALUES) {
-      //   iterator.disabled = true;
-      // }
-
-
+    // ボタンを押したらテキストエリアを無効化
+    for (const iterator of VALUES) {
+      iterator.disabled = true;
+    }
 
     USER_NUMBER.innerHTML    = inputNumbers;
     WINNING_NUMBER.innerHTML = numbers;
 
-    // ソートする
-    inputNumbers.sort((a, b) => {return a - b});
-    console.log("inputNumbers", inputNumbers)
-    numbers.sort((a, b) => {return a - b});
-    console.log("numbers", numbers)
-
-    // const NEW_ARRAY = [];
-    // console.log("NEW_ARRAY", NEW_ARRAY)
-
-    // numbers.concat(inputNumbers).forEach(item => {
-    //   if (numbers.includes(item) && !inputNumbers.includes(item)) {
-    //     NEW_ARRAY.push(item);
-    //     console.log(NEW_ARRAY);
-    //   } 
-    //   else if (!numbers.includes(item) && inputNumbers.includes(item)) {
-    //     NEW_ARRAY.push(item);
-    //     console.log(NEW_ARRAY);
-    //   }
-    // })
-
-    if (inputNumbers.toString() === numbers.toString()) {
+    if (eureka.size === 6) {
       RESULT[0].innerHTML = 'おめでとうございます！1等当選です！！';
     }
-    // ボーナス数字が存在する場合
-    else if (inputNumbers.toString() !== numbers.toString() && inputNumbers.includes(bonusNumber)) {
-      console.log('BONUS_NUMBERがあります');
-      // const index = inputNumbers.findIndex(n => n === BONUS_NUMBER);
-      // console.log("index", index)
-      // console.log("inputNumbers", inputNumbers)
-
-    // RESULT[0].innerHTML = '2等当選です！';
+    else if (eureka.size === 7 && inputNumbers.includes(bonusNumber)) {
+      RESULT[0].innerHTML = '2等当選です！';
+    }
+    else if (eureka.size === 7) {
+      RESULT[0].innerHTML = '3等当選です！';
+    }
+    else if (eureka.size === 8) {
+      RESULT[0].innerHTML = '4等当選です！';
+    }
+    else if (eureka.size === 9) {
+      RESULT[0].innerHTML = '5等当選です！';
     }
     else {
       RESULT[0].innerHTML = '残念！ハズレです…';
     }
   });
 
+  // const NEW_ARRAY = [];
+  // numbers.concat(inputNumbers).forEach(item => {
+  //   console.log(item);
+  //   if (numbers.includes(item) && !inputNumbers.includes(item)) {
+  //     NEW_ARRAY.push(item);
+  //     console.log(NEW_ARRAY);
+  //   } 
+  //   else if (!numbers.includes(item) && inputNumbers.includes(item)) {
+  //     NEW_ARRAY.push(item);
+  //     console.log(NEW_ARRAY);
+  //   }
+  // })
