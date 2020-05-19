@@ -105,16 +105,3 @@
       RESULT[0].innerHTML = '残念！ハズレです…';
     }
   });
-
-  // const NEW_ARRAY = [];
-  // numbers.concat(inputNumbers).forEach(item => {
-  //   console.log(item);
-  //   if (numbers.includes(item) && !inputNumbers.includes(item)) {
-  //     NEW_ARRAY.push(item);
-  //     console.log(NEW_ARRAY);
-  //   } 
-  //   else if (!numbers.includes(item) && inputNumbers.includes(item)) {
-  //     NEW_ARRAY.push(item);
-  //     console.log(NEW_ARRAY);
-  //   }
-  // })
