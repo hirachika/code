@@ -26,10 +26,11 @@ textarea {
 }
 
 .wrapper {
+  height: 100%;
+  padding-bottom: 5rem;
   background-image: -webkit-linear-gradient(110deg, #00cdac 0%, #8ddad5 100%);
   background-image: -o-linear-gradient(110deg, #00cdac 0%, #8ddad5 100%);
   background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
-  height: 100%;
 }
 
 .header {

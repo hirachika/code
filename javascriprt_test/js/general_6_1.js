@@ -4,6 +4,7 @@
   const WINNING_RESULT = document.querySelector('.winning-result');
   const USER_NUMBER    = document.querySelector('.winning-result__user');
   const WINNING_NUMBER = document.querySelector('.winning-result__com');
+  const BONUS_NUMBER   = document.querySelector('.winning-result__bonus');
   const ERROR          = document.getElementsByClassName('error');
   const RESULT         = document.getElementsByClassName('result');
   const VALUES         = document.getElementsByClassName('value');
@@ -27,26 +28,25 @@
   }
 
   // 配列をシャッフル後に固定数（COUNT）を格納
-  const NUMBER_ARRAY = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43];
-  let numbers = NUMBER_ARRAY.sort(function(){ return Math.random() - 0.5});
-      numbers = numbers.slice(0,COUNT);
+  let numberArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43];
+      numberArray = numberArray.sort(function(){ return Math.random() - 0.5});
 
   // ボーナス数字を格納
-  let bonusNumber = numbers.slice(0,1);
-
-  // 検証用数字（あとで消す）
-  numbers = [2,1,3,4,5,6];
-  bonusNumber = 8;
+  const bonusNumber = numberArray.shift();
+  console.log("bonusNumber", bonusNumber)
+  
+  const numbers = numberArray.slice(0,COUNT);
+  console.log("numbers", numbers)
 
   // 入力チェック
   INPUT_VALUE.forEach(input => {
     input.onblur = (e) => {
       e.preventDefault();
       const inputValue = input.value;
-
-      // 入力数字を配列に格納
+      
+      // 入力数字を格納
       let equalsNumbers = [];
-      for (let i = 0; i < COUNT; i++) {
+      for (const i in INPUT_VALUE) {
         equalsNumbers.push(Number(INPUT_VALUE[i].value));
       }
 
@@ -71,12 +71,12 @@
 
     // 入力数字を格納
     let inputNumbers = [];
-    for (let i = 0; i < COUNT; i++) {
+    for (const i in INPUT_VALUE) {
       inputNumbers.push(Number(INPUT_VALUE[i].value));
     }
 
-    let eureka = new Set(inputNumbers.concat(numbers));
-    console.log("eureka.size", eureka,eureka.size)
+    // Set型で重複する数字を省く
+    let inputNumbersFixed = new Set(inputNumbers.concat(numbers));
 
     // ボタンを押したらテキストエリアを無効化
     for (const iterator of VALUES) {
@@ -85,20 +85,21 @@
 
     USER_NUMBER.innerHTML    = inputNumbers;
     WINNING_NUMBER.innerHTML = numbers;
+    BONUS_NUMBER.innerHTML   = bonusNumber;
 
-    if (eureka.size === 6) {
+    if (inputNumbersFixed.size === 6) {
       RESULT[0].innerHTML = 'おめでとうございます！1等当選です！！';
     }
-    else if (eureka.size === 7 && inputNumbers.includes(bonusNumber)) {
+    else if (inputNumbersFixed.size === 7 && inputNumbers.includes(bonusNumber)) {
       RESULT[0].innerHTML = '2等当選です！';
     }
-    else if (eureka.size === 7) {
+    else if (inputNumbersFixed.size === 7) {
       RESULT[0].innerHTML = '3等当選です！';
     }
-    else if (eureka.size === 8) {
+    else if (inputNumbersFixed.size === 8) {
       RESULT[0].innerHTML = '4等当選です！';
     }
-    else if (eureka.size === 9) {
+    else if (inputNumbersFixed.size === 9) {
       RESULT[0].innerHTML = '5等当選です！';
     }
     else {
