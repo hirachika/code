@@ -10,6 +10,7 @@
   const VALUES         = document.getElementsByClassName('value');
   const INPUT_VALUE    = Array.from(VALUES);
   const COUNT          = 6;
+  const DECIDED_NUMBER = 43;
 
   // ボタン初期状態
   const BUTTON         = document.getElementsByClassName('button');
@@ -27,13 +28,16 @@
     BUTTON[0].disabled = '';
   }
 
-  // 配列をシャッフル後に固定数（COUNT）を格納
-  let numberArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43];
-      numberArray = numberArray.sort(function(){ return Math.random() - 0.5});
+  // 数字を格納
+  let numberArray = [];
+  for (let i = 1; i <= DECIDED_NUMBER; i++){
+    numberArray.push(i);
+  }
 
-  // ボーナス数字と当選番号を格納
+  // シャッフル後にボーナス数字と当選番号を格納
+  numberArray = numberArray.sort(function(){ return Math.random() - 0.5});
   const bonusNumber = numberArray.shift();
-  const numbers = numberArray.slice(0,COUNT);
+  const numbers     = numberArray.slice(0,COUNT);
 
   // 入力チェック
   INPUT_VALUE.forEach(input => {
