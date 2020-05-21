@@ -4,17 +4,20 @@
   const WINNING_RESULT = document.querySelector('.winning-result');
   const USER_NUMBER    = document.querySelector('.winning-result__user');
   const WINNING_NUMBER = document.querySelector('.winning-result__com');
+  const BONUS_NUMBER   = document.querySelector('.winning-result__bonus');
   const ERROR          = document.getElementsByClassName('error');
   const RESULT         = document.getElementsByClassName('result');
   const VALUES         = document.getElementsByClassName('value');
   const INPUT_VALUE    = Array.from(VALUES);
+  const COUNT          = 7;
+  const DECIDED_NUMBER = 37;
 
   // ボタン初期状態
   const BUTTON         = document.getElementsByClassName('button');
   BUTTON[0].disabled   = 'disabled';
   
   // エラーメッセージの表示と無効化
-  const showMessage = (message = '空白または入力に誤りがあります') => {  
+  const showMessage = (message) => {  
     ERROR[0].innerHTML  = message;
     BUTTON[0].disabled  = 'disabled';
   }
@@ -25,19 +28,39 @@
     BUTTON[0].disabled = '';
   }
 
-  // 配列をシャッフルそのうち3つ取り出す
-  const NUMBER_ARRAY = [0,1,2,3,4,5,6,7,8,9];
-  let numbers = NUMBER_ARRAY.sort(function(){ return Math.random() - 0.5});
-      numbers = numbers.slice(0,10);
+  // 数字を格納
+  let numberArray = [];
+  for (let i = 1; i <= DECIDED_NUMBER; i++){
+    numberArray.push(i);
+  }
 
+  // シャッフル後にボーナス数字と当選番号を格納
+  numberArray = numberArray.sort(function(){ return Math.random() - 0.5});
+  const bonusNumber = numberArray.shift();
+  const numbers     = numberArray.slice(0,COUNT);
+
+  // 入力チェック
   INPUT_VALUE.forEach(input => {
     input.onblur = (e) => {
       e.preventDefault();
       const inputValue = input.value;
-      if (!inputValue.match(/^[0-9]{1}$/)) {
-        showMessage('0〜9の数値を一桁ずつ入力してください');
+      
+      // 入力数字を格納
+      let equalsNumbers = [];
+      for (const i in INPUT_VALUE) {
+        equalsNumbers.push(Number(INPUT_VALUE[i].value));
       }
-      else{
+
+      // Set型で重複する数字を省く
+      let validateNumbers = new Set(equalsNumbers);
+
+      if (!inputValue.match(/^[0-9]{1,2}$/) || inputValue > 43 || inputValue == 0) {
+        showMessage('1〜43の異なる数字を入力してください');
+      }
+      else if (validateNumbers.size !== COUNT) {
+        showMessage('空欄または重複している数字があります');
+      }
+      else {
         hideMessage();
       }
     }
@@ -47,40 +70,38 @@
     e.preventDefault();
     WINNING_RESULT.classList.add('active');
 
+    // 入力数字を格納
+    let inputNumbers = [];
+    for (const i in INPUT_VALUE) {
+      inputNumbers.push(Number(INPUT_VALUE[i].value));
+    }
+
+    // Set型で重複する数字を省く
+    let inputNumbersFixed = new Set(inputNumbers.concat(numbers));
+
     // ボタンを押したらテキストエリアを無効化
     for (const iterator of VALUES) {
       iterator.disabled = true;
     }
 
-    let inputNumbers = [
-      Number(INPUT_VALUE[0].value),
-      Number(INPUT_VALUE[1].value),
-      Number(INPUT_VALUE[2].value),
-      Number(INPUT_VALUE[3].value),
-      Number(INPUT_VALUE[4].value),
-      Number(INPUT_VALUE[5].value),
-      Number(INPUT_VALUE[6].value),
-      Number(INPUT_VALUE[7].value),
-      Number(INPUT_VALUE[8].value),
-      Number(INPUT_VALUE[9].value)
-    ];
-
     USER_NUMBER.innerHTML    = inputNumbers;
     WINNING_NUMBER.innerHTML = numbers;
+    BONUS_NUMBER.innerHTML   = bonusNumber;
 
-    if (inputNumbers.toString() === numbers.toString()) {
-      RESULT[0].innerHTML = 'おめでとうございます！ストレート当選です！';
+    if (inputNumbersFixed.size === 6) {
+      RESULT[0].innerHTML = 'おめでとうございます！1等当選です！！';
     }
-    else if (inputNumbers.toString() !== numbers.toString()) {
-      inputNumbers.sort((a, b) => {return a - b});
-      numbers.sort((a, b) => {return a - b});
-
-      if (inputNumbers.toString() === numbers.toString()) {
-        RESULT[0].innerHTML = 'おしい！ボックス当選です！';
-      }
-      else {
-        RESULT[0].innerHTML = '残念！ハズレです…';
-      }
+    else if (inputNumbersFixed.size === 7 && inputNumbers.includes(bonusNumber)) {
+      RESULT[0].innerHTML = '2等当選です！';
+    }
+    else if (inputNumbersFixed.size === 7) {
+      RESULT[0].innerHTML = '3等当選です！';
+    }
+    else if (inputNumbersFixed.size === 8) {
+      RESULT[0].innerHTML = '4等当選です！';
+    }
+    else if (inputNumbersFixed.size === 9) {
+      RESULT[0].innerHTML = '5等当選です！';
     }
     else {
       RESULT[0].innerHTML = '残念！ハズレです…';
