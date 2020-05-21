@@ -38,7 +38,7 @@
   numberArray = numberArray.sort(function(){ return Math.random() - 0.5});
   const bonusNumber1 = numberArray.shift();
   const bonusNumber2 = numberArray.shift();
-  const numbers     = numberArray.slice(0,COUNT);
+  const numbers      = numberArray.slice(0,COUNT);
 
   // 入力チェック
   INPUT_VALUE.forEach(input => {
