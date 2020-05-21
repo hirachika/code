@@ -36,7 +36,7 @@
 
   // シャッフル後にボーナス数字と当選番号を格納
   numberArray = numberArray.sort(function(){ return Math.random() - 0.5});
-  const bonusNumber = numberArray.shift();
+  const bonusNumber = numberArray.splice(0,2);
   const numbers     = numberArray.slice(0,COUNT);
 
   // 入力チェック
@@ -55,7 +55,7 @@
       let validateNumbers = new Set(equalsNumbers);
 
       if (!inputValue.match(/^[0-9]{1,2}$/) || inputValue > 43 || inputValue == 0) {
-        showMessage('1〜43の異なる数字を入力してください');
+        showMessage('1〜37の異なる数字を入力してください');
       }
       else if (validateNumbers.size !== COUNT) {
         showMessage('空欄または重複している数字があります');
@@ -87,21 +87,27 @@
     USER_NUMBER.innerHTML    = inputNumbers;
     WINNING_NUMBER.innerHTML = numbers;
     BONUS_NUMBER.innerHTML   = bonusNumber;
+    console.log("bonusNumber", bonusNumber)
 
-    if (inputNumbersFixed.size === 6) {
+    if (inputNumbersFixed.size === COUNT) {
       RESULT[0].innerHTML = 'おめでとうございます！1等当選です！！';
     }
-    else if (inputNumbersFixed.size === 7 && inputNumbers.includes(bonusNumber)) {
+    else if (inputNumbersFixed.size === COUNT+1 && inputNumbers.includes(bonusNumber)) {
+      console.log("bonusNumber", bonusNumber)
       RESULT[0].innerHTML = '2等当選です！';
     }
-    else if (inputNumbersFixed.size === 7) {
+    else if (inputNumbersFixed.size === COUNT+1) {
       RESULT[0].innerHTML = '3等当選です！';
     }
-    else if (inputNumbersFixed.size === 8) {
+    else if (inputNumbersFixed.size === COUNT+2) {
       RESULT[0].innerHTML = '4等当選です！';
     }
-    else if (inputNumbersFixed.size === 9) {
+    else if (inputNumbersFixed.size === COUNT+3) {
       RESULT[0].innerHTML = '5等当選です！';
+    }
+    else if (inputNumbersFixed.size === COUNT+4 && inputNumbers.includes(bonusNumber)) {
+      console.log("bonusNumber", bonusNumber)
+      RESULT[0].innerHTML = '6等当選です！';
     }
     else {
       RESULT[0].innerHTML = '残念！ハズレです…';
