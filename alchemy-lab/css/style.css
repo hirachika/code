@@ -1441,144 +1441,69 @@ table .mustspan {
   }
 }
 
-.staff {
-  margin-bottom: 20vh;
-  position: relative;
-  padding-bottom: 31.25%
-}
-
-.staffMessage {
-  padding: 4vw;
-  box-sizing:border-box;
-  color: #fff;
-  font-weight: 700;
-  margin: 0 auto;
-  position: absolute;
-  top: 50%;
-  left: 30%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  background-color:#fff;
-  opacity:.7;
-}
-
-.staffMessageTitle {
-  color: #000;
-  line-height:1.5;
-  font-size: 2.4rem;
-  padding-bottom: 10px;
-}
-
-.staffMessageName {
-  color: #000;
-  font-size: 1.6rem
-}
-
-.staffMessageImage img {
-  width: 100%
-}
-
-.staffChapter {
+.memberChapter {
   margin-bottom: 10rem;
 }
 
-.staffChapterTitle {
+.memberChapterTitle {
   font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 2rem;
   line-height: 2
 }
 
-.staffChapterText {
+.memberChapterText {
   line-height: 2;
   margin-bottom: 20px
 }
 
-.staffChapterCard {
+.memberChapterCard {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: flex-start
 }
 
-.staffChapterCardImage {
+.memberChapterCardImage {
   width: 40%;
   box-shadow: 20px 80px #f7f7f7
 }
 
-.staffChapterCardImage img {
+.memberChapterCardImage img {
   width: 100%
 }
 
-.staffChapterCardText {
+.memberChapterCardText {
   width: 50%
 }
 
 @media screen and (max-width:1024px) {
-  .staffMessageTitle {
-    font-size: 2rem;
-  }
   .container {
     margin-bottom: 100px
   }
 
-  .staffVideo {
-    margin-bottom: 0
-  }
-
-  .staffChapter {
+  .memberChapter {
     margin-bottom: 100px
   }
-}
-
-@media screen and (max-width:768px) {
-  .staffVideoMember video {
-    width: 80%
-  }
-
 }
 
 @media screen and (max-width:768px) {
   .container {
     width: 90%
+  
   }
-
-  .staff {
-    padding-bottom: 45%;
-    margin-bottom: 10vh
-  }
-  .staffChapterText {
+  .memberChapterText {
     font-size: 1.4rem
   }
 
-  .staffVideoMember video {
-    width: 100%
-  }
-
-  .staffChapterCardImage {
+  .memberChapterCardImage {
     width: 100%;
     margin-bottom: 15vh
   }
 }
 
-@media screen and (max-width:540px) {
-  .staffMessageTitle {
-    font-size:1.6rem;
-  }
-  .staffMessageName{
-    font-size:1.4rem;
-  }
-}
-@media screen and (max-width:500px){
-  .staffMessage {
-    left:35%;
-  }
-}
 @media screen and (max-width:420px) {
-  .staff {
-    margin-bottom: 50px
-  }
-  .staffChapter {
+  .memberChapter {
     margin-bottom: 50px
   }
 
@@ -1586,34 +1511,17 @@ table .mustspan {
     margin-bottom: 50px
   }
 
-  .staffChapterTitle {
+  .memberChapterTitle {
     font-size: 1.5rem
   }
 
-  .staffChapterText {
+  .memberChapterText {
     font-size: 1.4rem
   }
 
-  .staffVideo {
-    padding: 0;
-    margin-bottom: 50px
-  }
-
-  .staffVideoMember video {
-    padding: 0
-  }
-
-  .staffChapterCardText {
+  .memberChapterCardText {
     margin-top: 100px;
     width: 90%
-  }
-}
-@media screen and (max-width:375px) {
-  .staffMessageTitle {
-    font-size: 1.2rem
-  }
-  .staffMessageName {
-    font-size: 1rem
   }
 }
 
