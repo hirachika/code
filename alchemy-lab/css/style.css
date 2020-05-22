@@ -2,7 +2,7 @@
 
 html {
   font-size: 62.5%;
-  font-family: Helvetica, "ヒラギノ角ゴ Pro W3", Hiragino Kaku Gothic Pro, "メイリオ", Meiryo, sans-serif
+  font-family: 'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
 }
 
 body {
@@ -78,12 +78,13 @@ button {
   margin-top: 3rem;
 }
 
-
 .contactButton a{
+  width: 180px;
   display: block;
-  padding: 1.5rem 3rem;
+  padding: 1.5rem 0;
   font-size: 20px;
   font-weight: bold;
+  text-align: center;
   background-color: #781103;
   border: 2px solid #781103;
   color: #fff;
@@ -209,7 +210,7 @@ button {
 }
 
 /* --------------------------------------------------
-PAGE TOP
+PAGE COMMON
 -------------------------------------------------- */
 .pageHeader {
   width: 100%;
@@ -268,36 +269,89 @@ PAGE TOP
   .pageHeaderTitle {
     width: 80%;
   }
-}
 
-@media screen and (max-width: 768px) {
   .pageHeaderImg {
-    height: 50vw;
+    height: 400px;
     object-fit: cover;
   }
 }
 
-.container {
-  width: 980px;
-  margin: 0 auto;
-  box-sizing: border-box
+@media screen and (max-width: 560px) {
+  .pageHeaderTitle {
+    font-size: 2rem;
+  }
+  
+  .pageHeaderTitle::first-line {
+    font-size: 4rem;
+  }
+
+  .pageHeaderImg {
+    height: 300px;
+  }
 }
 
-@media screen and (max-width: 1024px) {
-  .container {
-    width: 760px
+.pageMessage {
+  margin: 10rem 0;
+}
+
+.pageMessageInner {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1280px) {
+  .pageMessageInner {
+    width: 80%;
   }
+}
+
+.pageMessageTitle{
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 2;
+  margin-bottom: 5rem;
+}
+
+@media screen and (max-width: 560px) {
+  .pageMessageTitle {
+    font-size: 18px;
+  }
+}
+
+.pageMessageText {
+  font-size: 16px;
+  margin-bottom: 2rem;
+}
+
+.pageMessageText:last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 560px) {
+  .pageMessageText {
+    font-size: 15px;
+  }
+}
+
+.sign {
+  text-align: right
 }
 
 @media screen and (max-width:768px) {
-  .container {
-    width: 90%
+  .sign {
+    font-size: 1.4rem
   }
 }
 
-@media screen and (max-width: 420px) {
+.container {
+  width: 1000px;
+  margin: 10rem auto;
+  box-sizing: border-box
+}
+
+@media screen and (max-width: 1280px) {
   .container {
-    width: 100%
+    width: 80%;
   }
 }
 
@@ -577,7 +631,7 @@ PAGE TOP
 }
 
 .messageContent {
-  width: 980px;
+  width: 1000px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -975,7 +1029,7 @@ PAGE TOP
 }
 
 .contact {
-  width: 980px;
+  width: 1000px;
   margin: 0 auto;
   padding: 2em;
   border-collapse: collapse;
@@ -1102,8 +1156,6 @@ table .mustspan {
 }
 
 .formAgree {
-  width: auto;
-  margin: 50px 0 100px;
   text-align: center;
   font-size: 16px
 }
@@ -1324,33 +1376,10 @@ table .mustspan {
   line-height: 2
 }
 
-@media screen and (max-width:1024px) {
-  .basicTable {
-    width: 760px
-  }
-}
-
 @media screen and (max-width: 768px) {
-  .basicTable {
-    width: 100%
-  }
-
-  .basic {
-    padding-bottom: 50px
-  }
-
-  table {
-    width: 100%;
-    font-size: 1.2rem
-  }
-
   .basicTable th {
     padding: 40px 0;
     font-size: 1.4rem
-  }
-
-  .basicTable tr {
-    width: 40%
   }
 
   tr,
@@ -1383,94 +1412,10 @@ table .mustspan {
   }
 }
 
-.messageBoardmember {
-  margin-bottom: 200px;
-  background: url(../images/measege_01.jpg) center / cover no-repeat;
-  padding-bottom: 31.25%;
-  position: relative
-}
-
-.messageBoardmemberText {
-  width: 980px;
-  margin: 0 auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%)
-}
-
-.messageBoardmemberText p {
-  font-size: 2.8rem;
-  font-weight: 700
-}
 
 .memberCard a:hover{
     opacity: .7;
     transition: ease-in .2s;
-}
-
-@media screen and (max-width:1024px) {
-  .messageBoardmemberText p {
-    font-size: 2rem
-  }
-}
-
-.messageSentence {
-  padding-bottom: 40px;
-  line-height: 2
-}
-
-.messageName {
-  text-align: right
-}
-
-@media screen and (max-width:1024px) {
-  .messageBoardmemberText {
-    max-width: 760px
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .messageBoardmemberText {
-    width: 90%
-  }
-
-  .messageBoardmember {
-    margin-bottom: 100px
-  }
-}
-
-@media screen and (max-width:768px) {
-  .messageBoardmember {
-    background: url(../images/sp_measege_01.jpg) center / 100% no-repeat;
-    margin-bottom: 50px;
-    padding-bottom: 45%
-  }
-
-  .messageBoardmemberText p {
-    font-size: 3vw
-  }
-
-  .messageSentence {
-    font-size: 1.4rem
-  }
-
-  .messageName {
-    font-size: 1.4rem
-  }
-}
-
-@media screen and (max-width:480px) {
-  .messageBoardmemberText p {
-    font-size: 4vw
-  }
-}
-
-@media screen and (max-width:320px) {
-  .messageBoardmemberText p {
-    font-size: 1.2rem
-  }
 }
 
 .privacyName p {
@@ -1878,7 +1823,7 @@ MENU
 .globalNav {
   display: block;
   position: relative;
-  top: -225vw;
+  top: -100vh;
   left: 0;
   bottom: 0;
   width: 100vw;
@@ -1928,6 +1873,7 @@ MENU
 
 .globalMenu {
   position: relative;
+  flex-basis: 25%;
 }
 
 @media screen and (max-width: 768px) {
