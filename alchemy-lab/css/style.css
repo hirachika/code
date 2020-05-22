@@ -30,7 +30,7 @@ button {
   border: none;
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (max-width: 560px) {
   .brNone {
     display: none
   }
@@ -40,7 +40,7 @@ button {
   }
 }
 
-@media screen and (max-width:480px) {
+@media screen and (max-width: 560px) {
   p {
     font-size: 1.4rem
   }
@@ -114,7 +114,7 @@ button {
   color: #fff
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .button {
     width: 70%;
     float: none;
@@ -150,7 +150,7 @@ button {
   margin-bottom: 29.89537vh
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 960px) {
   .content {
     margin-bottom: 14.9448vh
   }
@@ -170,7 +170,7 @@ button {
   padding-bottom: 6rem
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .sectionTitle {
     font-size: 2.7rem;
     padding-bottom: 10px
@@ -406,7 +406,7 @@ PAGE COMMON
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .heroTitle {
     font-size: 3.2rem
   }
@@ -489,13 +489,13 @@ PAGE COMMON
   transition: ease-in .2s
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 960px) {
   .aboutMessage {
     margin-bottom: 14.9448vh
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .mainVisual {
     margin-bottom: 0
   }
@@ -628,13 +628,13 @@ MEMBER
   line-height: 1.5;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .memberCopy {
     font-size: 1.5rem;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .memberCard:nth-child(3) {
     margin-bottom: 0
   }
@@ -667,7 +667,7 @@ MEMBER
   padding-bottom: 2rem
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 960px) {
   .aboutContent {
     margin-bottom: 14.9448vh
   }
@@ -687,7 +687,7 @@ MEMBER
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .messageText {
     background: url(../images/sp_top_measege_01.jpg) center / 100% no-repeat;
     margin-bottom: 100px;
@@ -807,7 +807,7 @@ MEMBER
   }
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 960px) {
   .blogMain {
     width: 90%;
     margin: 0 auto
@@ -823,7 +823,7 @@ MEMBER
   }
 }
 
-@media screen and (max-width:480px) {
+@media screen and (max-width: 560px) {
   .blogMain {
     flex-wrap: wrap;
     border: none;
@@ -975,7 +975,7 @@ MEMBER
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .entry {
     background: url(../images/sp_top_entry_01.jpg) center / cover no-repeat;
     padding-bottom: 50%
@@ -1019,7 +1019,7 @@ MEMBER
   text-decoration: underline
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 960px) {
   .descriptionText {
     text-align: left
   }
@@ -1035,7 +1035,7 @@ MEMBER
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .descriptionText {
     font-size: 1.4rem
   }
@@ -1135,7 +1135,7 @@ select {
   font-size: 14px
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
 
   .contact input,
   .contact textarea,
@@ -1192,7 +1192,7 @@ table .mustspan {
   margin: 50px auto
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   table .mustspan {
     padding: 5px;
     font-size: 10px;
@@ -1269,13 +1269,13 @@ table .mustspan {
   font-size: 1.6rem
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 960px) {
   .contact {
     width: 100%
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .contact {
     width: 100%
   }
@@ -1411,7 +1411,7 @@ table .mustspan {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .company {
     padding-bottom: 50px;
     font-size: 1.2rem;
@@ -1465,7 +1465,7 @@ table .mustspan {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .basic {
     width: 100%;
     margin: 0 auto
@@ -1508,7 +1508,7 @@ table .mustspan {
   width: 50%
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 960px) {
   .memberChapter {
     margin-bottom: 100px
   }
@@ -1605,7 +1605,7 @@ table .mustspan {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .missionCard img {
     width: 20%;
     margin-bottom: 30px;
@@ -1813,7 +1813,7 @@ MENU
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .visionTitle {
     font-size: 3rem;
     margin-bottom: 2rem;
@@ -1831,7 +1831,7 @@ MENU
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .visionText {
     font-size: 14px;
   }
