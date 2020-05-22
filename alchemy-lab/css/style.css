@@ -214,6 +214,7 @@ PAGE COMMON
 -------------------------------------------------- */
 .pageHeader {
   width: 100%;
+  margin-top: -60px;
 }
 
 .pageHeaderInner {
@@ -261,7 +262,7 @@ PAGE COMMON
 
 .pageHeaderImg {
   width: 100%;
-  height: 500px;
+  height: 560px;
   object-fit: cover;
 }
 
@@ -534,6 +535,37 @@ PAGE COMMON
   }
 }
 
+/* --------------------------------------------------
+MEMBER
+-------------------------------------------------- */
+.memberDetail {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translate(0, -50%);
+  width: 1000px;
+  margin: 0 auto;
+  color: #fff;
+  z-index: 2;
+}
+
+.memberCopy {
+  font-size: 3.5rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.memberJob {
+  font-size: 1.4rem;
+  font-weight: normal;
+}
+
+.memberName {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 .member {
   margin-right: auto;
   margin-left: auto;
@@ -556,47 +588,9 @@ PAGE COMMON
   width: 100%
 }
 
-.memberIntroduction {
-  margin: 20px 30px
-}
-
-.memberName {
-  font-size: 2rem;
-  font-weight: 700
-}
-
-.memberPosition {
-  font-size: 1.4rem;
-  padding-bottom: 2rem
-}
-
-.memberCopy {
-  font-size: 1.6rem;
-  letter-spacing: -1px
-}
-
 @media screen and (max-width:1550px) {
   .memberList {
     width: 100%
-  }
-}
-
-@media screen and (max-width:768px) {
-  .memberName {
-    font-size: 1.8rem
-  }
-
-  .memberIntroduction {
-    margin: 20px 5px
-  }
-
-  .memberPosition {
-    font-size: 1.2rem;
-    padding-bottom: 2rem
-  }
-
-  .memberCopy {
-    font-size: 1.4rem
   }
 }
 
@@ -612,14 +606,6 @@ PAGE COMMON
   .memberCard {
     width: 100%;
     margin-bottom: 50px
-  }
-
-  .memberIntroduction {
-    margin: 20px 10px
-  }
-
-  .memberPosition {
-    padding-bottom: 2rem
   }
 }
 
@@ -1455,18 +1441,6 @@ table .mustspan {
   }
 }
 
-.member01 {
-  background: url(./../images/member01_01.jpg) center / 100% no-repeat
-}
-
-.member02 {
-  background: url(./../images/member02_01.jpg) center / 100% no-repeat
-}
-
-.member03 {
-  background: url(./../images/member03_01.jpg) center / 100% no-repeat
-}
-
 .staff {
   margin-bottom: 20vh;
   position: relative;
@@ -1505,39 +1479,19 @@ table .mustspan {
 }
 
 .staffChapter {
-  margin-bottom: 20vh
+  margin-bottom: 10rem;
 }
 
 .staffChapterTitle {
   font-size: 2.4rem;
   font-weight: 700;
-  padding-bottom: 2vh 0;
+  margin-bottom: 2rem;
   line-height: 2
 }
 
 .staffChapterText {
   line-height: 2;
   margin-bottom: 20px
-}
-
-.staffVideo {
-  background: url(../images/member_01.jpg) center / 100% no-repeat;
-  position: relative;
-  padding: 50px 0;
-  margin-bottom: 20vh
-}
-
-.staffVideoName p {
-  position: absolute;
-  font-size: 4rem;
-  font-weight: 700
-}
-
-.staffVideoMember video {
-  width: 760px;
-  display: block;
-  margin: 0 auto;
-  padding: 50px 0
 }
 
 .staffChapterCard {
@@ -1558,30 +1512,6 @@ table .mustspan {
 
 .staffChapterCardText {
   width: 50%
-}
-
-.staffIntroduction {
-  padding: 0 30px;
-  margin: 0 auto 20vh;
-  width: 760px
-}
-
-.staffList {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  width: 640px;
-  margin: 0 auto
-}
-
-.staffIntroductionCard {
-  border: 5px solid #f0f0f0;
-  width: 270px;
-  height: 100%
-}
-
-.staffIntroductionCard img {
-  width: 100%
 }
 
 @media screen and (max-width:1024px) {
@@ -1606,31 +1536,11 @@ table .mustspan {
     width: 80%
   }
 
-  .staffIntroduction {
-    padding: 0;
-    width: 100%
-  }
-
-  .staffIntroductionCard {
-    border: 5px solid #f0f0f0
-  }
 }
 
 @media screen and (max-width:768px) {
   .container {
     width: 90%
-  }
-
-  .member01 {
-    background: url(./../images/sp_member01_01.jpg) center / 100% no-repeat
-  }
-
-  .member02 {
-    background: url(./../images/sp_member02_01.jpg) center / 100% no-repeat
-  }
-
-  .member03 {
-    background: url(./../images/sp_member03_01.jpg) center / 100% no-repeat
   }
 
   .staff {
@@ -1645,18 +1555,9 @@ table .mustspan {
     width: 100%
   }
 
-  .staffList {
-    width: 100%
-  }
-
   .staffChapterCardImage {
     width: 100%;
     margin-bottom: 15vh
-  }
-
-  .staffIntroductionCard {
-    width: 100%;
-    margin-bottom: 30px
   }
 }
 
@@ -1795,7 +1696,6 @@ MENU
 .header {
   width: 100%;
   height: 60px;
-  background-color: #000;
 }
 
 .headerInner {
