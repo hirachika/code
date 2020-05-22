@@ -584,13 +584,6 @@ MEMBER
   font-weight: bold;
 }
 
-.member {
-  margin-right: auto;
-  margin-left: auto;
-  padding: 0 30px;
-  max-width: 1280px
-}
-
 .memberList {
   display: flex;
   justify-content: space-between;
@@ -602,9 +595,26 @@ MEMBER
   border: 5px solid #f0f0f0
 }
 
+@media screen and (max-width: 960px) {
+  .memberCard {
+    width: calc(100% / 2 - 3vw);
+    margin-bottom: 5rem;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .memberCard {
+    width: 100%;
+  }
+}
+
+.memberCard a {
+  display: block;
+}
+
 .memberCard img {
   width: 100%;
-  height: 320px;
+  height: calc(100% / 2);
   object-fit: cover;
 }
 
@@ -618,24 +628,15 @@ MEMBER
   line-height: 1.5;
 }
 
-@media screen and (max-width:1550px) {
-  .memberList {
-    width: 100%
+@media screen and (max-width: 480px) {
+  .memberCopy {
+    font-size: 1.5rem;
   }
 }
 
 @media screen and (max-width: 480px) {
   .memberCard:nth-child(3) {
     margin-bottom: 0
-  }
-
-  .member {
-    padding: 0 10px
-  }
-
-  .memberCard {
-    width: 100%;
-    margin-bottom: 50px
   }
 }
 
@@ -672,11 +673,11 @@ MEMBER
   }
 
   .messageContent {
-    width: 90%
+    width: 80%
   }
 
   .messageText {
-    margin-bottom: 14.9448vh
+    margin-bottom: 14vh
   }
 }
 
@@ -1508,20 +1509,12 @@ table .mustspan {
 }
 
 @media screen and (max-width:1024px) {
-  .container {
-    margin-bottom: 100px
-  }
-
   .memberChapter {
     margin-bottom: 100px
   }
 }
 
 @media screen and (max-width:768px) {
-  .container {
-    width: 90%
-  
-  }
   .memberChapterText {
     font-size: 1.4rem
   }
@@ -1534,10 +1527,6 @@ table .mustspan {
 
 @media screen and (max-width:420px) {
   .memberChapter {
-    margin-bottom: 50px
-  }
-
-  .container {
     margin-bottom: 50px
   }
 
