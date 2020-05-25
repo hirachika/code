@@ -1,13 +1,16 @@
 'use strict';
 
   // 初期設定
-  const WINNING_RESULT = document.querySelector('.winning-result');
-  const USER_NUMBER    = document.querySelector('.winning-result__user');
-  const WINNING_NUMBER = document.querySelector('.winning-result__com');
-  const ERROR          = document.getElementsByClassName('error');
-  const RESULT         = document.getElementsByClassName('result');
-  const VALUES         = document.getElementsByClassName('value');
-  const INPUT_VALUE    = Array.from(VALUES);
+  const WINNING_RESULT      = document.querySelector('.winning-result');
+  const USER_NUMBER         = document.querySelector('.winning-result__user');
+  const WINNING_NUMBER      = document.querySelector('.winning-result__com');
+  const WINNING_PROBABILITY = document.querySelector('.winning-probability');
+  const ERROR               = document.getElementsByClassName('error');
+  const RESULT              = document.getElementsByClassName('result');
+  const VALUES              = document.getElementsByClassName('value');
+  const INPUT_VALUE         = Array.from(VALUES);
+  const DECIDED_NUMBER      = 9;
+  const CONTINUOUS          = 1000;
 
   // ボタン初期状態
   const BUTTON         = document.getElementsByClassName('button');
@@ -25,11 +28,22 @@
     BUTTON[0].disabled = '';
   }
 
-  // 配列をシャッフルそのうち3個取り出す
-  const NUMBER_ARRAY = [0,1,2,3,4,5,6,7,8,9];
-  let numbers = NUMBER_ARRAY.sort(function(){ return Math.random() - 0.5});
-      numbers = numbers.slice(0,3);
+  // 数字を格納
+  let NUMBER_ARRAY = [];
+  for (let i = 0; i <= DECIDED_NUMBER; i++){
+    NUMBER_ARRAY.push(i);
+  }
 
+  const shuffleNumbers = () => {
+    return NUMBER_ARRAY.sort(function(){return Math.random() - 0.5}).slice(0,3).join('');
+  }
+  
+  let 連続したシャッフル数字 = [];
+  for (let i = 1; i <= CONTINUOUS; i++){
+    連続したシャッフル数字.push(shuffleNumbers());
+  }
+
+  // 入力チェック
   INPUT_VALUE.forEach(input => {
     input.onblur = (e) => {
       e.preventDefault();
@@ -52,30 +66,36 @@
       iterator.disabled = true;
     }
 
-    let inputNumbers = [
-      Number(INPUT_VALUE[0].value),
-      Number(INPUT_VALUE[1].value),
-      Number(INPUT_VALUE[2].value)
-    ];
-
-    USER_NUMBER.innerHTML    = inputNumbers;
-    WINNING_NUMBER.innerHTML = numbers;
-
-    if (inputNumbers.toString() === numbers.toString()) {
-      RESULT[0].innerHTML = 'おめでとうございます！ストレート当選です！';
+    // 入力数字を格納
+    let inputNumbers = [];
+    for (const i in INPUT_VALUE) {
+      inputNumbers.push(INPUT_VALUE[i].value);
     }
-    else if (inputNumbers.toString() !== numbers.toString()) {
-      inputNumbers.sort((a, b) => {return a - b});
-      numbers.sort((a, b) => {return a - b});
+    console.log(inputNumbers.join(''));
+    
+    USER_NUMBER.innerHTML    = inputNumbers.join('');
+    WINNING_NUMBER.innerHTML = 連続したシャッフル数字[0];
 
-      if (inputNumbers.toString() === numbers.toString()) {
-        RESULT[0].innerHTML = 'おしい！ボックス当選です！';
+    let カウント;
+
+    for (let i = 0; i < 連続したシャッフル数字.length; i++) {
+      if (inputNumbers.join('') == 連続したシャッフル数字[i]) {
+        カウント++;
+        console.log(カウント);
       }
-      else {
-        RESULT[0].innerHTML = '残念！ハズレです…';
-      }
-    }
-    else {
-      RESULT[0].innerHTML = '残念！ハズレです…';
+      // else if (inputNumbers.toString() !== numbers.toString()) {
+      //   inputNumbers.sort((a, b) => {return a - b});
+      //   numbers.sort((a, b) => {return a - b});
+  
+      //   if (inputNumbers.toString() === numbers.toString()) {
+      //     RESULT[0].innerHTML = 'おしい！ボックス当選です！';
+      //   }
+      //   else {
+      //     RESULT[0].innerHTML = '残念！ハズレです…';
+      //   }
+      // }
+      // else {
+      //   RESULT[0].innerHTML = '残念！ハズレです…';
+      // }
     }
   });
