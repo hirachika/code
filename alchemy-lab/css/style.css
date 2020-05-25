@@ -2,7 +2,7 @@
 
 html {
   font-size: 62.5%;
-  font-family: Helvetica, "ヒラギノ角ゴ Pro W3", Hiragino Kaku Gothic Pro, "メイリオ", Meiryo, sans-serif
+  font-family: 'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
 }
 
 body {
@@ -30,7 +30,7 @@ button {
   border: none;
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (max-width: 560px) {
   .brNone {
     display: none
   }
@@ -40,7 +40,7 @@ button {
   }
 }
 
-@media screen and (max-width:480px) {
+@media screen and (max-width: 560px) {
   p {
     font-size: 1.4rem
   }
@@ -55,7 +55,7 @@ button {
 }
 
 .button {
-  font-weight: 700;
+  font-weight: bold;
   width: 250px;
   border: 2px solid #000;
   position: relative;
@@ -78,12 +78,13 @@ button {
   margin-top: 3rem;
 }
 
-
 .contactButton a{
+  width: 180px;
   display: block;
-  padding: 1.5rem 3rem;
+  padding: 1.5rem 0;
   font-size: 20px;
   font-weight: bold;
+  text-align: center;
   background-color: #781103;
   border: 2px solid #781103;
   color: #fff;
@@ -113,7 +114,7 @@ button {
   color: #fff
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .button {
     width: 70%;
     float: none;
@@ -149,7 +150,7 @@ button {
   margin-bottom: 29.89537vh
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 960px) {
   .content {
     margin-bottom: 14.9448vh
   }
@@ -169,7 +170,7 @@ button {
   padding-bottom: 6rem
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .sectionTitle {
     font-size: 2.7rem;
     padding-bottom: 10px
@@ -202,81 +203,156 @@ button {
   font-size: 1.2rem
 }
 
-.MainTitle {
-  color: #000;
-  text-align: center;
-  width: 980px;
-  margin: 0 auto;
-  padding: 100px 0
-}
-
-.mainBigTitle {
-  font-family: 'Crimson Text', serif;
-  font-size: 8rem;
-  letter-spacing: 3px
-}
-
-.mainDescription {
-  font-size: 2rem;
-  border-bottom: solid 1px #bbb;
-  width: 210px;
-  text-align: center;
-  margin: 0 auto;
-  padding: 10px 0;
-  font-weight: 700
-}
-
-@media screen and (max-width:1024px) {
-  .MainTitle {
-    padding: 100px 0;
-    width: auto
-  }
-}
-
 @media screen and (max-width: 768px) {
   .footerInner {
     padding: 10px
   }
+}
 
-  .MainTitle {
-    width: auto;
-    text-align: center;
-    padding: 50px 0
+/* --------------------------------------------------
+PAGE COMMON
+-------------------------------------------------- */
+.pageHeader {
+  width: 100%;
+  margin-top: -60px;
+}
+
+.pageHeaderInner {
+  position: relative;
+  overflow: hidden;
+}
+
+.pageHeaderTitle {
+  position: absolute;
+  top: 55%;
+  left: 0;
+  right: 0;
+  transform: translate(0, -50%);
+  max-width: 1280px;
+  margin: 0 auto;
+  font-size: 3rem;
+  font-weight: normal;
+  line-height: 1.2;
+  color: #fff;
+  z-index: 2;
+}
+
+.pageHeaderTitle::first-line {
+  font-size: 7rem;
+  font-weight: bold;
+  font-family: 'Crimson Text', serif;
+  letter-spacing: .5rem;
+}
+
+.pageHeaderKv {
+  height: 100%;
+  z-index: 0;
+}
+
+.pageHeaderKv::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  content: "";
+  z-index: 1;
+}
+
+.pageHeaderImg {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 1600px) {
+  .pageHeaderTitle {
+    width: 80%;
+  }
+
+  .pageHeaderImg {
+    height: 400px;
+    object-fit: cover;
   }
 }
 
-@media screen and (max-width: 480px) {
-  .mainBigTitle {
-    font-size: 4.2rem
+@media screen and (max-width: 560px) {
+  .pageHeaderTitle {
+    font-size: 2rem;
+  }
+  
+  .pageHeaderTitle::first-line {
+    font-size: 4rem;
   }
 
-  .mainDescription {
-    text-align: center;
-    font-size: 1.5rem
+  .pageHeaderImg {
+    height: 300px;
+  }
+}
+
+.pageMessage {
+  margin: 10rem 0;
+}
+
+.pageMessageInner {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1600px) {
+  .pageMessageInner {
+    width: 80%;
+  }
+}
+
+.pageMessageTitle{
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 2;
+  margin-bottom: 5rem;
+}
+
+@media screen and (max-width: 560px) {
+  .pageMessageTitle {
+    font-size: 18px;
+  }
+}
+
+.pageMessageText {
+  font-size: 16px;
+  margin-bottom: 2rem;
+}
+
+.pageMessageText:last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 560px) {
+  .pageMessageText {
+    font-size: 15px;
+  }
+}
+
+.sign {
+  text-align: right
+}
+
+@media screen and (max-width:768px) {
+  .sign {
+    font-size: 1.4rem
   }
 }
 
 .container {
-  width: 980px;
-  margin: 0 auto;
+  max-width: 1280px;
+  margin: 10rem auto;
   box-sizing: border-box
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1600px) {
   .container {
-    width: 760px
-  }
-}
-
-@media screen and (max-width:768px) {
-  .container {
-    width: 90%
-  }
-}
-
-@media screen and (max-width: 420px) {
-  .container {
-    width: 100%
+    width: 80%;
   }
 }
 
@@ -330,7 +406,7 @@ button {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .heroTitle {
     font-size: 3.2rem
   }
@@ -413,13 +489,13 @@ button {
   transition: ease-in .2s
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 960px) {
   .aboutMessage {
     margin-bottom: 14.9448vh
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .mainVisual {
     margin-bottom: 0
   }
@@ -459,11 +535,61 @@ button {
   }
 }
 
-.member {
-  margin-right: auto;
-  margin-left: auto;
-  padding: 0 30px;
-  max-width: 1280px
+/* --------------------------------------------------
+MEMBER
+-------------------------------------------------- */
+.memberDetail {
+  position: absolute;
+  top: 55%;
+  left: 0;
+  right: 0;
+  transform: translate(0, -50%);
+  max-width: 1280px;
+  margin: 0 auto;
+  color: #fff;
+  z-index: 2;
+}
+
+@media screen and (max-width: 1600px) {
+  .memberDetail {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .memberDetail {
+    font-size: 2rem;
+  }
+}
+
+.memberDetailCopy {
+  font-size: 3.5rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 560px) {
+  .memberDetailCopy {
+    font-size: 2rem;
+  }
+}
+
+.memberDetailJob,
+.memberDetailYear {
+  font-size: 1.4rem;
+  font-weight: normal;
+}
+
+@media screen and (max-width: 560px) {
+  .memberDetailJob,
+  .memberDetailYear {
+    font-size: 1.2rem;
+  }
+}
+
+.memberDetailName {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .memberList {
@@ -477,86 +603,60 @@ button {
   border: 5px solid #f0f0f0
 }
 
+@media screen and (max-width: 960px) {
+  .memberCard {
+    width: calc(100% / 2 - 3vw);
+    margin-bottom: 5rem;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .memberCard {
+    width: 100%;
+  }
+}
+
+.memberCard a {
+  display: block;
+}
+
 .memberCard img {
-  width: 100%
+  width: 100%;
+  height: 24rem;
+  object-fit: cover;
 }
 
 .memberIntroduction {
-  margin: 20px 30px
-}
-
-.memberName {
-  font-size: 2rem;
-  font-weight: 700
-}
-
-.memberPosition {
-  font-size: 1.4rem;
-  padding-bottom: 2rem
+  padding: 2rem;
 }
 
 .memberCopy {
-  font-size: 1.6rem;
-  letter-spacing: -1px
+  font-weight: bold;
+  font-size: 1.7rem;
+  line-height: 1.5;
 }
 
-@media screen and (max-width:1550px) {
-  .memberList {
-    width: 100%
-  }
-}
-
-@media screen and (max-width:768px) {
-  .memberName {
-    font-size: 1.8rem
-  }
-
-  .memberIntroduction {
-    margin: 20px 5px
-  }
-
-  .memberPosition {
-    font-size: 1.2rem;
-    padding-bottom: 2rem
-  }
-
+@media screen and (max-width: 560px) {
   .memberCopy {
-    font-size: 1.4rem
+    font-size: 1.5rem;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .memberCard:nth-child(3) {
     margin-bottom: 0
-  }
-
-  .member {
-    padding: 0 10px
-  }
-
-  .memberCard {
-    width: 100%;
-    margin-bottom: 50px
-  }
-
-  .memberIntroduction {
-    margin: 20px 10px
-  }
-
-  .memberPosition {
-    padding-bottom: 2rem
   }
 }
 
 .messageText {
   background: url(../images/top_measege_01.jpg) center / cover no-repeat;
-  padding-bottom: 31.25%;
+  padding-bottom: 30%;
   position: relative;
-  height: 0
+  height: 0;
 }
 
 .messageContent {
-  width: 980px;
+  width: 1000px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -565,27 +665,29 @@ button {
 }
 
 .mesaseCopy {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: bold;
   line-height: 1.7;
   padding-bottom: 1rem
+}
+
+@media screen and (max-width: 960px) {
+  .mesaseCopy {
+    font-size: 2rem;
+  }
 }
 
 .mesageName {
   padding-bottom: 2rem
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 960px) {
   .aboutContent {
     margin-bottom: 14.9448vh
   }
 
   .messageContent {
-    width: 90%
-  }
-
-  .messageText {
-    margin-bottom: 14.9448vh
+    width: 80%
   }
 }
 
@@ -595,7 +697,7 @@ button {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .messageText {
     background: url(../images/sp_top_measege_01.jpg) center / 100% no-repeat;
     margin-bottom: 100px;
@@ -636,11 +738,12 @@ button {
 .blogMain {
   display: flex;
   box-sizing: border-box;
-  align-items: center
+  align-items: center;
+  /* justify-content: space-between; */
 }
 
 .blogMainImage {
-  width: 50%
+  flex-basis: 40%;
 }
 
 .blogMainImage img {
@@ -648,13 +751,12 @@ button {
 }
 
 .blogMainText {
-  width: 50%;
-  padding: 60px
+  padding: 60px;
 }
 
 .blogMainTextCardTitle {
   font-size: 2rem;
-  font-weight: 700
+  font-weight: bold;
 }
 
 .category{
@@ -663,7 +765,7 @@ button {
 
 .blogCategory {
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: bold;
 }
 
 .category{
@@ -685,7 +787,7 @@ button {
 
 .blogTime {
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: bold;
   color: #bbb;
 }
 
@@ -715,7 +817,7 @@ button {
   }
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 960px) {
   .blogMain {
     width: 90%;
     margin: 0 auto
@@ -731,7 +833,7 @@ button {
   }
 }
 
-@media screen and (max-width:480px) {
+@media screen and (max-width: 560px) {
   .blogMain {
     flex-wrap: wrap;
     border: none;
@@ -800,7 +902,7 @@ button {
 .entry {
   background: url(../images/top_entry_01.jpg) center / cover no-repeat;
   text-align: center;
-  padding-bottom: 31%;
+  padding-bottom: 25%;
   position: relative
 }
 
@@ -823,7 +925,7 @@ button {
 }
 
 .entryButton {
-  font-weight: 700;
+  font-weight: bold;
   width: 250px;
   border: 2px solid #fff;
   margin: 50px auto 0;
@@ -863,7 +965,7 @@ button {
   max-width: 100%
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 960px) {
   .entry {
     padding-bottom: 40%
   }
@@ -883,7 +985,7 @@ button {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .entry {
     background: url(../images/sp_top_entry_01.jpg) center / cover no-repeat;
     padding-bottom: 50%
@@ -923,11 +1025,11 @@ button {
 }
 
 .descriptionText a {
-  color: red;
+  color: #fa0000;
   text-decoration: underline
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 960px) {
   .descriptionText {
     text-align: left
   }
@@ -943,7 +1045,7 @@ button {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .descriptionText {
     font-size: 1.4rem
   }
@@ -954,7 +1056,7 @@ button {
 }
 
 .contact {
-  width: 980px;
+  width: 1000px;
   margin: 0 auto;
   padding: 2em;
   border-collapse: collapse;
@@ -1043,7 +1145,7 @@ select {
   font-size: 14px
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
 
   .contact input,
   .contact textarea,
@@ -1081,8 +1183,6 @@ table .mustspan {
 }
 
 .formAgree {
-  width: auto;
-  margin: 50px 0 100px;
   text-align: center;
   font-size: 16px
 }
@@ -1102,7 +1202,7 @@ table .mustspan {
   margin: 50px auto
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   table .mustspan {
     padding: 5px;
     font-size: 10px;
@@ -1179,13 +1279,13 @@ table .mustspan {
   font-size: 1.6rem
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 960px) {
   .contact {
     width: 100%
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .contact {
     width: 100%
   }
@@ -1210,7 +1310,7 @@ table .mustspan {
   }
 
   .formBtnArea {
-    font-weight: 700;
+    font-weight: bold;
     text-align: center;
     margin: 0 auto
   }
@@ -1303,33 +1403,10 @@ table .mustspan {
   line-height: 2
 }
 
-@media screen and (max-width:1024px) {
-  .basicTable {
-    width: 760px
-  }
-}
-
 @media screen and (max-width: 768px) {
-  .basicTable {
-    width: 100%
-  }
-
-  .basic {
-    padding-bottom: 50px
-  }
-
-  table {
-    width: 100%;
-    font-size: 1.2rem
-  }
-
   .basicTable th {
     padding: 40px 0;
     font-size: 1.4rem
-  }
-
-  .basicTable tr {
-    width: 40%
   }
 
   tr,
@@ -1344,7 +1421,7 @@ table .mustspan {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .company {
     padding-bottom: 50px;
     font-size: 1.2rem;
@@ -1362,94 +1439,10 @@ table .mustspan {
   }
 }
 
-.messageBoardmember {
-  margin-bottom: 200px;
-  background: url(../images/measege_01.jpg) center / cover no-repeat;
-  padding-bottom: 31.25%;
-  position: relative
-}
-
-.messageBoardmemberText {
-  width: 980px;
-  margin: 0 auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%)
-}
-
-.messageBoardmemberText p {
-  font-size: 2.8rem;
-  font-weight: 700
-}
 
 .memberCard a:hover{
     opacity: .7;
     transition: ease-in .2s;
-}
-
-@media screen and (max-width:1024px) {
-  .messageBoardmemberText p {
-    font-size: 2rem
-  }
-}
-
-.messageSentence {
-  padding-bottom: 40px;
-  line-height: 2
-}
-
-.messageName {
-  text-align: right
-}
-
-@media screen and (max-width:1024px) {
-  .messageBoardmemberText {
-    max-width: 760px
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .messageBoardmemberText {
-    width: 90%
-  }
-
-  .messageBoardmember {
-    margin-bottom: 100px
-  }
-}
-
-@media screen and (max-width:768px) {
-  .messageBoardmember {
-    background: url(../images/sp_measege_01.jpg) center / 100% no-repeat;
-    margin-bottom: 50px;
-    padding-bottom: 45%
-  }
-
-  .messageBoardmemberText p {
-    font-size: 3vw
-  }
-
-  .messageSentence {
-    font-size: 1.4rem
-  }
-
-  .messageName {
-    font-size: 1.4rem
-  }
-}
-
-@media screen and (max-width:480px) {
-  .messageBoardmemberText p {
-    font-size: 4vw
-  }
-}
-
-@media screen and (max-width:320px) {
-  .messageBoardmemberText p {
-    font-size: 1.2rem
-  }
 }
 
 .privacyName p {
@@ -1482,271 +1475,86 @@ table .mustspan {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .basic {
     width: 100%;
     margin: 0 auto
   }
 }
 
-.member01 {
-  background: url(./../images/member01_01.jpg) center / 100% no-repeat
-}
-
-.member02 {
-  background: url(./../images/member02_01.jpg) center / 100% no-repeat
-}
-
-.member03 {
-  background: url(./../images/member03_01.jpg) center / 100% no-repeat
-}
-
-.staff {
-  margin-bottom: 20vh;
-  position: relative;
-  padding-bottom: 31.25%
-}
-
-.staffMessage {
-  padding: 4vw;
-  box-sizing:border-box;
-  color: #fff;
-  font-weight: 700;
-  margin: 0 auto;
-  position: absolute;
-  top: 50%;
-  left: 30%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  background-color:#fff;
-  opacity:.7;
-}
-
-.staffMessageTitle {
-  color: #000;
-  line-height:1.5;
+.memberChapterTitle {
   font-size: 2.4rem;
-  padding-bottom: 10px;
-}
-
-.staffMessageName {
-  color: #000;
-  font-size: 1.6rem
-}
-
-.staffMessageImage img {
-  width: 100%
-}
-
-.staffChapter {
-  margin-bottom: 20vh
-}
-
-.staffChapterTitle {
-  font-size: 2.4rem;
-  font-weight: 700;
-  padding-bottom: 2vh 0;
+  font-weight: bold;
+  margin-bottom: 2rem;
   line-height: 2
 }
 
-.staffChapterText {
+.memberChapterTitle::before {
+  content: "";
+  display: inline-block;
+  width: 2rem;
+  height: 1px;
+  margin-right: 1rem;
+  vertical-align: middle;
+  background-color: #000;
+}
+
+.memberChapterText {
   line-height: 2;
   margin-bottom: 20px
 }
 
-.staffVideo {
-  background: url(../images/member_01.jpg) center / 100% no-repeat;
-  position: relative;
-  padding: 50px 0;
-  margin-bottom: 20vh
+.memberChapterText:last-child {
+  margin-bottom: 0;
 }
 
-.staffVideoName p {
-  position: absolute;
-  font-size: 4rem;
-  font-weight: 700
-}
-
-.staffVideoMember video {
-  width: 760px;
-  display: block;
-  margin: 0 auto;
-  padding: 50px 0
-}
-
-.staffChapterCard {
+.memberChapterCard {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: flex-start
 }
 
-.staffChapterCardImage {
+.memberChapterCardImage {
   width: 40%;
   box-shadow: 20px 80px #f7f7f7
 }
 
-.staffChapterCardImage img {
+.memberChapterCardImage img {
   width: 100%
 }
 
-.staffChapterCardText {
+.memberChapterCardText {
   width: 50%
 }
 
-.staffIntroduction {
-  padding: 0 30px;
-  margin: 0 auto 20vh;
-  width: 760px
-}
-
-.staffList {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  width: 640px;
-  margin: 0 auto
-}
-
-.staffIntroductionCard {
-  border: 5px solid #f0f0f0;
-  width: 270px;
-  height: 100%
-}
-
-.staffIntroductionCard img {
-  width: 100%
-}
-
-@media screen and (max-width:1024px) {
-  .staffMessageTitle {
-    font-size: 2rem;
-  }
-  .container {
-    margin-bottom: 100px
-  }
-
-  .staffVideo {
-    margin-bottom: 0
-  }
-
-  .staffChapter {
-    margin-bottom: 100px
-  }
-}
-
 @media screen and (max-width:768px) {
-  .staffVideoMember video {
-    width: 80%
-  }
-
-  .staffIntroduction {
-    padding: 0;
-    width: 100%
-  }
-
-  .staffIntroductionCard {
-    border: 5px solid #f0f0f0
-  }
-}
-
-@media screen and (max-width:768px) {
-  .container {
-    width: 90%
-  }
-
-  .member01 {
-    background: url(./../images/sp_member01_01.jpg) center / 100% no-repeat
-  }
-
-  .member02 {
-    background: url(./../images/sp_member02_01.jpg) center / 100% no-repeat
-  }
-
-  .member03 {
-    background: url(./../images/sp_member03_01.jpg) center / 100% no-repeat
-  }
-
-  .staff {
-    padding-bottom: 45%;
-    margin-bottom: 10vh
-  }
-  .staffChapterText {
+  .memberChapterText {
     font-size: 1.4rem
   }
 
-  .staffVideoMember video {
-    width: 100%
-  }
-
-  .staffList {
-    width: 100%
-  }
-
-  .staffChapterCardImage {
+  .memberChapterCardImage {
     width: 100%;
     margin-bottom: 15vh
   }
-
-  .staffIntroductionCard {
-    width: 100%;
-    margin-bottom: 30px
-  }
 }
 
-@media screen and (max-width:540px) {
-  .staffMessageTitle {
-    font-size:1.6rem;
-  }
-  .staffMessageName{
-    font-size:1.4rem;
-  }
-}
-@media screen and (max-width:500px){
-  .staffMessage {
-    left:35%;
-  }
-}
 @media screen and (max-width:420px) {
-  .staff {
-    margin-bottom: 50px
-  }
-  .staffChapter {
+  .memberChapter {
     margin-bottom: 50px
   }
 
-  .container {
-    margin-bottom: 50px
-  }
-
-  .staffChapterTitle {
+  .memberChapterTitle {
     font-size: 1.5rem
   }
 
-  .staffChapterText {
+  .memberChapterText {
     font-size: 1.4rem
   }
 
-  .staffVideo {
-    padding: 0;
-    margin-bottom: 50px
-  }
-
-  .staffVideoMember video {
-    padding: 0
-  }
-
-  .staffChapterCardText {
+  .memberChapterCardText {
     margin-top: 100px;
     width: 90%
-  }
-}
-@media screen and (max-width:375px) {
-  .staffMessageTitle {
-    font-size: 1.2rem
-  }
-  .staffMessageName {
-    font-size: 1rem
   }
 }
 
@@ -1811,7 +1619,7 @@ table .mustspan {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .missionCard img {
     width: 20%;
     margin-bottom: 30px;
@@ -1829,7 +1637,6 @@ MENU
 .header {
   width: 100%;
   height: 60px;
-  background-color: #000;
 }
 
 .headerInner {
@@ -1857,7 +1664,7 @@ MENU
 .globalNav {
   display: block;
   position: relative;
-  top: -100vw;
+  top: -100vh;
   left: 0;
   bottom: 0;
   width: 100vw;
@@ -1891,7 +1698,7 @@ MENU
   align-items: flex-end;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 960px) {
   .globalNavInner {
     padding: 20vh 10vw;
     align-content: space-between;
@@ -1907,6 +1714,7 @@ MENU
 
 .globalMenu {
   position: relative;
+  flex-basis: 25%;
 }
 
 @media screen and (max-width: 768px) {
@@ -1937,7 +1745,6 @@ MENU
   padding-bottom: 1rem;
   font-size: 20px;
   letter-spacing: -1.1rem;
-  vertical-align: top;
 }
 
 .globalMenuList {
@@ -1971,7 +1778,7 @@ MENU
   transition-duration: 0.2s;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 960px) {
   .globalMenuList li a {
     font-size: 24px;
   }
@@ -2013,13 +1820,13 @@ MENU
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 960px) {
   .visionTitle {
     font-size: 4rem;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .visionTitle {
     font-size: 3rem;
     margin-bottom: 2rem;
@@ -2031,13 +1838,13 @@ MENU
   font-size: 18px;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 960px) {
   .visionText {
     font-size: 16px;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   .visionText {
     font-size: 14px;
   }

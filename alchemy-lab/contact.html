@@ -15,7 +15,7 @@
   <title>お問い合わせ | 株式会社ALCHEMY</title>
   <link rel="canonical" href="https://alchemy-lab.jp/">
   <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/style.css?ver=1.0.1">
+  <link rel="stylesheet" href="css/style.css?ver=1.0.2">
   <link rel="stylesheet" href="css/animation.css">
   <link href="https://fonts.googleapis.com/css?family=Prata" rel="stylesheet">
   <!-- Google Analytics -->
@@ -50,7 +50,6 @@
           <div class="globalMenu">
             <p class="globalMenuText">MENU</p>
             <ul class="globalMenuList">
-              <li><a href="/">HOME</a></li>
               <li><a href="about.html">ABOUT</a></li>
               <li><a href="message.html">MESSAGE</a></li>
               <li><a href="company.html">COMPANY</a></li>
@@ -67,16 +66,21 @@
     </div>
   </header>
 
+  <section class="pageHeader">
+    <div class="pageHeaderInner">
+      <h1 class="pageHeaderTitle">CONTACT<br>お問い合わせ</h1>
+      <div class="pageHeaderKv">
+        <img src="images/kv_contact.jpg" class="pageHeaderImg" alt="お問い合わせ">
+      </div>
+    </div>
+  </section>
+
+  <section class="pageMessage">
+    <div class="pageMessageInner">
+      <p class="pageMessageText">当社へのお問い合わせの際は、必要事項をご記入ください。担当者よりご記入頂いたメールアドレス宛に返信させて頂きます。<br>※個人の方は会社名は結構です。</p>
+    </div>
+  </section>
   <div class="container">
-    <section class="MainTitle">
-      <h1 class="mainBigTitle">CONTACT</h1>
-      <p class="mainDescription"><span>お問い合わせ</span></p>
-    </section>
-
-    <section class="description">
-      <p class="descriptionText">当社へのお問い合わせの際は、必要事項をご記入ください。<br>担当者よりご記入頂いたメールアドレス宛に返信させて頂きます。<br>※個人の方は会社名は結構です。</p>
-    </section>
-
     <section class="mailform">
       <form id="entry" method="post" action="entry/confirm.php" name="entry">
         <table class="contact">
@@ -147,13 +151,12 @@
             </tr>
           </tbody>
         </table>
-
+  
         <div class="formAgree">
-          <p>当社（株式会社ALCHEMY）は、お客様より取得する個人情報を、<br>お問い合わせいただいたご質問やご要望へ回答する目的でのみ利用いたします。</p>
-          <p>なお、当社の個人情報保護に関する基本方針については、<br>以下の<a href="privacy.html" target="_blank">プライバシーポリシー</a>をご確認ください。</p>
+          <p>当社の個人情報保護に関する基本方針については、<br><a href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>をご確認ください。</p>
           <p>記入内容に問題がなければ「確認する」ボタンを押してください。</p>
         </div>
-
+  
         <div class="formBtnArea">
           <input type="hidden" name="privacy" value="同意する" id="confirm_button">
           <div class="button-hover"></div>
@@ -169,7 +172,6 @@
     </div>
   </footer>
         
-  <script src="js/jquery.min.js"></script>
-  <script src="js/function.js?ver=1.0.1"></script>
+  <script src="js/contact_validate.js" type="module"></script>
 </body>
 </html>
