@@ -228,7 +228,7 @@ PAGE COMMON
   left: 0;
   right: 0;
   transform: translate(0, -50%);
-  width: 1000px;
+  max-width: 1280px;
   margin: 0 auto;
   font-size: 3rem;
   font-weight: normal;
@@ -266,7 +266,7 @@ PAGE COMMON
   object-fit: cover;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1600px) {
   .pageHeaderTitle {
     width: 80%;
   }
@@ -296,11 +296,11 @@ PAGE COMMON
 }
 
 .pageMessageInner {
-  width: 1000px;
+  width: 1280px;
   margin: 0 auto;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1600px) {
   .pageMessageInner {
     width: 80%;
   }
