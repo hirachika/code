@@ -12,10 +12,11 @@
   <meta property="og:locale" content="ja_JP">
   <meta name="description" content="ALCHEMYは2017年10月に設立したスタートアップ企業です。我々の一番の強みは「教育」です。代表の都築は、未経験者中心に300名近い技術者の育成に携わりました。 デザインからプログラミングまで研修があり、幅広いスキルが身に付きます。">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="u1Us2mpfOld9z5YEikMrnKycV3JLnCZyirgAQzx2UZ0" />
   <title>株式会社ALCHEMY</title>
   <link rel="canonical" href="https://alchemy-lab.jp/">
   <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?ver=1.0.2">
   <link rel="stylesheet" href="css/animation.css">
   <link href="https://fonts.googleapis.com/css?family=Prata" rel="stylesheet">
   <!-- Google Analytics -->
@@ -30,25 +31,40 @@
 </head>
 
 <body>
-  <header class="header" id="header">
+ 
+  <header class="header">
     <div class="headerInner">
-      <p class="headerTitle"><a href="index.html"><img src="images/common/logo_01.png" alt="株式会社ALCHEMY"></a></p>
-      <div class="headerButton">
-        <div>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+      <a href="index.html" class="headerLogo">
+        <img src="images/common/logo_01.png" alt="株式会社ALCHEMY ロゴ">
+      </a>
+      <button class="toggleButton">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
       <nav class="globalNav">
-        <ul class="globalNavList">
-          <li><a href="about.html">ABOUT</a></li>
-          <li><a href="message.html">MESSAGE</a></li>
-          <li><a href="company.html">COMPANY</a></li>
-          <li><a href="recruit.html">RECRUIT</a></li>
-          <li><a href="contact.html">CONTACT</a></li>
-        </ul>
+        <div class="globalNavInner">
+          <div class="vision">
+            <p class="visionTitle">Do it Ourselves.</p>
+            <p class="visionText">身近にいる大切な人を、遠くにいる誰かを、<br>一人でも多くの人を、笑顔になれる世の中を、<br>わたしたちは技術の力で創っていきます。</p>
+          </div>
+          <div class="globalMenu">
+            <p class="globalMenuText">MENU</p>
+            <ul class="globalMenuList">
+              <li><a href="about.html">ABOUT</a></li>
+              <li><a href="message.html">MESSAGE</a></li>
+              <li><a href="company.html">COMPANY</a></li>
+              <li><a href="traning.html">TRAINING</a></li>
+              <li><a href="recruit.html">RECRUIT</a></li>
+            </ul>
+            <div class="contactButton">
+              <a href="contact.html">CONTACT</a>
+            </div>
+          </div>
+        </div>
       </nav>
+      <div id="mask"></div>
     </div>
   </header>
 
@@ -100,7 +116,7 @@
     </div>
   </section>
 
-  <section class="member content">
+  <section class="container content">
     <h2 class="sectionTitle">MEMBER</h2>
     <p class="sectionSubTitle">社員紹介</p>
     <div class="memberList">
@@ -112,7 +128,7 @@
           </picture>
           <div class="memberIntroduction">
             <p class="memberName">CHIKAKO HIRAOKA</p>
-            <p class="memberPosition">デザイナー</p>
+            <p class="memberJob">デザイナー</p>
             <p class="memberCopy">どこへいっても通用する技術を<br class="brSp">身に付けていきたい</p>
           </div>
         </a>
@@ -126,7 +142,7 @@
           </picture>
           <div class="memberIntroduction">
             <p class="memberName">KAZUNORI JIN</p>
-            <p class="memberPosition">デザイナー</p>
+            <p class="memberJob">デザイナー</p>
             <p class="memberCopy">デザインの力で<br class="brSp">もっと便利で明るい世の中に</p>
           </div>
         </a>
@@ -140,7 +156,7 @@
           </picture>
           <div class="memberIntroduction">
             <p class="memberName">SHIORI HIRAO</p>
-            <p class="memberPosition">デザイナー</p>
+            <p class="memberJob">デザイナー</p>
             <p class="memberCopy">人と人をつなぐデザインを作っていきたい</p>
           </div>
         </a>
@@ -163,9 +179,9 @@
     </div>
   </section>
 
-  <section class="blog content">
+  <section class="container content">
     <h2 class="sectionTitle">BLOG</h2>
-    <p class="sectionSubTitle">ALCHEMYがお届けするwantedly掲載ブログです</p><a class="frame" href="https://www.wantedly.com/companies/alchemy-lab/post_articles/106376" target="_blank">
+    <p class="sectionSubTitle">ALCHEMYがお届けするwantedly掲載ブログです</p><a class="frame" href="https://www.wantedly.com/companies/alchemy-lab/post_articles/106376" target="_blank" rel="noopener">
       <div class="blogMain">
         <div class="blogMainImage">
           <figure><img src="images/blog/01.jpg" alt="志さえあれば挑戦できる会社を目指して 未経験者採用を積極的に進める理由 "></figure>
@@ -180,7 +196,7 @@
 
     <div class="blogList">
       <div class="blogCard">
-        <a href="https://www.wantedly.com/companies/alchemy-lab/post_articles/167758" target="_blank">
+        <a href="https://www.wantedly.com/companies/alchemy-lab/post_articles/167758" target="_blank" rel="noopener">
           <div class="blogImage">
             <figure><img src="images/blog/05.jpg" alt="「やさしさが循環する会社」を作って教育に強くなる"></figure>
           </div>
@@ -193,7 +209,7 @@
       </div>
 
       <div class="blogCard">
-        <a href="https://www.wantedly.com/companies/alchemy-lab/post_articles/151158" target="_blank">
+        <a href="https://www.wantedly.com/companies/alchemy-lab/post_articles/151158" target="_blank" rel="noopener">
         <div class="blogImage">
           <figure><img src="images/blog/04.jpg" alt="【勉強会レポート】実戦形式でデザイン力を身につける！デザインハッカソン開催！"></figure>
         </div>
@@ -206,7 +222,7 @@
       </div>
 
       <div class="blogCard">
-        <a href="https://www.wantedly.com/companies/alchemy-lab/post_articles/107186" target="_blank">
+        <a href="https://www.wantedly.com/companies/alchemy-lab/post_articles/107186" target="_blank" rel="noopener">
           <div class="blogImage">
             <figure><img src="images/blog/03.jpg" alt="「想定外のスゲーことが起こるチーム」が一番面白い"></figure>
           </div>
@@ -219,7 +235,7 @@
       </div>
 
       <div class="blogCard">
-        <a href="https://www.wantedly.com/companies/alchemy-lab/post_articles/106716" target="_blank">
+        <a href="https://www.wantedly.com/companies/alchemy-lab/post_articles/106716" target="_blank" rel="noopener">
           <div class="blogImage">
             <figure><img src="images/blog/02.jpg" alt="キャリアプランおよび想定月収に関して"></figure>
           </div>
@@ -238,7 +254,7 @@
       <p>ALCHEMYは、まだまだ発展途上です。<br>ともに成長しながら、可能性を広げていける仲間が必要です。<br>興味を持っていただけた方は、ぜひ気軽にお問い合わせください。</p>
       <div class="entryButton">
         <div class="entryButtonEffect"></div>
-        <a href="https://www.wantedly.com/companies/alchemy-lab/projects" target="_blank">ENTRY</a>
+        <a href="https://www.wantedly.com/companies/alchemy-lab/projects" target="_blank" rel="noopener">ENTRY</a>
       </div>
     </div>
   </article>
@@ -250,7 +266,7 @@
   </footer>
 
   <script src="js/jquery.min.js"></script>
-  <script src="js/function.js"></script>
+  <script src="js/function.js?ver=1.0.1"></script>
   <script>
     jQuery(function($) {
       var movie = document.getElementById("movie");

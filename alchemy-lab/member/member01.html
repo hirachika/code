@@ -15,7 +15,7 @@
   <title>社員紹介 | 株式会社ALCHEMY</title>
   <link rel="canonical" href="https://alchemy-lab.jp/">
   <link rel="stylesheet" href="../css/reset.css">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.css?ver=1.0.2">
   <link rel="stylesheet" href="../css/animation.css">
   <link href="https://fonts.googleapis.com/css?family=Prata" rel="stylesheet">
   <!-- Google Analytics -->
@@ -30,92 +30,71 @@
 </head>
 <body>
 
-  <header class="header" id="header">
+  <header class="header">
     <div class="headerInner">
-      <p class="headerTitle"><a href="./../index.html"><img src="./../images/common/logo_01.png" alt="株式会社ALCHEMY"></a></p>
-      <div class="headerButton">
-        <div>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+      <a href="../index.html" class="headerLogo">
+        <img src="../images/common/logo_01.png" alt="株式会社ALCHEMY ロゴ">
+      </a>
+      <button class="toggleButton">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
       <nav class="globalNav">
-        <ul class="globalNavList">
-          <li><a href="./../about.html">ABOUT</a></li>
-          <li><a href="./../message.html">MESSAGE</a></li>
-          <li><a href="./../company.html">COMPANY</a></li>
-          <li><a href="./../recruit.html">RECRUIT</a></li>
-          <li><a href="./../contact.html">CONTACT</a></li>
-        </ul>
+        <div class="globalNavInner">
+          <div class="vision">
+            <p class="visionTitle">Do it Ourselves.</p>
+            <p class="visionText">身近にいる大切な人を、遠くにいる誰かを、<br>一人でも多くの人を、笑顔になれる世の中を、<br>わたしたちは技術の力で創っていきます。</p>
+          </div>
+          <div class="globalMenu">
+            <p class="globalMenuText">MENU</p>
+            <ul class="globalMenuList">
+              <li><a href="../about.html">ABOUT</a></li>
+              <li><a href="../message.html">MESSAGE</a></li>
+              <li><a href="../company.html">COMPANY</a></li>
+              <li><a href="../traning.html">TRAINING</a></li>
+              <li><a href="../recruit.html">RECRUIT</a></li>
+            </ul>
+            <div class="contactButton">
+              <a href="../contact.html">CONTACT</a>
+            </div>
+          </div>
+        </div>
       </nav>
+      <div id="mask"></div>
     </div>
   </header>
 
-  <section class="MainTitle">
-    <h1 class="mainBigTitle">MEMBER</h1>
-    <p class="mainDescription"><span>社員紹介</span></p>
-  </section>
-
-  <section class="staff member01">
-    <div class="staffMessage">
-      <p class="staffMessageTitle">どこへいっても通用する技術を<br>身に付けていきたい</p>
-      <p class="staffMessageName">デザイナー<br>CHIKAKO HIRAOKA</p>
-    </div>
-  </section>
-
-  <section class="staffChapter content container">
-    <h2 class="staffChapterTitle">なぜALCHEMYに入社したのか</h2>
-    <p class="staffChapterText">最初はスタートアップというところに魅力を感じました。<br>転職活動で自己分析を重ねた結果、すでに決まりがあるところにジョインするというより、自分で新しいことを提案して組織を作っていくほうがよっぽど大変だけどやりがいがあって楽しそうだと思うようになりました。<br>前職では例えばこれやってみましょうとか、これやりたいですって提案していいねとかOKはもらえても、実現するまでの道のりがめちゃくちゃ遠かったのです。実際にALCHEMYでは提案してから実行されるまでが早く、短いスパンでちょっとした夢を叶えることができるのです。</p>
-  </section>
-
-  <section class="staffChapter content container">
-    <h2 class="staffChapterTitle">スキルアップ、キャリアアップしたことは</h2>
-    <p class="staffChapterText">まず、色々な現場で色々な人とお仕事を一緒にさせていただいたことで、仕事への取り組み方とか考え方とかマインドの部分が大きく変化しました。</p>
-    <p class="staffChapterText">これまでも効率よく作業することは意識してきたつもりですが、刺激的な人との出会いを通して「頑張らないために努力する」という一貫したセオリーを持つようになり、例えばコーディングでは更新する人のことを考えあらゆることを想定して設計するとか、ディレクションではより無駄なく少ないコミュニケーションコストで回せるようになるとか、デザインではエンジニアへの細かい気遣いとか、そんな細部への取り組み方が大きく変わりました。それが結果的に自身の全体のスキルを引き上げていったように思います。</p>
-  </section>
-
-  <section class="staffChapter content">
-    <div class="staffChapterCard">
-      <div class="staffChapterCardImage"><img src="../images/member01_02.jpg" alt=""></div>
-      <div class="staffChapterCardText container">
-        <h2 class="staffChapterTitle">ALCHEMYにはどんな人がいますか</h2>
-        <p class="staffChapterText">とにかく若いです。私がWeb業界に入った時の年齢よりさらに若い子がたくさんいるので、この子たちの3年後、5年後って一体どうなっているのだろうって思います。<br>それぞれ個性豊かで、服装も髪型も性格も同じようなタイプの人が一人もいないのが不思議です。ただ共通点はあって、元気で素直。あんまり捻くれた人がいないです。</p>
+  <section class="pageHeader">
+    <div class="pageHeaderInner">
+      <div class="memberDetail">
+        <p class="memberDetailCopy">どこへいっても<br>通用する技術を<br>身に付けていきたい</p>
+        <p class="memberDetailJob">デザイナー / フロントエンドエンジニア</p>
+        <p class="memberDetailName">CHIKAKO HIRAOKA</p>
+        <p class="memberDetailYear">2018年1月入社（元DTPデザイナー）</p>
+      </div>
+      <div class="pageHeaderKv">
+        <img src="../images/member/hiraoka_01.jpg" class="pageHeaderImg" alt="平岡知佳子">
       </div>
     </div>
   </section>
 
-  <section class="staffIntroduction content container">
-    <h2 class="sectionTitle">MEMBER</h2>
-    <p class="sectionSubTitle">社員紹介</p>
-    <div class="staffList">
-      <div class="staffIntroductionCard">
-        <a href="member02.html">
-          <picture>
-            <source srcset="../images/top_member_02.jpg" alt="神和昇" media="(min-width:760px)">
-            <img src="../images/sp_top_member_02.jpg" alt="神和昇">
-          </picture>
-          <div class="memberIntroduction">
-            <p class="memberName">KAZUNORI JIN</p>
-            <p class="memberPosition">デザイナー</p>
-            <p class="memberCopy">デザインの力でもっと便利で明るい世の中に</p>
-          </div>
-        </a>
-      </div>
-      <div class="staffIntroductionCard">
-        <a href="member03.html">
-          <picture>
-            <source srcset="../images/top_member_03.jpg" alt="平尾汐理" media="(min-width:760px)">
-            <img src="../images/sp_top_member_03.jpg" alt="平尾汐理">
-          </picture>
-          <div class="memberIntroduction">
-            <p class="memberName">SHIORI HIRAO</p>
-            <p class="memberPosition">デザイナー</p>
-            <p class="memberCopy">人と人をつなぐデザインを作っていきたい</p>
-          </div>
-        </a>
-      </div>
-    </div>
+  <section class="memberChapter container">
+    <h2 class="memberChapterTitle">なぜALCHEMYに入社したのか</h2>
+    <p class="memberChapterText">最初はスタートアップというところに魅力を感じました。<br>転職活動で自己分析を重ねた結果、すでに文化もルールも出来上がっている環境に中途入社するより、更地から家を建てるくらいの気持ちで組織を作っていくほうがよっぽど大変そうだけれどやりがいがありそうだと思うようになりました。</p>
+    <p class="memberChapterText">前職では例えばこれやってみましょうとか、これやりたいですって提案していいねとかOKはもらえても、実現するまでの道のりがめちゃくちゃ遠かったのです。実際にALCHEMYでは提案してから実行されるまでが早く、短いスパンでちょっとした夢を叶えることができるのです。</p>
+  </section>
+
+  <section class="memberChapter content container">
+    <h2 class="memberChapterTitle">スキルアップ、キャリアアップしたことは</h2>
+    <p class="memberChapterText">色々な現場で色々な人とお仕事を一緒にさせていただいたことで、仕事への取り組み方とか考え方とかマインドの部分が大きく変化しました。</p>
+    <p class="memberChapterText">これまでも効率よく作業することは意識してきたつもりですが、刺激的な人との出会いを通して「頑張らないために努力する」という一貫したセオリーを持つようになり、例えばコーディングでは更新する人のことを考えあらゆることを想定して設計するとか、ディレクションではより無駄なく少ないコミュニケーションコストで回せるようになるとか、デザインではエンジニアへの細かい気遣いとか、そんな細部への取り組み方が大きく変わりました。それが結果的に自身の全体のスキルを引き上げていったように思います。</p>
+  </section>
+
+  <section class="memberChapter content container">
+    <h2 class="memberChapterTitle">ALCHEMYにはどんな人がいますか</h2>
+    <p class="memberChapterText">とにかく若いです。私がWeb業界に入った時の年齢よりさらに若い子がたくさんいるので、この子たちの3年後、5年後って一体どうなっているのだろうって思います。</p>
   </section>
 
   <article class="entry">
@@ -123,7 +102,7 @@
       <p>ALCHEMYは、まだまだ発展途上です。<br>ともに成長しながら、可能性を広げていける仲間が必要です。<br>興味を持っていただけた方は、ぜひ気軽にお問い合わせください。</p>
       <div class="entryButton">
         <div class="entryButtonEffect"></div>
-        <a href="https://www.wantedly.com/companies/alchemy-lab/projects" target="_blank">ENTRY</a>
+        <a href="https://www.wantedly.com/companies/alchemy-lab/projects" target="_blank" rel="noopener">ENTRY</a>
       </div>
     </div>
   </article>
@@ -135,6 +114,6 @@
   </footer>
 
   <script src="../js/jquery.min.js"></script>
-  <script src="../js/function.js"></script>
+  <script src="../js/function.js?ver=1.0.1"></script>
 </body>
 </html>

@@ -14,9 +14,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>お問い合わせ | 株式会社ALCHEMY</title>
   <link rel="canonical" href="https://alchemy-lab.jp/">
-  <link rel="stylesheet" href="https://alchemy-lab.jp/css/reset.css">
-  <link rel="stylesheet" href="https://alchemy-lab.jp/css/style.css">
-  <link rel="stylesheet" href="css/animation.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css?ver=1.0.2">
   <link href="https://fonts.googleapis.com/css?family=Prata" rel="stylesheet">
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150750380-1"></script>
@@ -29,37 +28,51 @@
   </script>
 </head>
 <body>
-  <header class="header" id="header">
+
+  <header class="header">
     <div class="headerInner">
-      <p class="headerTitle"><a href="index.html"><img src="images/common/logo_01.png" alt="株式会社ALCHEMY"></a></p>
-      <div class="headerButton">
-        <div>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+      <a href="index.html" class="headerLogo">
+        <img src="images/common/logo_01.png" alt="株式会社ALCHEMY ロゴ">
+      </a>
+      <button class="toggleButton">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
+
       <nav class="globalNav">
-        <ul class="globalNavList">
-          <li><a href="about.html">ABOUT</a></li>
-          <li><a href="message.html">MESSAGE</a></li>
-          <li><a href="company.html">COMPANY</a></li>
-          <li><a href="recruit.html">RECRUIT</a></li>
-          <li><a href="contact.html">CONTACT</a></li>
-        </ul>
+        <div class="globalNavInner">
+          <div class="vision">
+            <p class="visionTitle">Do it Ourselves.</p>
+            <p class="visionText">身近にいる大切な人を、遠くにいる誰かを、<br>一人でも多くの人を、笑顔になれる世の中を、<br>わたしたちは技術の力で創っていきます。</p>
+          </div>
+          <div class="globalMenu">
+            <p class="globalMenuText">MENU</p>
+            <ul class="globalMenuList">
+              <li><a href="about.html">ABOUT</a></li>
+              <li><a href="message.html">MESSAGE</a></li>
+              <li><a href="company.html">COMPANY</a></li>
+              <li><a href="traning.html">TRAINING</a></li>
+              <li><a href="recruit.html">RECRUIT</a></li>
+            </ul>
+            <div class="contactButton">
+              <a href="contact.html">CONTACT</a>
+            </div>
+          </div>
+        </div>
       </nav>
+      <div id="mask"></div>
     </div>
   </header>
+
+  <section class="pageMessage">
+    <div class="pageMessageInner">
+      <h2 class="pageMessageTitle">お問い合わせ</h2>
+      <p class="pageMessageText">下記の内容で送信します。ご確認ください。</p>
+    </div>
+  </section>
+
   <div class="container">
-    <section class="MainTitle">
-      <h1 class="mainBigTitle">CONTACT</h1>
-      <p class="mainDescription"><span>お問い合わせ</span></p>
-    </section>
-    <section class="description">
-      <div class="descriptionText">
-        <p>入力内容を確認します。</p>
-      </div>
-    </section>
     <section class="mailform">
       <form id="entry" method="post" action="./send.php" name="entry">
         <table class="contact">
@@ -130,6 +143,6 @@
   </footer>
         
   <script src="js/jquery.min.js"></script>
-  <script src="js/function.js"></script>
+  <script src="js/function.js?ver=1.0.1"></script>
 </body>
 </html>

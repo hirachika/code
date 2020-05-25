@@ -15,7 +15,7 @@
   <title>メッセージ | 株式会社ALCHEMY</title>
   <link rel="canonical" href="https://alchemy-lab.jp/">
   <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?ver=1.0.2">
   <link rel="stylesheet" href="css/animation.css">
   <link href="https://fonts.googleapis.com/css?family=Prata" rel="stylesheet">
   <!-- Google Analytics -->
@@ -30,55 +30,68 @@
 </head>
 <body>
 
-  <header class="header" id="header">
+  <header class="header">
     <div class="headerInner">
-      <p class="headerTitle"><a href="index.html"><img src="images/common/logo_01.png" alt="株式会社ALCHEMY"></a></p>
-      <div class="headerButton">
-        <div>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+      <a href="index.html" class="headerLogo">
+        <img src="images/common/logo_01.png" alt="株式会社ALCHEMY ロゴ">
+      </a>
+      <button class="toggleButton">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
       <nav class="globalNav">
-        <ul class="globalNavList">
-          <li><a href="about.html">ABOUT</a></li>
-          <li><a href="message.html" class="active">MESSAGE</a></li>
-          <li><a href="company.html">COMPANY</a></li>
-          <li><a href="recruit.html">RECRUIT</a></li>
-          <li><a href="contact.html">CONTACT</a></li>
-        </ul>
+        <div class="globalNavInner">
+          <div class="vision">
+            <p class="visionTitle">Do it Ourselves.</p>
+            <p class="visionText">身近にいる大切な人を、遠くにいる誰かを、<br>一人でも多くの人を、笑顔になれる世の中を、<br>わたしたちは技術の力で創っていきます。</p>
+          </div>
+          <div class="globalMenu">
+            <p class="globalMenuText">MENU</p>
+            <ul class="globalMenuList">
+              <li><a href="about.html">ABOUT</a></li>
+              <li><a href="message.html">MESSAGE</a></li>
+              <li><a href="company.html">COMPANY</a></li>
+              <li><a href="traning.html">TRAINING</a></li>
+              <li><a href="recruit.html">RECRUIT</a></li>
+            </ul>
+            <div class="contactButton">
+              <a href="contact.html">CONTACT</a>
+            </div>
+          </div>
+        </div>
       </nav>
+      <div id="mask"></div>
     </div>
   </header>
 
-  <section class="MainTitle">
-    <h1 class="mainBigTitle">MESSAGE</h1>
-    <p class="mainDescription"><span>代表メッセージ</span></p>
-  </section>
-
-  <section class="messageBoardmember">
-    <div class="messageBoardmemberText">
-      <p>自分の為に頑張ったら、<br>会社の為にもなるような<br class="brNone">会社を作りたい</p>
+  <section class="pageHeader">
+    <div class="pageHeaderInner">
+      <h1 class="pageHeaderTitle">MESSAGE<br>代表メッセージ</h1>
+      <div class="pageHeaderKv">
+        <img src="images/kv_message.jpg" class="pageHeaderImg" alt="代表メッセージ">
+      </div>
     </div>
   </section>
 
-  <div class="container">
-    <section class="basic">
-      <p class="messageSentence">2017年10月、私は株式会社ALCHEMYを創業しました。<br>根本に「自分の為に頑張ったら、会社の為にもなるような会社を作りたい」という思いがありました。<br>もともと私自身が「ITってこんなこと出来るんだ！」「こんなにカッコいいものが出来るんだ！」<br>という感動をキッカケにこの業界に入ってきました。</p>
-      <p class="messageSentence">そして私自身も、27歳の時に、未経験からWebデザイナーを志してこの業界に挑戦しました。<br>幸か不幸か、私にはクリエイターとしての才能はありませんでした。ただ、そのせいもあって、今ではモノづくりに携わる全ての人に、心から敬意の念を持って接しています。</p>
-      <p class="messageSentence">他の会社だったら実現出来なかったような自由や、権限や、裁量を持って、生き生きとモノづくりに励んでほしい、一つでも多くの素敵なコンテンツやサービスを生み出して欲しい。<br>まずは働く人が生き生きとすることで、初めてお客様を楽しませるモノやコトが生み出せると私は考えています。</p>
-      <p class="messageSentence">私にとって会社というのは、自分の夢や理想を叶える場所ではありません。<br>自分では思いもつかなかった素敵な夢や理想と出会うための場所です。<br>そのために私が出来ることは、一人一人の技術の向上のために環境を整えること。<br>良いモノを作るだけでなく、良いモノを作るヒトを育てる、今後とも精一杯の努力していきたいと思っております。</p>
-      <p class="messageName">株式会社ALCHEMY<br>代表取締役 都築 崇</p>
-    </section>
-  </div>
+  <section class="pageMessage">
+    <div class="pageMessageInner">
+      <h2 class="pageMessageTitle">自分の為に頑張ったら、<br>会社の為にもなるような会社を作りたい</h2>
+      <p class="pageMessageText">2017年10月、私は株式会社ALCHEMYを創業しました。<br>根本に「自分の為に頑張ったら、会社の為にもなるような会社を作りたい」という思いがありました。<br>もともと私自身が「ITってこんなこと出来るんだ！」「こんなにカッコいいものが出来るんだ！」<br>という感動をキッカケにこの業界に入ってきました。</p>
+      <p class="pageMessageText">そして私自身も、27歳の時に、未経験からWebデザイナーを志してこの業界に挑戦しました。<br>幸か不幸か、私にはクリエイターとしての才能はありませんでした。ただ、そのせいもあって、今ではモノづくりに携わる全ての人に、心から敬意の念を持って接しています。</p>
+      <p class="pageMessageText">他の会社だったら実現出来なかったような自由や、権限や、裁量を持って、生き生きとモノづくりに励んでほしい、一つでも多くの素敵なコンテンツやサービスを生み出して欲しい。<br>まずは働く人が生き生きとすることで、初めてお客様を楽しませるモノやコトが生み出せると私は考えています。</p>
+      <p class="pageMessageText">私にとって会社というのは、自分の夢や理想を叶える場所ではありません。<br>自分では思いもつかなかった素敵な夢や理想と出会うための場所です。<br>そのために私が出来ることは、一人一人の技術の向上のために環境を整えること。<br>良いモノを作るだけでなく、良いモノを作るヒトを育てる、今後とも精一杯の努力していきたいと思っております。</p>
+      <p class="sign">株式会社ALCHEMY<br>代表取締役 都築 崇</p>
+    </div>
+  </section>
 
   <article class="entry">
     <div class="entryInner">
       <p>ALCHEMYは、まだまだ発展途上です。<br>ともに成長しながら、可能性を広げていける仲間が必要です。<br>興味を持っていただけた方は、ぜひ気軽にお問い合わせください。</p>
       <div class="entryButton">
         <div class="entryButtonEffect"></div>
-        <a href="https://www.wantedly.com/companies/alchemy-lab/projects" target="_blank">ENTRY</a>
+        <a href="https://www.wantedly.com/companies/alchemy-lab/projects" target="_blank" rel="noopener">ENTRY</a>
       </div>
     </div>
   </article>
@@ -90,6 +103,6 @@
   </footer>
         
   <script src="js/jquery.min.js"></script>
-  <script src="js/function.js"></script>
+  <script src="js/function.js?ver=1.0.1"></script>
 </body>
 </html>
