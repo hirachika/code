@@ -593,27 +593,19 @@ MEMBER
 }
 
 .memberList {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap
+  display: -ms-grid;
+  display: grid;
+  gap:2rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 }
 
 .memberCard {
-  width: calc(100% / 3 - 3vw);
-  border: 5px solid #f0f0f0
+  position: relative;
+  border: 5px solid #f7f7f7;
 }
 
-@media screen and (max-width: 960px) {
-  .memberCard {
-    width: calc(100% / 2 - 3vw);
-    margin-bottom: 5rem;
-  }
-}
-
-@media screen and (max-width: 560px) {
-  .memberCard {
-    width: 100%;
-  }
+.memberCard:nth-of-type(3n) {
+  margin-right: 0;
 }
 
 .memberCard a {
@@ -624,6 +616,11 @@ MEMBER
   width: 100%;
   height: 24rem;
   object-fit: cover;
+}
+
+.memberCard:hover {
+  opacity: .7;
+  transition: .3s ease-in-out;
 }
 
 .memberIntroduction {
@@ -643,7 +640,7 @@ MEMBER
 }
 
 @media screen and (max-width: 560px) {
-  .memberCard:nth-child(3) {
+  .memberCard:last-child {
     margin-bottom: 0
   }
 }
