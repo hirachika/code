@@ -55,7 +55,7 @@ button {
 }
 
 .button {
-  font-weight: 700;
+  font-weight: bold;
   width: 250px;
   border: 2px solid #000;
   position: relative;
@@ -345,12 +345,12 @@ PAGE COMMON
 }
 
 .container {
-  width: 1000px;
+  max-width: 1280px;
   margin: 10rem auto;
   box-sizing: border-box
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1600px) {
   .container {
     width: 80%;
   }
@@ -544,13 +544,13 @@ MEMBER
   left: 0;
   right: 0;
   transform: translate(0, -50%);
-  width: 1000px;
+  max-width: 1280px;
   margin: 0 auto;
   color: #fff;
   z-index: 2;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1600px) {
   .memberDetail {
     width: 80%;
   }
@@ -570,13 +570,21 @@ MEMBER
 
 @media screen and (max-width: 560px) {
   .memberDetailCopy {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 }
 
-.memberDetailJob {
+.memberDetailJob,
+.memberDetailYear {
   font-size: 1.4rem;
   font-weight: normal;
+}
+
+@media screen and (max-width: 560px) {
+  .memberDetailJob,
+  .memberDetailYear {
+    font-size: 1.2rem;
+  }
 }
 
 .memberDetailName {
@@ -614,7 +622,7 @@ MEMBER
 
 .memberCard img {
   width: 100%;
-  height: calc(100% / 2);
+  height: 24rem;
   object-fit: cover;
 }
 
@@ -624,7 +632,7 @@ MEMBER
 
 .memberCopy {
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.7rem;
   line-height: 1.5;
 }
 
@@ -642,9 +650,9 @@ MEMBER
 
 .messageText {
   background: url(../images/top_measege_01.jpg) center / cover no-repeat;
-  padding-bottom: 31.25%;
+  padding-bottom: 30%;
   position: relative;
-  height: 0
+  height: 0;
 }
 
 .messageContent {
@@ -657,10 +665,16 @@ MEMBER
 }
 
 .mesaseCopy {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: bold;
   line-height: 1.7;
   padding-bottom: 1rem
+}
+
+@media screen and (max-width: 960px) {
+  .mesaseCopy {
+    font-size: 2rem;
+  }
 }
 
 .mesageName {
@@ -674,10 +688,6 @@ MEMBER
 
   .messageContent {
     width: 80%
-  }
-
-  .messageText {
-    margin-bottom: 14vh
   }
 }
 
@@ -728,11 +738,12 @@ MEMBER
 .blogMain {
   display: flex;
   box-sizing: border-box;
-  align-items: center
+  align-items: center;
+  /* justify-content: space-between; */
 }
 
 .blogMainImage {
-  width: 50%
+  flex-basis: 40%;
 }
 
 .blogMainImage img {
@@ -740,13 +751,12 @@ MEMBER
 }
 
 .blogMainText {
-  width: 50%;
-  padding: 60px
+  padding: 60px;
 }
 
 .blogMainTextCardTitle {
   font-size: 2rem;
-  font-weight: 700
+  font-weight: bold;
 }
 
 .category{
@@ -755,7 +765,7 @@ MEMBER
 
 .blogCategory {
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: bold;
 }
 
 .category{
@@ -777,7 +787,7 @@ MEMBER
 
 .blogTime {
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: bold;
   color: #bbb;
 }
 
@@ -915,7 +925,7 @@ MEMBER
 }
 
 .entryButton {
-  font-weight: 700;
+  font-weight: bold;
   width: 250px;
   border: 2px solid #fff;
   margin: 50px auto 0;
@@ -955,7 +965,7 @@ MEMBER
   max-width: 100%
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 960px) {
   .entry {
     padding-bottom: 40%
   }
@@ -1015,7 +1025,7 @@ MEMBER
 }
 
 .descriptionText a {
-  color: red;
+  color: #fa0000;
   text-decoration: underline
 }
 
@@ -1300,7 +1310,7 @@ table .mustspan {
   }
 
   .formBtnArea {
-    font-weight: 700;
+    font-weight: bold;
     text-align: center;
     margin: 0 auto
   }
@@ -1472,20 +1482,30 @@ table .mustspan {
   }
 }
 
-.memberChapter {
-  margin-bottom: 10rem;
-}
-
 .memberChapterTitle {
   font-size: 2.4rem;
-  font-weight: 700;
+  font-weight: bold;
   margin-bottom: 2rem;
   line-height: 2
+}
+
+.memberChapterTitle::before {
+  content: "";
+  display: inline-block;
+  width: 2rem;
+  height: 1px;
+  margin-right: 1rem;
+  vertical-align: middle;
+  background-color: #000;
 }
 
 .memberChapterText {
   line-height: 2;
   margin-bottom: 20px
+}
+
+.memberChapterText:last-child {
+  margin-bottom: 0;
 }
 
 .memberChapterCard {
@@ -1506,12 +1526,6 @@ table .mustspan {
 
 .memberChapterCardText {
   width: 50%
-}
-
-@media screen and (max-width: 960px) {
-  .memberChapter {
-    margin-bottom: 100px
-  }
 }
 
 @media screen and (max-width:768px) {
@@ -1684,7 +1698,7 @@ MENU
   align-items: flex-end;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 960px) {
   .globalNavInner {
     padding: 20vh 10vw;
     align-content: space-between;
@@ -1731,7 +1745,6 @@ MENU
   padding-bottom: 1rem;
   font-size: 20px;
   letter-spacing: -1.1rem;
-  vertical-align: top;
 }
 
 .globalMenuList {
@@ -1765,7 +1778,7 @@ MENU
   transition-duration: 0.2s;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 960px) {
   .globalMenuList li a {
     font-size: 24px;
   }
@@ -1807,7 +1820,7 @@ MENU
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 960px) {
   .visionTitle {
     font-size: 4rem;
   }
@@ -1825,7 +1838,7 @@ MENU
   font-size: 18px;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 960px) {
   .visionText {
     font-size: 16px;
   }
