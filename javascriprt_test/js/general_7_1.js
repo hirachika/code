@@ -1,15 +1,15 @@
 'use strict';
 
   // 初期設定
-  const WINNING_RESULT = document.querySelector('.winning-result');
-  const USER_NUMBER    = document.querySelector('.winning-result__user');
-  const WINNING_NUMBER = document.querySelector('.winning-result__com');
-  const ERROR          = document.getElementsByClassName('error');
-  const RESULT         = document.getElementsByClassName('result');
-  const VALUES         = document.getElementsByClassName('value');
-  const INPUT_VALUE    = Array.from(VALUES);
-  const DECIDED_NUMBER = 9;
-  const CONTINUOUS     = 10;
+  const WINNING_RESULT  = document.querySelector('.winning-result');
+  const USER_NUMBER     = document.querySelector('.winning-result__user');
+  const ERROR           = document.getElementsByClassName('error');
+  const RESULT          = document.getElementsByClassName('result');
+  const VALUES          = document.getElementsByClassName('value');
+  const INPUT_VALUE     = Array.from(VALUES);
+  const DIGIT           = 3;
+  const DECIDED_NUMBER  = 9;
+  const NUMBER_OF_TIMES = 10;
   
   // ボタン初期状態
   const BUTTONS = document.querySelectorAll('.button');
@@ -47,15 +47,11 @@
     NUMBERS_ARRAY.push(i);
   }
 
-  // シャッフルして文字列として連結
-  const shuffleNumbers = () => {
-    return NUMBERS_ARRAY.sort(function(){return Math.random() - 0.5}).slice(0,3).join('');
-  }
-
-  // 連続抽選回数を格納
-  let SHUFFLE_NUMBERS_ARRAY = [];
-  for (let i = 1; i <= CONTINUOUS; i++){
-    SHUFFLE_NUMBERS_ARRAY.push(shuffleNumbers());
+  // シャッフルして固定数を格納
+  let SELECTED_NUMBER = [];
+  for (let i = 0; i <= NUMBER_OF_TIMES; i++){
+    NUMBERS_ARRAY.sort(function(){return Math.random() - 0.5});
+    SELECTED_NUMBER.push(NUMBERS_ARRAY.slice(0,DIGIT).join(''));
   }
 
   BUTTONS.forEach(button => {
@@ -74,28 +70,26 @@
         inputNumbers.push(element.value);
       }
 
-      USER_NUMBER.innerHTML    = inputNumbers.join('');
-      WINNING_NUMBER.innerHTML = SHUFFLE_NUMBERS_ARRAY[0];
+      USER_NUMBER.innerHTML = inputNumbers.join('');
 
       let countUpValue = 0;
-      let countUp = (eureka) => {
-        for (const item of SHUFFLE_NUMBERS_ARRAY) {
-          if (eureka === item) {
-            countUpValue++;
-            console.log("countUp -> countUpValue", countUpValue)
-          }
+      let countUp = (value1,value2) => {
+        if (value1 === value2) {
+          countUpValue++;
         }
       }
 
-      if (button.name === 'straight-check') {
-        countUp(inputNumbers.join(''));
-        RESULT[0].innerHTML = `${CONTINUOUS}回連続で抽選した場合${countUpValue}回当選します<br>ストレート当選確率は${countUpValue / CONTINUOUS * 100}%です`;
-      }
-      else if (button.name === 'box-check') {
-        
-        console.log(SHUFFLE_NUMBERS_ARRAY)
-        // item.sort((a, b) => {return a - b});
-        // countUp();
+      for (const item of SELECTED_NUMBER) {
+        if (button.name === 'straight-check') {
+          countUp(inputNumbers.join(''),item);
+          RESULT[0].innerHTML = `${NUMBER_OF_TIMES}回連続で抽選した場合${countUpValue}回当選します<br>ストレート当選確率は${countUpValue / NUMBER_OF_TIMES * 100}%です`;
+        }
+        else if (button.name === 'box-check') {
+          let sortedNumbers = inputNumbers.sort().join('');
+          let SORTED_NUMBERS_ARRAY = item.split('').sort().join('');
+          countUp(sortedNumbers,SORTED_NUMBERS_ARRAY);
+          RESULT[0].innerHTML = `${NUMBER_OF_TIMES}回連続で抽選した場合${countUpValue}回当選します<br>ボックス当選確率は${countUpValue / NUMBER_OF_TIMES * 100}%です`;
+        }
       }
     })
   });
