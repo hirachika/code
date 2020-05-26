@@ -9,7 +9,7 @@
   const INPUT_VALUE     = Array.from(VALUES);
   const DIGIT           = 3;
   const DECIDED_NUMBER  = 9;
-  const NUMBER_OF_TIMES = 10;
+  const NUMBER_OF_TIMES = 1000;
   
   // ボタン初期状態
   const BUTTONS = document.querySelectorAll('.button');
