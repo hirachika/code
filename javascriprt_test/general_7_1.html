@@ -20,7 +20,7 @@
         <section class="section">
           <h3 class="section__title">ナンバーズ3（架空）ゲームを作る</h3>
           <p class="supplement">各テキストエリアに0〜9の数値を入力してください</p>
-          <form class="form" id="form" method="post" >
+          <form class="form" id="form" method="post">
             <fieldset class="form__wrap">
               <div class="form3__item">
                 <input type="text" class="value" name="number" required>
@@ -29,11 +29,11 @@
               </div>
             </fieldset>
             <p class="error"></p>
-            <button class="button" type="submit">当たっているかな？</button>
+            <button class="button" name="straight-check" type="button">ストレート当選確率</button>
+            <button class="button" name="box-check" type="button">ボックス当選確率</button>
             <div class="winning-result">
               <p>入力番号：<span class="winning-result__user"></span></p>
               <p>当選番号：<span class="winning-result__com"></span></p>
-              <p>1000回数連続抽選した場合…<span class="winning-probability"></span></p>
               <p class="supplement">※もう一度挑戦したいときはリロードしてください</p>
             </div>
             <p class="result"></p>

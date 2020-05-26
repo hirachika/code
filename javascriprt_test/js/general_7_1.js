@@ -1,46 +1,30 @@
 'use strict';
 
   // 初期設定
-  const WINNING_RESULT      = document.querySelector('.winning-result');
-  const USER_NUMBER         = document.querySelector('.winning-result__user');
-  const WINNING_NUMBER      = document.querySelector('.winning-result__com');
-  const WINNING_PROBABILITY = document.querySelector('.winning-probability');
-  const ERROR               = document.getElementsByClassName('error');
-  const RESULT              = document.getElementsByClassName('result');
-  const VALUES              = document.getElementsByClassName('value');
-  const INPUT_VALUE         = Array.from(VALUES);
-  const DECIDED_NUMBER      = 9;
-  const CONTINUOUS          = 1000;
-
-  // ボタン初期状態
-  const BUTTON         = document.getElementsByClassName('button');
-  BUTTON[0].disabled   = 'disabled';
+  const WINNING_RESULT = document.querySelector('.winning-result');
+  const USER_NUMBER    = document.querySelector('.winning-result__user');
+  const WINNING_NUMBER = document.querySelector('.winning-result__com');
+  const ERROR          = document.getElementsByClassName('error');
+  const RESULT         = document.getElementsByClassName('result');
+  const VALUES         = document.getElementsByClassName('value');
+  const INPUT_VALUE    = Array.from(VALUES);
+  const DECIDED_NUMBER = 9;
+  const CONTINUOUS     = 10;
   
-  // エラーメッセージの表示と無効化
+  // ボタン初期状態
+  const BUTTONS = document.querySelectorAll('.button');
+  BUTTONS.forEach(button => { button.disabled = 'disabled'; });
+  
+  // エラーメッセージ表示とボタン無効化
   const showMessage = (message) => {  
-    ERROR[0].innerHTML  = message;
-    BUTTON[0].disabled  = 'disabled';
+    ERROR[0].innerHTML = message;
+    BUTTONS.forEach(button => { button.disabled = 'disabled'; });
   }
 
-  // エラーメッセージの解除とボタンの有効化
+  // エラーメッセージ解除とボタン有効化
   const hideMessage = () => {
     ERROR[0].innerHTML = '';
-    BUTTON[0].disabled = '';
-  }
-
-  // 数字を格納
-  let NUMBER_ARRAY = [];
-  for (let i = 0; i <= DECIDED_NUMBER; i++){
-    NUMBER_ARRAY.push(i);
-  }
-
-  const shuffleNumbers = () => {
-    return NUMBER_ARRAY.sort(function(){return Math.random() - 0.5}).slice(0,3).join('');
-  }
-  
-  let 連続したシャッフル数字 = [];
-  for (let i = 1; i <= CONTINUOUS; i++){
-    連続したシャッフル数字.push(shuffleNumbers());
+    BUTTONS.forEach(button => { button.disabled = ''; });
   }
 
   // 入力チェック
@@ -48,7 +32,7 @@
     input.onblur = (e) => {
       e.preventDefault();
       const inputValue = input.value;
-      if (!inputValue.match(/^[0-9]{1}$/)) {
+      if (!inputValue || !inputValue.match(/^[0-9]{1}$/)) {
         showMessage('0〜9の数値を一桁ずつ入力してください');
       }
       else{
@@ -57,45 +41,62 @@
     }
   });
 
-  BUTTON[0].addEventListener('click', (e) => {
-    e.preventDefault();
-    WINNING_RESULT.classList.add('active');
+  // 数字を格納
+  const NUMBERS_ARRAY = [];
+  for (let i = 0; i <= DECIDED_NUMBER; i++){
+    NUMBERS_ARRAY.push(i);
+  }
 
-    // ボタンを押したらテキストエリアを無効化
-    for (const iterator of VALUES) {
-      iterator.disabled = true;
-    }
+  // シャッフルして文字列として連結
+  const shuffleNumbers = () => {
+    return NUMBERS_ARRAY.sort(function(){return Math.random() - 0.5}).slice(0,3).join('');
+  }
 
-    // 入力数字を格納
-    let inputNumbers = [];
-    for (const i in INPUT_VALUE) {
-      inputNumbers.push(INPUT_VALUE[i].value);
-    }
-    console.log(inputNumbers.join(''));
-    
-    USER_NUMBER.innerHTML    = inputNumbers.join('');
-    WINNING_NUMBER.innerHTML = 連続したシャッフル数字[0];
+  // 連続抽選回数を格納
+  let SHUFFLE_NUMBERS_ARRAY = [];
+  for (let i = 1; i <= CONTINUOUS; i++){
+    SHUFFLE_NUMBERS_ARRAY.push(shuffleNumbers());
+  }
 
-    let カウント;
+  BUTTONS.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      WINNING_RESULT.classList.add('active');
 
-    for (let i = 0; i < 連続したシャッフル数字.length; i++) {
-      if (inputNumbers.join('') == 連続したシャッフル数字[i]) {
-        カウント++;
-        console.log(カウント);
+      // ボタンを押したらテキストエリアを無効化
+      for (const element of VALUES) {
+        element.disabled = true;
       }
-      // else if (inputNumbers.toString() !== numbers.toString()) {
-      //   inputNumbers.sort((a, b) => {return a - b});
-      //   numbers.sort((a, b) => {return a - b});
-  
-      //   if (inputNumbers.toString() === numbers.toString()) {
-      //     RESULT[0].innerHTML = 'おしい！ボックス当選です！';
-      //   }
-      //   else {
-      //     RESULT[0].innerHTML = '残念！ハズレです…';
-      //   }
-      // }
-      // else {
-      //   RESULT[0].innerHTML = '残念！ハズレです…';
-      // }
-    }
+
+      // 入力数字を格納
+      let inputNumbers = [];
+      for (const element of INPUT_VALUE) {
+        inputNumbers.push(element.value);
+      }
+
+      USER_NUMBER.innerHTML    = inputNumbers.join('');
+      WINNING_NUMBER.innerHTML = SHUFFLE_NUMBERS_ARRAY[0];
+
+      let countUpValue = 0;
+      let countUp = (eureka) => {
+        for (const item of SHUFFLE_NUMBERS_ARRAY) {
+          if (eureka === item) {
+            countUpValue++;
+            console.log("countUp -> countUpValue", countUpValue)
+          }
+        }
+      }
+
+      if (button.name === 'straight-check') {
+        countUp(inputNumbers.join(''));
+        RESULT[0].innerHTML = `${CONTINUOUS}回連続で抽選した場合${countUpValue}回当選します<br>ストレート当選確率は${countUpValue / CONTINUOUS * 100}%です`;
+      }
+      else if (button.name === 'box-check') {
+        
+        console.log(SHUFFLE_NUMBERS_ARRAY)
+        // item.sort((a, b) => {return a - b});
+        // countUp();
+      }
+    })
   });
+
