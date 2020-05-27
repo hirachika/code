@@ -7,7 +7,7 @@
   const RESULT          = document.getElementsByClassName('result');
   const VALUES          = document.getElementsByClassName('value');
   const INPUT_VALUE     = Array.from(VALUES);
-  const DIGIT           = 3;
+  const DIGIT           = 10;
   const DECIDED_NUMBER  = 9;
   const NUMBER_OF_TIMES = 1000;
   
@@ -47,8 +47,10 @@
 
       // 数字を格納
       const NUMBERS_ARRAY = [];
-      for (let i = 0; i <= DECIDED_NUMBER; i++){
-        NUMBERS_ARRAY.push(i);
+      for (let i = 1; i <= DIGIT; i++) {
+        for (let i = 0; i <= DECIDED_NUMBER; i++){
+          NUMBERS_ARRAY.push(i);
+        }
       }
 
       // シャッフルして固定数を格納
