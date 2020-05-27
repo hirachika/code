@@ -41,25 +41,24 @@
     }
   });
 
-  // 数字を格納
-  const NUMBERS_ARRAY = [];
-  for (let i = 0; i <= DECIDED_NUMBER; i++){
-    NUMBERS_ARRAY.push(i);
-  }
-
-  // シャッフルして固定数を格納
-  let SELECTED_NUMBER = [];
-  for (let i = 0; i <= NUMBER_OF_TIMES; i++){
-    NUMBERS_ARRAY.sort(function(){return Math.random() - 0.5});
-    SELECTED_NUMBER.push(NUMBERS_ARRAY.slice(0,DIGIT).join(''));
-  }
-
   BUTTONS.forEach(button => {
     button.addEventListener('click', (e) => {
       e.preventDefault();
-      WINNING_RESULT.classList.add('active');
 
-      // ボタンを押したらテキストエリアを無効化
+      // 数字を格納
+      const NUMBERS_ARRAY = [];
+      for (let i = 0; i <= DECIDED_NUMBER; i++){
+        NUMBERS_ARRAY.push(i);
+      }
+
+      // シャッフルして固定数を格納
+      let SELECTED_NUMBER = [];
+      for (let i = 1; i <= NUMBER_OF_TIMES; i++){
+        NUMBERS_ARRAY.sort(function(){return Math.random() - 0.5});
+        SELECTED_NUMBER.push(NUMBERS_ARRAY.slice(0,DIGIT).join(''));
+      }
+
+      // テキストエリアを無効化
       for (const element of VALUES) {
         element.disabled = true;
       }
@@ -70,6 +69,7 @@
         inputNumbers.push(element.value);
       }
 
+      WINNING_RESULT.classList.add('active');
       USER_NUMBER.innerHTML = inputNumbers.join('');
 
       let countUpValue = 0;
