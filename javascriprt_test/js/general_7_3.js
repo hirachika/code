@@ -7,8 +7,8 @@
   const RESULT          = document.getElementsByClassName('result');
   const VALUES          = document.getElementsByClassName('value');
   const INPUT_VALUE     = Array.from(VALUES);
-  const DIGIT           = 10;
-  const DECIDED_NUMBER  = 9;
+  const DIGIT           = 6;
+  const DECIDED_NUMBER  = 43;
   const NUMBER_OF_TIMES = 1000;
   
   // ボタン初期状態
@@ -32,10 +32,23 @@
     input.onblur = (e) => {
       e.preventDefault();
       const inputValue = input.value;
-      if (!inputValue || !inputValue.match(/^[0-9]{1}$/)) {
-        showMessage('0〜9の数値を一桁ずつ入力してください');
+
+      // 入力数字を格納
+      let equalsNumbers = [];
+      for (const i in INPUT_VALUE) {
+        equalsNumbers.push(Number(INPUT_VALUE[i].value));
       }
-      else{
+
+      // Set型で重複する数字を省く
+      let validateNumbers = new Set(equalsNumbers);
+
+      if (!inputValue.match(/^[0-9]{1,2}$/) || inputValue > 43 || inputValue == 0) {
+        showMessage('1〜43の異なる数字を入力してください');
+      }
+      else if (validateNumbers.size !== DIGIT) {
+        showMessage('空欄または重複している数字があります');
+      }
+      else {
         hideMessage();
       }
     }
@@ -45,54 +58,71 @@
     button.addEventListener('click', (e) => {
       e.preventDefault();
 
-      // 数字を格納
-      const NUMBERS_ARRAY = [];
-      for (let i = 1; i <= DIGIT; i++) {
-        for (let i = 0; i <= DECIDED_NUMBER; i++){
-          NUMBERS_ARRAY.push(i);
-        }
-      }
-
-      // シャッフルして固定数を格納
-      let SELECTED_NUMBER = [];
-      for (let i = 1; i <= NUMBER_OF_TIMES; i++){
-        NUMBERS_ARRAY.sort(function(){return Math.random() - 0.5});
-        SELECTED_NUMBER.push(NUMBERS_ARRAY.slice(0,DIGIT).join(''));
-      }
-
       // テキストエリアを無効化
       for (const element of VALUES) {
         element.disabled = true;
       }
 
       // 入力数字を格納
-      let inputNumbers = [];
-      for (const element of INPUT_VALUE) {
-        inputNumbers.push(element.value);
+      let INPUT_NUMBERS = [];
+      for (const i in INPUT_VALUE) {
+        INPUT_NUMBERS.push(Number(INPUT_VALUE[i].value));
       }
-
+      
       WINNING_RESULT.classList.add('active');
-      USER_NUMBER.innerHTML = inputNumbers.join('');
+      USER_NUMBER.innerHTML = INPUT_NUMBERS;
 
-      let countUpValue = 0;
-      let countUp = (value1,value2) => {
-        if (value1 === value2) {
-          countUpValue++;
-        }
+      // 数字を格納
+      const NUMBERS_ARRAY = [];
+      for (let i = 1; i <= DECIDED_NUMBER; i++){
+        NUMBERS_ARRAY.push(i);
       }
 
-      for (const item of SELECTED_NUMBER) {
-        if (button.name === 'straight-check') {
-          countUp(inputNumbers.join(''),item);
-          RESULT[0].innerHTML = `${NUMBER_OF_TIMES}回連続で抽選した場合${countUpValue}回当選します<br>ストレート当選確率は${countUpValue / NUMBER_OF_TIMES * 100}%です`;
+      // シャッフルしてボーナス数字をセット
+      NUMBERS_ARRAY.sort(()=>{return Math.random() - 0.5});
+      let BONUS_NUMBER = NUMBERS_ARRAY.shift();
+      console.log("BONUS_NUMBER", BONUS_NUMBER)
+      
+      // 1000回分のCOM番号をセット
+      let SELECTED_NUMBER = [];
+      for (let i = 1; i <= NUMBER_OF_TIMES; i++){
+        NUMBERS_ARRAY.sort(()=>{return Math.random() - 0.5});
+        SELECTED_NUMBER.push(NUMBERS_ARRAY.slice(0,DIGIT));
+      }
+
+      let COUNT_VALUE = 0;
+
+      // Set型で重複する数字を省く
+      let verificationNumber = [];
+      for (let i = 0; i < SELECTED_NUMBER.length; i++) {
+        console.log("SELECTED_NUMBER[i]", SELECTED_NUMBER[i])
+        
+        verificationNumber = new Set(INPUT_NUMBERS.concat(SELECTED_NUMBER[i]));
+        console.log("verificationNumber", verificationNumber)
+
+        if (verificationNumber.size === DIGIT) {
+          COUNT_VALUE++;
+          RESULT[0].innerHTML = `${NUMBER_OF_TIMES}回連続で抽選した場合<br>1等に${COUNT_VALUE}回当選します<br>確率は${COUNT_VALUE / NUMBER_OF_TIMES * 100}%です`;
         }
-        else if (button.name === 'box-check') {
-          let sortedNumbers = inputNumbers.sort().join('');
-          let SORTED_NUMBERS_ARRAY = item.split('').sort().join('');
-          countUp(sortedNumbers,SORTED_NUMBERS_ARRAY);
-          RESULT[0].innerHTML = `${NUMBER_OF_TIMES}回連続で抽選した場合${countUpValue}回当選します<br>ボックス当選確率は${countUpValue / NUMBER_OF_TIMES * 100}%です`;
+        else if (verificationNumber.size === DIGIT+1 && INPUT_NUMBERS.includes(BONUS_NUMBER)) {
+          COUNT_VALUE++;
+          RESULT[0].innerHTML = `${NUMBER_OF_TIMES}回連続で抽選した場合<br>2等に${COUNT_VALUE}回当選します<br>確率は${COUNT_VALUE / NUMBER_OF_TIMES * 100}%です`;
+        }
+        else if (verificationNumber.size === DIGIT+1) {
+          COUNT_VALUE++;
+          RESULT[0].innerHTML = `${NUMBER_OF_TIMES}回連続で抽選した場合<br>3等に${COUNT_VALUE}回当選します<br>確率は${COUNT_VALUE / NUMBER_OF_TIMES * 100}%です`;
+        }
+        else if (verificationNumber.size === DIGIT+2) {
+          COUNT_VALUE++;
+          RESULT[0].innerHTML = `${NUMBER_OF_TIMES}回連続で抽選した場合<br>4等に${COUNT_VALUE}回当選します<br>確率は${COUNT_VALUE / NUMBER_OF_TIMES * 100}%です`;
+        }
+        else if (verificationNumber.size === DIGIT+3) {
+          COUNT_VALUE++;
+          RESULT[0].innerHTML = `${NUMBER_OF_TIMES}回連続で抽選した場合<br>5等に${COUNT_VALUE}回当選します<br>確率は${COUNT_VALUE / NUMBER_OF_TIMES * 100}%です`;
         }
       }
     })
   });
+
+
 
