@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="IE=edge">
+<title>JAVASCRIPT基礎の総合課題</title>
+<link href="./css/style.css" rel="stylesheet" type="text/css">
+</head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <div class="header__contents">
+          <h1>WORKSHOP</h1>
+          <h2>JAVASCRIPT基礎の総合課題</h2>
+        </div>
+        <!-- /.header__contents -->
+      </header>
+      <div class="main-wrapper">
+        <section class="section">
+          <h3 class="section__title">ロト7ゲーム<br>1000回連続抽選した場合の当選確率を求めよう</h3>
+          <p class="supplement">各テキストエリアに1～37の異なる数値を入力してください</p>
+          <form class="form" id="form" method="post">
+            <fieldset class="form__wrap">
+              <div class="form3__item">
+                <input type="text" class="value" name="number" required>
+                <input type="text" class="value" name="number" required>
+                <input type="text" class="value" name="number" required>
+                <input type="text" class="value" name="number" required>
+                <input type="text" class="value" name="number" required>
+                <input type="text" class="value" name="number" required>
+                <input type="text" class="value" name="number" required>
+              </div>
+            </fieldset>
+            <p class="error"></p>
+            <button class="button" name="first-class" type="button">当選確率は？</button>
+            <div class="winning-result">
+              <p>入力番号：<span class="winning-result__user"></span></p>
+              <p class="supplement">※もう一度挑戦したいときはリロードしてください</p>
+            </div>
+            <p class="result"></p>
+          </form>
+        </section>
+      </div>
+    <script src="./js/general_7_4.js"></script>
+  </body>
+</html>
