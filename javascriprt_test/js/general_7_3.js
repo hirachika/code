@@ -42,8 +42,8 @@
       // Set型で重複する数字を省く
       let validateNumbers = new Set(equalsNumbers);
 
-      if (!inputValue.match(/^[0-9]{1,2}$/) || inputValue > 43 || inputValue == 0) {
-        showMessage('1〜43の異なる数字を入力してください');
+      if (!inputValue.match(/^[0-9]{1,2}$/) || inputValue > DECIDED_NUMBER || inputValue == 0) {
+        showMessage(`1〜${DECIDED_NUMBER}の異なる数字を入力してください`);
       }
       else if (validateNumbers.size !== DIGIT) {
         showMessage('空欄または重複している数字があります');
@@ -91,14 +91,11 @@
       }
 
       let COUNT_VALUE = 0;
-
-      // Set型で重複する数字を省く
       let verificationNumber = [];
-      for (let i = 0; i < SELECTED_NUMBER.length; i++) {
-        console.log("SELECTED_NUMBER[i]", SELECTED_NUMBER[i])
-        
+
+      for (let i = 0; i < SELECTED_NUMBER.length; i++) {  
+        // Set型で重複する数字を省く
         verificationNumber = new Set(INPUT_NUMBERS.concat(SELECTED_NUMBER[i]));
-        console.log("verificationNumber", verificationNumber)
 
         if (verificationNumber.size === DIGIT) {
           COUNT_VALUE++;
