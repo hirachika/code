@@ -5,29 +5,23 @@
   const USER_NUMBER     = document.querySelector('.winning-result__user');
   const ERROR           = document.getElementsByClassName('error');
   const RESULT          = document.getElementsByClassName('result');
+  const BUTTONS = document.querySelectorAll('.button');
   const VALUES          = document.getElementsByClassName('value');
   const INPUT_VALUE     = Array.from(VALUES);
   const DIGIT           = 6;
   const DECIDED_NUMBER  = 43;
   const NUMBER_OF_TIMES = 1000;
   
-  // ボタン初期状態
-  const BUTTONS = document.querySelectorAll('.button');
-  BUTTONS.forEach(button => { button.disabled = 'disabled'; });
-  
-  // エラーメッセージ表示とボタン無効化
   const showMessage = (message) => {  
     ERROR[0].innerHTML = message;
     BUTTONS.forEach(button => { button.disabled = 'disabled'; });
   }
 
-  // エラーメッセージ解除とボタン有効化
   const hideMessage = () => {
     ERROR[0].innerHTML = '';
     BUTTONS.forEach(button => { button.disabled = ''; });
   }
 
-  // 入力チェック
   INPUT_VALUE.forEach(input => {
     input.onblur = (e) => {
       e.preventDefault();
