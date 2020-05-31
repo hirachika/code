@@ -5,12 +5,12 @@
   const USER_NUMBER     = document.querySelector('.winning-result__user');
   const ERROR           = document.getElementsByClassName('error');
   const RESULT          = document.getElementsByClassName('result');
-  const BUTTONS = document.querySelectorAll('.button');
+  const BUTTONS         = document.querySelectorAll('.button');
   const VALUES          = document.getElementsByClassName('value');
   const INPUT_VALUE     = Array.from(VALUES);
   const DIGIT           = 7;
   const DECIDED_NUMBER  = 37;
-  const NUMBER_OF_TIMES = 1000;
+  const NUMBER_OF_TIMES = 10;
   
   const showMessage = (message) => {  
     ERROR[0].innerHTML = message;
@@ -62,9 +62,6 @@
       for (const i in INPUT_VALUE) {
         INPUT_NUMBERS.push(Number(INPUT_VALUE[i].value));
       }
-      
-      WINNING_RESULT.classList.add('active');
-      USER_NUMBER.innerHTML = INPUT_NUMBERS;
 
       // 数字を格納
       const NUMBERS_ARRAY = [];
@@ -74,8 +71,8 @@
 
       // シャッフルしてボーナス数字をセット
       NUMBERS_ARRAY.sort(()=>{return Math.random() - 0.5});
-      let BONUS_NUMBER = NUMBERS_ARRAY.shift();
-      console.log("BONUS_NUMBER", BONUS_NUMBER)
+      let BONUS_NUMBER_1 = NUMBERS_ARRAY.shift();
+      let BONUS_NUMBER_2 = NUMBERS_ARRAY.shift();
       
       // 1000回分のCOM番号をセット
       let SELECTED_NUMBER = [];
@@ -83,37 +80,49 @@
         NUMBERS_ARRAY.sort(()=>{return Math.random() - 0.5});
         SELECTED_NUMBER.push(NUMBERS_ARRAY.slice(0,DIGIT));
       }
+      
+      WINNING_RESULT.classList.add('active');
+      USER_NUMBER.innerHTML = INPUT_NUMBERS;
 
       let COUNT_VALUE = 0;
+      let countUp = (value,digit) => {
+        if (value.size === digit) {
+          COUNT_VALUE++;
+        }
+      }
+      
       let verificationNumber = [];
-
-      for (let i = 0; i < SELECTED_NUMBER.length; i++) {  
+      for (let i = 0; i < SELECTED_NUMBER.length; i++) {
         // Set型で重複する数字を省く
         verificationNumber = new Set(INPUT_NUMBERS.concat(SELECTED_NUMBER[i]));
 
-        if (verificationNumber.size === DIGIT) {
-          COUNT_VALUE++;
+        if (button.name === 'first-class') {
+          countUp(verificationNumber,DIGIT);
           RESULT[0].innerHTML = `${NUMBER_OF_TIMES}回連続で抽選した場合<br>1等に${COUNT_VALUE}回当選します<br>確率は${COUNT_VALUE / NUMBER_OF_TIMES * 100}%です`;
         }
-        else if (verificationNumber.size === DIGIT+1 && INPUT_NUMBERS.includes(BONUS_NUMBER)) {
-          COUNT_VALUE++;
+        else if (button.name === 'second-class' && (INPUT_NUMBERS.includes(BONUS_NUMBER_1) || INPUT_NUMBERS.includes(BONUS_NUMBER_2))) {
+          countUp(verificationNumber,DIGIT+1);
           RESULT[0].innerHTML = `${NUMBER_OF_TIMES}回連続で抽選した場合<br>2等に${COUNT_VALUE}回当選します<br>確率は${COUNT_VALUE / NUMBER_OF_TIMES * 100}%です`;
         }
-        else if (verificationNumber.size === DIGIT+1) {
-          COUNT_VALUE++;
+        else if (button.name === 'third-grade') {
+          countUp(verificationNumber,DIGIT+1);
           RESULT[0].innerHTML = `${NUMBER_OF_TIMES}回連続で抽選した場合<br>3等に${COUNT_VALUE}回当選します<br>確率は${COUNT_VALUE / NUMBER_OF_TIMES * 100}%です`;
         }
-        else if (verificationNumber.size === DIGIT+2) {
-          COUNT_VALUE++;
+        else if (button.name === 'fourth-class') {
+          countUp(verificationNumber,DIGIT+2);
           RESULT[0].innerHTML = `${NUMBER_OF_TIMES}回連続で抽選した場合<br>4等に${COUNT_VALUE}回当選します<br>確率は${COUNT_VALUE / NUMBER_OF_TIMES * 100}%です`;
         }
-        else if (verificationNumber.size === DIGIT+3) {
-          COUNT_VALUE++;
+        else if (button.name === 'fifth-grade') {
+          countUp(verificationNumber,DIGIT+3);
           RESULT[0].innerHTML = `${NUMBER_OF_TIMES}回連続で抽選した場合<br>5等に${COUNT_VALUE}回当選します<br>確率は${COUNT_VALUE / NUMBER_OF_TIMES * 100}%です`;
+        }
+        else if (button.name === 'sixth-grade' && (INPUT_NUMBERS.includes(BONUS_NUMBER_1) || INPUT_NUMBERS.includes(BONUS_NUMBER_2))) {
+          countUp(verificationNumber,DIGIT+4);
+          RESULT[0].innerHTML = `${NUMBER_OF_TIMES}回連続で抽選した場合<br>6等に${COUNT_VALUE}回当選します<br>確率は${COUNT_VALUE / NUMBER_OF_TIMES * 100}%です`;
+        }
+        else {
+          RESULT[0].innerHTML = `当選しませんでした`;
         }
       }
     })
   });
-
-
-
