@@ -1,44 +1,59 @@
 'use strict';
 
   // 初期設定
-  const WINNING_RESULT = document.querySelector('.winning-result');
-  const USER_NUMBER    = document.querySelector('.winning-result__user');
-  const WINNING_NUMBER = document.querySelector('.winning-result__com');
-  const BONUS_NUMBER   = document.querySelector('.winning-result__bonus');
-  const ERROR          = document.getElementsByClassName('error');
-  const RESULT         = document.getElementsByClassName('result');
-  const VALUES         = document.getElementsByClassName('value');
-  const INPUT_VALUE    = Array.from(VALUES);
-  const COUNT          = 7;
-  const DECIDED_NUMBER = 37;
+  const SELECTED_NUMBER     = 5;
+  const NUMBER              = 52;
+  const BUTTON              = document.getElementsByClassName('porker__start-button');
+  const RESULT              = document.getElementsByClassName('porker-game__result');
+  const ROLE_NAME           = document.getElementsByClassName('porker__role-name');
+  const DEALER_PLAYING_CARD = document.getElementsByClassName('porker__playing-card--dealer');
+  const PLAYER_PLAYING_CARD = document.getElementsByClassName('porker__playing-card--player');
 
-  // ボタン初期状態
-  const BUTTON         = document.getElementsByClassName('button');
-  BUTTON[0].disabled   = 'disabled';
+
+  // トランプの枚数を格納
+  const PLAYING_CARD_ARRAY = [];
+  for (let i = 1; i <= NUMBER; i++) {
+    PLAYING_CARD_ARRAY.push(Number(i));
+  }
+
+  let SHUFFLE_PLAYING_CARD = PLAYING_CARD_ARRAY.sort(function(){ return Math.random() - 0.5});
+
+  // ディーラーとプレイヤーのカードを格納
+  const DEALER_SELECTED_NUMBER = SHUFFLE_PLAYING_CARD.splice(0,SELECTED_NUMBER);
+  const PLAYER_SELECTED_NUMBER = SHUFFLE_PLAYING_CARD.splice(0,SELECTED_NUMBER);
+
   
-  // エラーメッセージの表示と無効化
-  const showMessage = (message) => {  
-    ERROR[0].innerHTML  = message;
-    BUTTON[0].disabled  = 'disabled';
+  for (let i = 0; i < PLAYER_SELECTED_NUMBER.length; i++) {
+    DEALER_PLAYING_CARD[0].insertAdjacentHTML('beforeend',`<img src=images/praying-card_${PLAYER_SELECTED_NUMBER[i]}.png>`);
   }
 
-  // エラーメッセージの解除とボタンの有効化
-  const hideMessage = () => {
-    ERROR[0].innerHTML = '';
-    BUTTON[0].disabled = '';
-  }
 
-  // 数字を格納
-  let numberArray = [];
-  for (let i = 1; i <= DECIDED_NUMBER; i++){
-    numberArray.push(i);
-  }
 
-  // シャッフル後にボーナス数字と当選番号を格納
-  numberArray = numberArray.sort(function(){ return Math.random() - 0.5});
-  const bonusNumber1 = numberArray.shift();
-  const bonusNumber2 = numberArray.shift();
-  const numbers      = numberArray.slice(0,COUNT);
+  // すでに選ばれた枚数を削除
+  // SHUFFLE_PLAYING_CARD.splice(0,SELECTED_NUMBER);
+  // console.log("SHUFFLE_PLAYING_CARD", SHUFFLE_PLAYING_CARD)
+
+
+  
+
+
+
+
+
+
+
+ 
+ //  PLAYING_CARD.innerHTML = ;
+// img.setAttribute('src', 'images/praying-card_16.png');
+
+// console.log("PLAYING_CARD[0]", PLAYING_CARD[0])
+
+//   BUTTON[0].addEventListener('click',(e)=>{
+//     e.preventDefault();
+//     console.log('eureka');
+//   })
+  
+
 
   // 入力チェック
   INPUT_VALUE.forEach(input => {
