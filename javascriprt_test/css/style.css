@@ -183,11 +183,12 @@ CUSTOM STYLE
 
 .button {
   display: block;
-  margin: 0 auto;
-  padding: 1rem 2rem;
+  width: 200px;
+  margin: 0 auto 1rem;
+  padding: 1rem 0;
   color: #fff;
   font-size: 16px;
-  text-align: left;
+  text-align: center;
   border: none;
   border-radius: 3px;
   background-color: #f06;
@@ -251,6 +252,11 @@ CUSTOM STYLE
 .winning-result p {
   margin: 0 0 .5rem;
   text-align: center;
+}
+
+.winning-probability {
+  color: #f06;
+  font-weight: bold;
 }
 
 .winning-result p:last-child{
