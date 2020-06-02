@@ -347,26 +347,14 @@ PORKER
   }
 }
 
-.porker__role-name {
+.porker__role-name-area {
   position: relative;
-  width: 240px;
   margin: 0 auto 2rem;
   padding: 1rem;
-  box-sizing: border-box;
-  font-size: 30px;
-  text-align: center;
-  color: yellow;
   background-color: #000;
 }
 
-@media screen and ( max-width:560px) {
-  .porker__role-name {
-    width: 100%;
-    font-size: 6vw;
-  }
-}
-
-.porker__role-name::after {
+.porker__role-name-area::after {
   content: "";
   position: absolute;
   right: 0;
@@ -380,6 +368,20 @@ PORKER
   border-color: #000000 transparent transparent transparent;
 }
 
+.porker__role-name {
+  margin: 0;
+  font-size: 30px;
+  text-align: center;
+  color: yellow;
+}
+
+@media screen and ( max-width:560px) {
+  .porker__role-name {
+    width: 100%;
+    font-size: 6vw;
+  }
+}
+
 .porker__playing-card {
   display: flex;
   justify-content: space-between;
@@ -387,6 +389,7 @@ PORKER
 
 .porker__playing-card img {
   width: calc(100% / 5 - 1rem);
+  transition: all 2s ease-out;
 }
 
 .porker__start-button {
