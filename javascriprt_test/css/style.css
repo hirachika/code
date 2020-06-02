@@ -256,3 +256,154 @@ CUSTOM STYLE
 .winning-result p:last-child{
   margin: 0;
 }
+
+/* --------------------------------------------------
+PORKER
+-------------------------------------------------- */
+
+.porker-game {
+  padding: 2rem 0;
+  height: 100%;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAALUlEQVQYV2M0CpL4r2bDywADt458ZmCM6FP9D2KAJGA0WBCkCiYAYmNXic1MAFyVHlo8jcPeAAAAAElFTkSuQmCC);
+  font-family: 'Black Ops One', cursive;
+}
+
+.porker-game__title {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.porker-game__title img {
+  width: 100%;
+}
+
+.screen-layout {
+  max-width: 640px;
+  margin: 2rem auto;
+  padding: 2rem 4rem;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,.3);
+}
+
+@media screen and ( max-width:768px) {
+  .screen-layout {
+    width: 90%;
+  }
+}
+
+.porker-game__head {
+  display: flex;
+  width: 75%;
+  margin: 0 auto 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and ( max-width:560px) {
+  .porker-game__head {
+    width: 100%;
+  }
+}
+
+.porker-game__head--reverse {
+  margin: 1rem auto 0;
+  flex-flow: row-reverse nowrap;
+}
+
+.porker-game__result {
+  margin: 0;
+  font-size: 40px;
+}
+
+@media screen and ( max-width:768px) {
+  .porker-game__result {
+    font-size: 7vw;
+  }
+}
+
+.porker-game__result--win {
+  color: red;
+}
+
+.porker-game__result--lose {
+  color: #00a0e9;
+}
+
+.porker-game__result--draw {
+  color: greenyellow;
+}
+
+.porker-game__position {
+  margin: 0;
+  font-size: 60px;
+  line-height: 1;
+  color: #fefbcf;
+}
+
+@media screen and ( max-width:768px) {
+  .porker-game__position {
+    font-size: 9vw;
+  }
+}
+
+.porker__role-name {
+  position: relative;
+  width: 240px;
+  margin: 0 auto 2rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-size: 30px;
+  text-align: center;
+  color: yellow;
+  background-color: #000;
+}
+
+@media screen and ( max-width:560px) {
+  .porker__role-name {
+    width: 100%;
+    font-size: 6vw;
+  }
+}
+
+.porker__role-name::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -15px;
+  left: 0;
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+  border-style: solid;
+  border-width: 15px 10px 0 10px;
+  border-color: #000000 transparent transparent transparent;
+}
+
+.porker__playing-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.porker__playing-card img {
+  width: calc(100% / 5 - 1rem);
+}
+
+.porker__start-button {
+  display: block;
+  margin: 0 auto;
+  padding: 1rem 3rem;
+  font-size: 30px;
+  font-family: 'Black Ops One', cursive;
+  color: #fefbcf;
+  background-color: red;
+  border: solid 2px yellow;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  cursor: pointer;
+}
+
+.porker__start-button:hover {
+  background-color: yellow;
+  color: #000;
+}
