@@ -1,23 +1,27 @@
 'use strict';
 
-  // 初期設定
-  const DEALER_CARD = document.getElementsByClassName('porker__playing-card--dealer');
-  const PLAYER_CARD = document.getElementsByClassName('porker__playing-card--player');
-  const BUTTON      = document.getElementsByClassName('porker__start-button');
-  const RESULT      = document.getElementsByClassName('porker-game__result');
-  const ROLE_NAME   = document.getElementsByClassName('porker__role-name');
-  const HAND        = 5;
+  // 要素の準備
+  const PLAYER_CARDS = document.getElementsByClassName('porker__playing-card');
+  const PLAYER_CARD  = Array.from(PLAYER_CARDS);
+  const ROLE_NAMES   = document.getElementsByClassName('porker__role-name');
+  const ROLE_NAME    = Array.from(ROLE_NAMES);
+  const BUTTON       = document.getElementsByClassName('porker__start-button');
+  const RESULT       = document.getElementsByClassName('porker-game__result');
+  const HAND         = 5;
 
   // トランプの画像を格納
   const CARD_ARRAY = [];
   for (let i = 1; i <= 13; i++) {
-    CARD_ARRAY.push(`club_${i}`,`heart_${i}`,`diamond_${i}`,`spade_${i}`);
+    CARD_ARRAY.push(`club${i}`,`heart${i}`,`diamond${i}`,`spade${i}`);
   }
   
   // シャッフルしてカードをそれぞれ格納
-  const SHUFFLE_CARD_ARRAY = CARD_ARRAY.sort(function(){ return Math.random() - 0.5});
-  const DEALER_CARD_ARRAY = SHUFFLE_CARD_ARRAY.splice(0,HAND);
-  const PLAYER_CARD_ARRAY = SHUFFLE_CARD_ARRAY.splice(0,HAND);
+  // const SHUFFLE_CARD_ARRAY = CARD_ARRAY.sort(function(){ return Math.random() - 0.5});
+  // const DEALER_CARD_ARRAY  = SHUFFLE_CARD_ARRAY.splice(0,HAND);
+  // const PLAYER_CARD_ARRAY  = SHUFFLE_CARD_ARRAY.splice(0,HAND);
+
+  // デバッグ用　※最後に消す
+  const DEALER_CARD_ARRAY = ['heart1','heart10','heart11','heart12','heart13'];
 
   const distributeCard = (array,element) => {
     for (const item of array) {
@@ -25,17 +29,59 @@
     }
   }
 
-  distributeCard(DEALER_CARD_ARRAY,DEALER_CARD[0]);
-  distributeCard(PLAYER_CARD_ARRAY,PLAYER_CARD[0]);
+  distributeCard(DEALER_CARD_ARRAY,PLAYER_CARD[0]);
+  // distributeCard(PLAYER_CARD_ARRAY,PLAYER_CARD[1]);
 
+  // 文字列と数字を抜き出す
+  const SUIT = [];
+  const NUMERIC = [];
   for (const item of DEALER_CARD_ARRAY) {
-    console.log(item);
+    SUIT.push(item.replace(/\d+/g, ''));
+    NUMERIC.push(item.replace(/[^0-9]/g, ''));
   }
 
+  // 重複を省いた配列をセット
+  let setArrayNumeric = new Set(NUMERIC);
+  let setArraySuit    = new Set(SUIT);
 
+  // 配列の中身の合計　※合計が高いほど強い
+  let sum = 0;
+  for (const item of NUMERIC) {
+    sum += Number(item);
+  }
 
+  // 役名を判定
+  if (setArrayNumeric.size === 4) {
+    ROLE_NAME[0].innerHTML = 'A PAIR';
+  }
+  else if (setArrayNumeric.size === 3) {
+    ROLE_NAME[0].innerHTML = 'TWO PAIR';
+  }
+  // else if (setArrayNumeric.size === 3) {
+  //   ROLE_NAME[0].innerHTML = 'THREE OF A KIND';
+  // }
+  else if (setArrayNumeric.size === 5 && sum % 5 == 0 && setArraySuit.size > 1) {
+    ROLE_NAME[0].innerHTML = 'STRAIGHT';
+  }
+  else if (setArrayNumeric.size === 5 && setArraySuit.size === 1 && sum > 47) {
+    ROLE_NAME[0].innerHTML = 'FLUSH';
+  }
+  else if (setArrayNumeric.size === 2) {
+    ROLE_NAME[0].innerHTML = 'A FULL HOUSE';
+  }
+  // else if (setArrayNumeric.size === 2) {
+  //   ROLE_NAME[0].innerHTML = 'FOUR OF A KIND';
+  // }
+  else if (setArrayNumeric.size === 5 && sum % 5 == 0 && setArraySuit.size === 1) {
+    ROLE_NAME[0].innerHTML = 'STRAIGHT FLUSH';
+  }
+  else if (setArrayNumeric.size === 5 && setArraySuit.size === 1 && sum === 47) {
+    ROLE_NAME[0].innerHTML = 'ROYAL FLUSH';
+  }
+  else {
+    ROLE_NAME[0].innerHTML = 'HIGH CARD';
+  }
 
-  
 
 
 
