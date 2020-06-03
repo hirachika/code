@@ -21,7 +21,7 @@
   // const PLAYER_CARD_ARRAY  = SHUFFLE_CARD_ARRAY.splice(0,HAND);
 
   // デバッグ用　※最後に消す
-  const DEALER_CARD_ARRAY = ['heart1','heart1','heart11','heart3','heart5'];
+  const DEALER_CARD_ARRAY = ['heart1','heart2','heart2','heart12','heart6'];
 
   const distributeCard = (array,element) => {
     for (const item of array) {
@@ -49,30 +49,10 @@
   for (const item of NUMERIC) {
     sum += Number(item);
   }
-
-  // ツーペアとスリーカード用の判定
-  let countDuplicate = () => {
-    let counts = {};
-    for (const key of NUMERIC) {
-      counts[key] = (counts[key])? counts[key] + 1 : 1 ;
-    }
-    
-    for (const key in counts) {
-      if (counts[key] === 2) {
-        ROLE_NAME[0].innerHTML = 'TWO PAIR';
-      }
-      else if (counts[key] === 3) {
-        ROLE_NAME[0].innerHTML = 'THREE OF A KIND';
-      }
-    }
-  }
-
+  
   // 役名を判定
   if (setArrayNumeric.size === 4) {
     ROLE_NAME[0].innerHTML = 'A PAIR';
-  }
-  else if (setArrayNumeric.size === 3) {
-    countDuplicate();
   }
   else if (setArrayNumeric.size === 5 && sum % 5 == 0 && setArraySuit.size > 1) {
     ROLE_NAME[0].innerHTML = 'STRAIGHT';
@@ -80,22 +60,39 @@
   else if (setArrayNumeric.size === 5 && setArraySuit.size === 1 && sum > 47) {
     ROLE_NAME[0].innerHTML = 'FLUSH';
   }
-  else if (setArrayNumeric.size === 2) {
-    ROLE_NAME[0].innerHTML = 'A FULL HOUSE';
-  }
-  // else if (setArrayNumeric.size === 2) {
-  //   ROLE_NAME[0].innerHTML = 'FOUR OF A KIND';
-  // }
   else if (setArrayNumeric.size === 5 && sum % 5 == 0 && setArraySuit.size === 1) {
     ROLE_NAME[0].innerHTML = 'STRAIGHT FLUSH';
   }
   else if (setArrayNumeric.size === 5 && setArraySuit.size === 1 && sum === 47) {
     ROLE_NAME[0].innerHTML = 'ROYAL FLUSH';
   }
-  else {
-    ROLE_NAME[0].innerHTML = 'HIGH CARD';
+  else {    
+    let counts = {};
+    let tmp = [];
+    for (const key of NUMERIC) {
+      counts[key] = (counts[key])? counts[key] + 1 : 1 ;
+    }
+    for (const key in counts) {
+      tmp.push(counts[key]);
+      tmp.sort((a, b) => {return a - b});
+  
+      if (tmp.toString() === '1,2,2') {
+        ROLE_NAME[0].innerHTML = 'TWO PAIR';
+      }
+      else if (tmp.toString() === '1,1,3') {
+        ROLE_NAME[0].innerHTML = 'THREE OF A KIND';
+      }
+      else if (tmp.toString() === '2,3') {
+        ROLE_NAME[0].innerHTML = 'A FULL HOUSE';
+      }
+      else if (tmp.toString() === '1,4') {
+        ROLE_NAME[0].innerHTML = 'FOUR OF A KIND';
+      }
+      else {
+        ROLE_NAME[0].innerHTML = 'HIGH CARD';
+      }
+    }
   }
-
 
 
 
