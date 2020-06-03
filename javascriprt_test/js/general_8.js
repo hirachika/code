@@ -21,7 +21,7 @@
   // const PLAYER_CARD_ARRAY  = SHUFFLE_CARD_ARRAY.splice(0,HAND);
 
   // デバッグ用　※最後に消す
-  const DEALER_CARD_ARRAY = ['heart1','heart1','heart1','heart3','heart2'];
+  const DEALER_CARD_ARRAY = ['heart1','heart1','heart11','heart3','heart5'];
 
   const distributeCard = (array,element) => {
     for (const item of array) {
@@ -50,27 +50,29 @@
     sum += Number(item);
   }
 
-  // 重複している値の個数
-  let counts = {};
-  for (const key of NUMERIC) {
-    if (counts[key]) {
-      counts[key] = counts[key] + 1;
+  // ツーペアとスリーカード用の判定
+  let countDuplicate = () => {
+    let counts = {};
+    for (const key of NUMERIC) {
+      counts[key] = (counts[key])? counts[key] + 1 : 1 ;
     }
-    else {
-      counts[key] = 1;
+    
+    for (const key in counts) {
+      if (counts[key] === 2) {
+        ROLE_NAME[0].innerHTML = 'TWO PAIR';
+      }
+      else if (counts[key] === 3) {
+        ROLE_NAME[0].innerHTML = 'THREE OF A KIND';
+      }
     }
   }
-  console.log(counts);
 
   // 役名を判定
   if (setArrayNumeric.size === 4) {
     ROLE_NAME[0].innerHTML = 'A PAIR';
   }
   else if (setArrayNumeric.size === 3) {
-    ROLE_NAME[0].innerHTML = 'TWO PAIR';
-  }
-  else if (setArrayNumeric.size === 3) {
-    ROLE_NAME[0].innerHTML = 'THREE OF A KIND';
+    countDuplicate();
   }
   else if (setArrayNumeric.size === 5 && sum % 5 == 0 && setArraySuit.size > 1) {
     ROLE_NAME[0].innerHTML = 'STRAIGHT';
