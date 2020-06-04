@@ -1,168 +1,132 @@
-'use strict';
+"use strict";
 
-  // 要素の準備
-  const PLAYER_CARDS = document.getElementsByClassName('porker__playing-card');
-  const PLAYER_CARD  = Array.from(PLAYER_CARDS);
-  const ROLE_NAMES   = document.getElementsByClassName('porker__role-name');
-  const ROLE_NAME    = Array.from(ROLE_NAMES);
-  const BUTTON       = document.getElementsByClassName('porker__start-button');
-  const RESULT       = document.getElementsByClassName('porker-game__result');
-  const HAND         = 5;
+// 要素の準備
+const PLAYER_CARDS = document.getElementsByClassName("porker__playing-card");
+const PLAYER_CARD = Array.from(PLAYER_CARDS);
+const ROLE_NAMES = document.getElementsByClassName("porker__role-name");
+const ROLE_NAME = Array.from(ROLE_NAMES);
+const BUTTON = document.getElementsByClassName("porker__start-button");
+const RESULTS = document.getElementsByClassName("porker-game__result");
+const RESULT = Array.from(RESULTS);
+const HAND = 5;
 
-  // トランプの画像を格納
-  const CARD_ARRAY = [];
-  for (let i = 1; i <= 13; i++) {
-    CARD_ARRAY.push(`club${i}`,`heart${i}`,`diamond${i}`,`spade${i}`);
+// トランプの画像を格納
+const CARD_ARRAY = [];
+for (let i = 1; i <= 13; i++) {
+  CARD_ARRAY.push(`club${i}`, `heart${i}`, `diamond${i}`, `spade${i}`);
+}
+
+// シャッフルしてカードをそれぞれ格納
+// const SHUFFLE_CARD_ARRAY = CARD_ARRAY.sort(function () {
+//   return Math.random() - 0.5;
+// });
+// const DEALER_CARD_ARRAY = SHUFFLE_CARD_ARRAY.splice(0, HAND);
+// const PLAYER_CARD_ARRAY = SHUFFLE_CARD_ARRAY.splice(0, HAND);
+
+// デバッグ用　※最後に消す
+const DEALER_CARD_ARRAY = ["club1", "diamond1", "heart11", "spade10", "club3"];
+const PLAYER_CARD_ARRAY = [
+  "diamond1",
+  "diamond1",
+  "club12",
+  "club11",
+  "diamond13",
+];
+
+const distributeHand = (array, element) => {
+  for (const item of array) {
+    element.insertAdjacentHTML("beforeend", `<img src=images/${item}.png>`);
   }
-  
-  // シャッフルしてカードをそれぞれ格納
-  // const SHUFFLE_CARD_ARRAY = CARD_ARRAY.sort(function(){ return Math.random() - 0.5});
-  // const DEALER_CARD_ARRAY  = SHUFFLE_CARD_ARRAY.splice(0,HAND);
-  // const PLAYER_CARD_ARRAY  = SHUFFLE_CARD_ARRAY.splice(0,HAND);
+};
+distributeHand(DEALER_CARD_ARRAY, PLAYER_CARD[0]);
+distributeHand(PLAYER_CARD_ARRAY, PLAYER_CARD[1]);
 
-  // デバッグ用　※最後に消す
-  const DEALER_CARD_ARRAY = ['heart1','heart2','heart2','heart12','heart6'];
-
-  const distributeCard = (array,element) => {
-    for (const item of array) {
-      element.insertAdjacentHTML('beforeend',`<img src=images/${item}.png>`);
-    }
-  }
-
-  distributeCard(DEALER_CARD_ARRAY,PLAYER_CARD[0]);
-  // distributeCard(PLAYER_CARD_ARRAY,PLAYER_CARD[1]);
-
+const 配列を加工する = (array, element) => {
   // 文字列と数字を抜き出す
   const SUIT = [];
   const NUMERIC = [];
-  for (const item of DEALER_CARD_ARRAY) {
-    SUIT.push(item.replace(/\d+/g, ''));
-    NUMERIC.push(item.replace(/[^0-9]/g, ''));
+  for (const item of array) {
+    SUIT.push(item.replace(/\d+/g, ""));
+    NUMERIC.push(item.replace(/[^0-9]/g, ""));
+  }
+
+  // 配列に1が含まれる時は13に置換
+  for (const [index, item] of NUMERIC.entries()) {
+    if (item === "1") {
+      NUMERIC.splice(index, 1, "14");
+    }
   }
 
   // 重複を省いた配列をセット
   let setArrayNumeric = new Set(NUMERIC);
-  let setArraySuit    = new Set(SUIT);
+  let setArraySuit = new Set(SUIT);
 
   // 配列の中身の合計　※合計が高いほど強い
   let sum = 0;
   for (const item of NUMERIC) {
     sum += Number(item);
   }
-  
-  // 役名を判定
-  if (setArrayNumeric.size === 4) {
-    ROLE_NAME[0].innerHTML = 'A PAIR';
-  }
-  else if (setArrayNumeric.size === 5 && sum % 5 == 0 && setArraySuit.size > 1) {
-    ROLE_NAME[0].innerHTML = 'STRAIGHT';
-  }
-  else if (setArrayNumeric.size === 5 && setArraySuit.size === 1 && sum > 47) {
-    ROLE_NAME[0].innerHTML = 'FLUSH';
-  }
-  else if (setArrayNumeric.size === 5 && sum % 5 == 0 && setArraySuit.size === 1) {
-    ROLE_NAME[0].innerHTML = 'STRAIGHT FLUSH';
-  }
-  else if (setArrayNumeric.size === 5 && setArraySuit.size === 1 && sum === 47) {
-    ROLE_NAME[0].innerHTML = 'ROYAL FLUSH';
-  }
-  else {    
+  役名を判定する(setArraySuit, setArrayNumeric, sum, element, NUMERIC);
+};
+
+const 役名を判定する = (加工後配列1, 加工後配列2, 合計値, インプット, 配列) => {
+  let characterName = "";
+  if (加工後配列1.size === 1 && 合計値 === 60) {
+    // 数字合計の最大値
+    characterName = "ROYAL FLUSH";
+  } else if (加工後配列1.size === 1 && 合計値 % 5 == 0) {
+    characterName = "STRAIGHT FLUSH";
+  } else if (加工後配列2.size === 2 || 加工後配列2.size === 3) {
     let counts = {};
-    let tmp = [];
-    for (const key of NUMERIC) {
-      counts[key] = (counts[key])? counts[key] + 1 : 1 ;
+    const DUPLICATE_NUMBER_ARRAY = [];
+    for (const key of 配列) {
+      counts[key] = counts[key] ? counts[key] + 1 : 1;
     }
     for (const key in counts) {
-      tmp.push(counts[key]);
-      tmp.sort((a, b) => {return a - b});
-  
-      if (tmp.toString() === '1,2,2') {
-        ROLE_NAME[0].innerHTML = 'TWO PAIR';
-      }
-      else if (tmp.toString() === '1,1,3') {
-        ROLE_NAME[0].innerHTML = 'THREE OF A KIND';
-      }
-      else if (tmp.toString() === '2,3') {
-        ROLE_NAME[0].innerHTML = 'A FULL HOUSE';
-      }
-      else if (tmp.toString() === '1,4') {
-        ROLE_NAME[0].innerHTML = 'FOUR OF A KIND';
-      }
-      else {
-        ROLE_NAME[0].innerHTML = 'HIGH CARD';
+      DUPLICATE_NUMBER_ARRAY.push(counts[key]);
+      DUPLICATE_NUMBER_ARRAY.sort((a, b) => {
+        return a - b;
+      });
+
+      if (DUPLICATE_NUMBER_ARRAY.toString() === "1,4") {
+        characterName = "FOUR OF A KIND";
+      } else if (DUPLICATE_NUMBER_ARRAY.toString() === "2,3") {
+        characterName = "A FULL HOUSE";
+      } else if (DUPLICATE_NUMBER_ARRAY.toString() === "1,1,3") {
+        characterName = "THREE OF A KIND";
+      } else if (DUPLICATE_NUMBER_ARRAY.toString() === "1,2,2") {
+        characterName = "TWO PAIR";
       }
     }
+  } else if (加工後配列1.size === 1) {
+    characterName = "FLUSH";
+  } else if (加工後配列2.size === 5 && 合計値 % 5 == 0) {
+    characterName = "STRAIGHT";
+  } else if (加工後配列2.size === 4) {
+    characterName = "A PAIR";
+  } else {
+    characterName = "HIGH CARD";
   }
+  インプット.innerHTML = characterName;
+  勝敗判定();
+};
 
+const 勝敗判定 = () => {
+  const DEALER_CHARACTER_NAME = ROLE_NAME[0].textContent;
+  const PLAYER_CHARACTER_NAME = ROLE_NAME[1].textContent;
 
+  if (DEALER_CHARACTER_NAME === PLAYER_CHARACTER_NAME) {
+    for (const element of RESULT) {
+      element.innerHTML = "DRAW";
+      element.classList.add("porker-game__result--draw");
+    }
+  }
+};
 
-  // すでに選ばれた枚数を削除
-  // SHUFFLE_CARD.splice(0,HAND);
-  // console.log("SHUFFLE_CARD", SHUFFLE_CARD)
+配列を加工する(DEALER_CARD_ARRAY, ROLE_NAME[0]);
+配列を加工する(PLAYER_CARD_ARRAY, ROLE_NAME[1]);
 
-
-  
-
-
-
-
-
-
-
- 
- //  CARD.innerHTML = ;
-// img.setAttribute('src', 'images/praying-card_16.png');
-
-// console.log("CARD[0]", CARD[0])
-
-//   BUTTON[0].addEventListener('click',(e)=>{
-//     e.preventDefault();
-//     console.log('eureka');
-//   })
-  
-
-
-  // BUTTON[0].addEventListener('click', (e) => {
-  //   e.preventDefault();
-  //   WINNING_RESULT.classList.add('active');
-
-  //   // 入力数字を格納
-  //   let inputNumbers = [];
-  //   for (const i in INPUT_VALUE) {
-  //     inputNumbers.push(Number(INPUT_VALUE[i].value));
-  //   }
-
-  //   // Set型で重複する数字を省く
-  //   let inputNumbersFixed = new Set(inputNumbers.concat(numbers));
-
-  //   // ボタンを押したらテキストエリアを無効化
-  //   for (const iterator of VALUES) {
-  //     iterator.disabled = true;
-  //   }
-
-  //   USER_NUMBER.innerHTML    = inputNumbers;
-  //   WINNING_NUMBER.innerHTML = numbers;
-  //   BONUS_NUMBER.innerHTML   = `${bonusNumber1},${bonusNumber2}`;
-
-  //   if (inputNumbersFixed.size === COUNT) {
-  //     RESULT[0].innerHTML = 'おめでとうございます！1等当選です！！';
-  //   }
-  //   else if (inputNumbersFixed.size === COUNT+1 && (inputNumbers.includes(bonusNumber1) || inputNumbers.includes(bonusNumber2))) {
-  //     RESULT[0].innerHTML = '2等当選です！';
-  //   }
-  //   else if (inputNumbersFixed.size === COUNT+1) {
-  //     RESULT[0].innerHTML = '3等当選です！';
-  //   }
-  //   else if (inputNumbersFixed.size === COUNT+2) {
-  //     RESULT[0].innerHTML = '4等当選です！';
-  //   }
-  //   else if (inputNumbersFixed.size === COUNT+3) {
-  //     RESULT[0].innerHTML = '5等当選です！';
-  //   }
-  //   else if (inputNumbersFixed.size === COUNT+4 && (inputNumbers.includes(bonusNumber1) || inputNumbers.includes(bonusNumber2))) {
-  //     RESULT[0].innerHTML = '6等当選です！';
-  //   }
-  //   else {
-  //     RESULT[0].innerHTML = '残念！ハズレです…';
-  //   }
-  // });
+// BUTTON[0].addEventListener("click", (e) => {
+//   e.preventDefault();
+//   console.log("eureka");
+// });

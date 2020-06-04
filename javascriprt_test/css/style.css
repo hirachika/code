@@ -7,7 +7,8 @@ BASE
 body {
   margin: 0;
   padding: 0;
-  font-family: "Noto Sans JP", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-family: "Noto Sans JP", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, Osaka,
+    "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
 
 html,
@@ -22,7 +23,7 @@ textarea {
   appearance: none;
   border: none;
   background-color: #eee;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 .wrapper {
@@ -122,7 +123,6 @@ a:hover {
   }
 }
 
-
 /* --------------------------------------------------
 CUSTOM STYLE
 -------------------------------------------------- */
@@ -141,9 +141,9 @@ CUSTOM STYLE
   margin: 0 auto;
   display: -ms-grid;
   display: grid;
-  gap: .5rem;
-  -ms-grid-rows: 30px .5rem 30px .5rem 30px;
-  -ms-grid-columns: 90% .5rem 1fr;
+  gap: 0.5rem;
+  -ms-grid-rows: 30px 0.5rem 30px 0.5rem 30px;
+  -ms-grid-columns: 90% 0.5rem 1fr;
   grid-template: ". ." 30px ". ." 30px ". ." 30px / 90% 1fr;
 }
 
@@ -163,13 +163,13 @@ CUSTOM STYLE
 }
 
 .form2__item dd,
-.form2__item dt{
+.form2__item dt {
   margin: 0;
   text-align: left;
 }
 
 .form2__name {
-  margin: .5rem 0;
+  margin: 0.5rem 0;
 }
 
 .form3__item {
@@ -177,7 +177,7 @@ CUSTOM STYLE
   margin: 0 auto;
   display: -ms-grid;
   display: grid;
-  gap: .5rem;
+  gap: 0.5rem;
   grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
 }
 
@@ -194,11 +194,11 @@ CUSTOM STYLE
 }
 
 .button:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .error {
-  margin: .5rem 0;
+  margin: 0.5rem 0;
   height: 30px;
   color: #f06;
   font-size: 80%;
@@ -206,7 +206,7 @@ CUSTOM STYLE
 }
 
 .note {
-  margin-left: .5rem;
+  margin-left: 0.5rem;
   font-size: 80%;
   color: #666;
   text-align: left;
@@ -235,7 +235,7 @@ CUSTOM STYLE
 }
 
 .winning-result.active {
-  animation: fadeIn .5s ease-in;
+  animation: fadeIn 0.5s ease-in;
   display: block;
 }
 
@@ -249,11 +249,11 @@ CUSTOM STYLE
 }
 
 .winning-result p {
-  margin: 0 0 .5rem;
+  margin: 0 0 0.5rem;
   text-align: center;
 }
 
-.winning-result p:last-child{
+.winning-result p:last-child {
   margin: 0;
 }
 
@@ -265,7 +265,7 @@ PORKER
   padding: 2rem 0;
   height: 100%;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAALUlEQVQYV2M0CpL4r2bDywADt458ZmCM6FP9D2KAJGA0WBCkCiYAYmNXic1MAFyVHlo8jcPeAAAAAElFTkSuQmCC);
-  font-family: 'Black Ops One', cursive;
+  font-family: "Black Ops One", cursive;
 }
 
 .porker-game__title {
@@ -283,26 +283,27 @@ PORKER
   padding: 2rem 4rem;
   box-sizing: border-box;
   border-radius: 5px;
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-@media screen and ( max-width:768px) {
+@media screen and (max-width: 768px) {
   .screen-layout {
     width: 90%;
+    padding: 2rem;
   }
 }
 
 .porker-game__head {
   display: flex;
-  width: 75%;
+  width: 80%;
   margin: 0 auto 1rem;
   align-items: center;
   justify-content: space-between;
 }
 
-@media screen and ( max-width:560px) {
+@media screen and (max-width: 768px) {
   .porker-game__head {
-    width: 100%;
+    width: 90%;
   }
 }
 
@@ -316,7 +317,7 @@ PORKER
   font-size: 40px;
 }
 
-@media screen and ( max-width:768px) {
+@media screen and (max-width: 768px) {
   .porker-game__result {
     font-size: 7vw;
   }
@@ -341,7 +342,7 @@ PORKER
   color: #fefbcf;
 }
 
-@media screen and ( max-width:768px) {
+@media screen and (max-width: 768px) {
   .porker-game__position {
     font-size: 9vw;
   }
@@ -375,7 +376,7 @@ PORKER
   color: yellow;
 }
 
-@media screen and ( max-width:560px) {
+@media screen and (max-width: 560px) {
   .porker__role-name {
     width: 100%;
     font-size: 6vw;
@@ -397,12 +398,12 @@ PORKER
   margin: 0 auto;
   padding: 1rem 3rem;
   font-size: 30px;
-  font-family: 'Black Ops One', cursive;
+  font-family: "Black Ops One", cursive;
   color: #fefbcf;
   background-color: red;
   border: solid 2px yellow;
-  -webkit-transition: all .3s;
-  transition: all .3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
   cursor: pointer;
 }
 
