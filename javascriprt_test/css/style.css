@@ -271,8 +271,14 @@ PORKER
 }
 
 .porker-game__title {
-  max-width: 300px;
+  max-width: 280px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 375px) {
+  .porker-game__title {
+    width: 90%;
+  }
 }
 
 .porker-game__title img {
@@ -391,7 +397,6 @@ PORKER
 }
 
 .porker__playing-card {
-  height: 120px;
   display: flex;
   justify-content: space-between;
 }
@@ -404,7 +409,7 @@ PORKER
 .porker__start-button {
   display: block;
   margin: 0 auto;
-  padding: 1rem 3rem;
+  padding: 1rem 2rem;
   font-size: 30px;
   font-family: 'Black Ops One', cursive;
   color: #fefbcf;
@@ -413,6 +418,12 @@ PORKER
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   cursor: pointer;
+}
+
+@media screen and (max-width: 375px) {
+  .porker__start-button {
+    width: 90%;
+  }
 }
 
 .porker__start-button:hover {

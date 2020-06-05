@@ -48,44 +48,61 @@ BUTTON[0].addEventListener('click', (e) => {
     const NUMERIC_ARRAY = [];
     for (const item of array) {
       SUIT_ARRAY.push(item.replace(/\d+/g, ''));
-      NUMERIC_ARRAY.push(item.replace(/[^0-9]/g, ''));
+      NUMERIC_ARRAY.push(Number(item.replace(/[^0-9]/g, '')));
     }
 
     // 配列に1が含まれる時は14に置換 ※合計値を算出する際に使用
     for (const [index, item] of NUMERIC_ARRAY.entries()) {
-      if (item === '1') {
-        NUMERIC_ARRAY.splice(index, 1, '14');
+      if (item === 1) {
+        NUMERIC_ARRAY.splice(index, 1, 14);
       }
     }
-
-    const SET_ARRAY_NUMERIC = new Set(NUMERIC_ARRAY);
-    const SET_ARRAY_SUIT = new Set(SUIT_ARRAY);
 
     let sum = 0;
     for (const item of NUMERIC_ARRAY) {
       sum += Number(item);
     }
-    determineHand(SET_ARRAY_SUIT, SET_ARRAY_NUMERIC, sum, NUMERIC_ARRAY, element);
+    determineHand(NUMERIC_ARRAY, SUIT_ARRAY, sum, element);
   };
 
-  const determineHand = (setArrayNumeric, setArraySuit, totalValue, numericArray, input) => {
+  const determineHand = (numericArray, suitArray, totalValue, input) => {
+    const SET_ARRAY_NUMERIC = new Set(numericArray);
+    const SET_ARRAY_SUIT = new Set(suitArray);
+
     let characterName = '';
-    let characterRank = ''; // 役名のランク
-    if (setArrayNumeric.size === 1 && totalValue === 60) {
-      // 数字合計の最大値
+    let characterRank = '';
+    let sequence_counts = 0;
+
+    // 連続している数字を判定
+    numericArray.sort((a, b) => {
+      return a - b;
+    });
+    for (let i = 0; i < numericArray.length; i++) {
+      if (Number(numericArray[i] + 1 === numericArray[i + 1])) {
+        sequence_counts++;
+      }
+    }
+
+    if (SET_ARRAY_SUIT.size === 1 && totalValue === 60) {
       characterName = 'ROYAL FLUSH';
       characterRank = 10;
-    } else if (setArrayNumeric.size === 1 && totalValue % 5 == 0) {
+    } else if (SET_ARRAY_SUIT.size === 1 && sequence_counts === 4) {
       characterName = 'STRAIGHT FLUSH';
       characterRank = 9;
-    } else if (setArraySuit.size === 2 || setArraySuit.size === 3) {
-      let counts = {};
+    } else if (SET_ARRAY_SUIT.size === 1) {
+      characterName = 'FLUSH';
+      characterRank = 6;
+    } else if (sequence_counts === 4 && sequence_counts === 4) {
+      characterName = 'STRAIGHT';
+      characterRank = 9;
+    } else if (SET_ARRAY_NUMERIC.size === 2 || SET_ARRAY_NUMERIC.size === 3) {
+      let pear_counts = {};
       const DUPLICATE_NUMBER_ARRAY = [];
       for (const key of numericArray) {
-        counts[key] = counts[key] ? counts[key] + 1 : 1;
+        pear_counts[key] = pear_counts[key] ? pear_counts[key] + 1 : 1;
       }
-      for (const key in counts) {
-        DUPLICATE_NUMBER_ARRAY.push(counts[key]);
+      for (const key in pear_counts) {
+        DUPLICATE_NUMBER_ARRAY.push(pear_counts[key]);
         DUPLICATE_NUMBER_ARRAY.sort((a, b) => {
           return a - b;
         });
@@ -104,19 +121,14 @@ BUTTON[0].addEventListener('click', (e) => {
           characterRank = 3;
         }
       }
-    } else if (setArrayNumeric.size === 1) {
-      characterName = 'FLUSH';
-      characterRank = 6;
-    } else if (setArraySuit.size === 5 && totalValue % 5 == 0) {
-      characterName = 'STRAIGHT';
-      characterRank = 5;
-    } else if (setArraySuit.size === 4) {
+    } else if (SET_ARRAY_NUMERIC.size === 4) {
       characterName = 'A PAIR';
       characterRank = 2;
     } else {
       characterName = 'HIGH CARD';
       characterRank = 1;
     }
+
     input.innerHTML = characterName;
     input.dataset.rank = characterRank;
     input.dataset.sum = totalValue;
@@ -129,15 +141,15 @@ BUTTON[0].addEventListener('click', (e) => {
     const DEALER_SUM = Number(name[0].dataset.sum);
     const PLAYER_SUM = Number(name[1].dataset.sum);
     for (let i = 0; i < name.length; i++) {
-      const DEALER_RANK = name[0].dataset.rank;
-      const PLAYER_RANK = name[1].dataset.rank;
+      const DEALER_RANK = Number(name[0].dataset.rank);
+      const PLAYER_RANK = Number(name[1].dataset.rank);
 
-      if (DEALER_RANK === '1' && PLAYER_RANK === '1' && DEALER_SUM > PLAYER_SUM) {
+      if (DEALER_RANK === 1 && PLAYER_RANK === 1 && DEALER_SUM > PLAYER_SUM) {
         RESULT[0].innerHTML = 'WIN';
         RESULT[0].classList = 'porker-game__result--win';
         RESULT[1].innerHTML = 'LOSE';
         RESULT[1].classList = 'porker-game__result--lose';
-      } else if (DEALER_RANK === '1' && PLAYER_RANK === '1' && DEALER_SUM < PLAYER_SUM) {
+      } else if (DEALER_RANK === 1 && PLAYER_RANK === 1 && DEALER_SUM < PLAYER_SUM) {
         RESULT[0].innerHTML = 'LOSE';
         RESULT[0].classList = 'porker-game__result--lose';
         RESULT[1].innerHTML = 'WIN';
