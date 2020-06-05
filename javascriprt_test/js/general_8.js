@@ -37,6 +37,7 @@ const distributeHand = (array, element) => {
     element.insertAdjacentHTML('beforeend', `<img src=images/${item}.png>`);
   }
 };
+
 distributeHand(DEALER_CARD_ARRAY, PLAYER_CARD[0]);
 distributeHand(PLAYER_CARD_ARRAY, PLAYER_CARD[1]);
 
@@ -117,33 +118,47 @@ const determineHand = (setArrayNumeric, setArraySuit, totalValue, numericArray, 
   }
   input.innerHTML = characterName;
   input.dataset.rank = characterRank;
+  input.dataset.sum = totalValue;
 };
 
 processArray(DEALER_CARD_ARRAY, ROLE_NAME[0]);
 processArray(PLAYER_CARD_ARRAY, ROLE_NAME[1]);
 
-const isWinner = (role1, role2) => {
-  let rank1 = role1.dataset.rank;
-  console.log('rank1', rank1);
-  let rank2 = role2.dataset.rank;
-  console.log('rank2', rank2);
-  if (rank1 === rank2) {
-    RESULT[0].innerHTML = 'DRAW';
-    RESULT[1].innerHTML = 'DRAW';
-    if (rank1 === '1') {
-      console.log('ハイカードです');
-      // totalValueで強さを判定
+const isWinner = (name) => {
+  const DEALER_SUM = Number(name[0].dataset.sum);
+  const PLAYER_SUM = Number(name[1].dataset.sum);
+  for (let i = 0; i < name.length; i++) {
+    const DEALER_RANK = name[0].dataset.rank;
+    const PLAYER_RANK = name[1].dataset.rank;
+
+    if (DEALER_RANK === '1' && PLAYER_RANK === '1' && DEALER_SUM > PLAYER_SUM) {
+      RESULT[0].innerHTML = 'WIN';
+      RESULT[0].classList.add('porker-game__result--win');
+      RESULT[1].innerHTML = 'LOSE';
+      RESULT[1].classList.add('porker-game__result--lose');
+    } else if (DEALER_RANK === '1' && PLAYER_RANK === '1' && DEALER_SUM < PLAYER_SUM) {
+      RESULT[0].innerHTML = 'LOSE';
+      RESULT[0].classList.add('porker-game__result--lose');
+      RESULT[1].innerHTML = 'WIN';
+      RESULT[1].classList.add('porker-game__result--win');
+    } else if (DEALER_RANK === PLAYER_RANK) {
+      RESULT[i].innerHTML = 'DRAW';
+      RESULT[i].classList.add('porker-game__result--draw');
+    } else if (DEALER_RANK < PLAYER_RANK) {
+      RESULT[0].innerHTML = 'WIN';
+      RESULT[0].classList.add('porker-game__result--win');
+      RESULT[1].innerHTML = 'LOSE';
+      RESULT[1].classList.add('porker-game__result--lose');
+    } else if (DEALER_RANK > PLAYER_RANK) {
+      RESULT[0].innerHTML = 'LOSE';
+      RESULT[0].classList.add('porker-game__result--lose');
+      RESULT[1].innerHTML = 'WIN';
+      RESULT[1].classList.add('porker-game__result--win');
     }
-  } else if (rank1 < rank2) {
-    RESULT[0].innerHTML = 'WIN';
-    RESULT[1].innerHTML = 'LOSE';
-  } else if (rank1 > rank2) {
-    RESULT[0].innerHTML = 'LOSE';
-    RESULT[1].innerHTML = 'WIN';
   }
 };
 
-isWinner(ROLE_NAME[0], ROLE_NAME[1]);
+isWinner(ROLE_NAME);
 
 BUTTON[0].addEventListener('click', (e) => {
   e.preventDefault();
