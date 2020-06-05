@@ -12,13 +12,13 @@ const HAND = 5;
 BUTTON[0].addEventListener('click', (e) => {
   e.preventDefault();
 
-  const initializeHand = (element, aaa) => {
-    while (element.firstChild) element.removeChild(element.firstChild);
-    aaa.classList;
+  const isInitialize = (card, className) => {
+    while (card.firstChild) card.removeChild(card.firstChild);
+    className.classList;
   };
 
-  initializeHand(PLAYER_CARD[0], RESULT[0]);
-  initializeHand(PLAYER_CARD[1], RESULT[0]);
+  isInitialize(PLAYER_CARD[0], RESULT[0]);
+  isInitialize(PLAYER_CARD[1], RESULT[0]);
 
   // トランプを格納
   const CARD_ARRAY = [];
