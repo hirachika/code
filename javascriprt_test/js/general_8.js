@@ -1,6 +1,5 @@
 'use strict';
 
-// 要素の準備
 const PLAYER_CARDS = document.getElementsByClassName('porker__playing-card');
 const PLAYER_CARD = Array.from(PLAYER_CARDS);
 const ROLE_NAMES = document.getElementsByClassName('porker__role-name');
@@ -10,13 +9,13 @@ const RESULTS = document.getElementsByClassName('porker-game__result');
 const RESULT = Array.from(RESULTS);
 const HAND = 5;
 
-// トランプの画像を格納
+// トランプを格納
 const CARD_ARRAY = [];
 for (let i = 1; i <= 13; i++) {
   CARD_ARRAY.push(`club${i}`, `heart${i}`, `diamond${i}`, `spade${i}`);
 }
 
-// シャッフルしてカードをそれぞれ格納
+// シャッフルして手札を配る
 const SHUFFLE_CARD_ARRAY = CARD_ARRAY.sort(function () {
   return Math.random() - 0.5;
 });
@@ -50,7 +49,7 @@ const processArray = (array, element) => {
     NUMERIC_ARRAY.push(item.replace(/[^0-9]/g, ''));
   }
 
-  // 配列に1が含まれる時は14に置換
+  // 配列に1が含まれる時は14に置換 ※合計値を算出する際に使用
   for (const [index, item] of NUMERIC_ARRAY.entries()) {
     if (item === '1') {
       NUMERIC_ARRAY.splice(index, 1, '14');
