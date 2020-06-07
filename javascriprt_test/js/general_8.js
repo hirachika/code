@@ -42,60 +42,86 @@ BUTTON[0].addEventListener('click', (e) => {
   distributeHand(DEALER_CARD_ARRAY, PLAYER_CARD[0]);
   distributeHand(PLAYER_CARD_ARRAY, PLAYER_CARD[1]);
 
-  const processArray = (array, element) => {
-    // 文字列と数字を抜き出す
-    const SUIT_ARRAY = [];
-    const NUMERIC_ARRAY = [];
-    for (const item of array) {
-      SUIT_ARRAY.push(item.replace(/\d+/g, ''));
-      NUMERIC_ARRAY.push(Number(item.replace(/[^0-9]/g, '')));
+  class Player {
+    constructor(array) {
+      this.array = array;
     }
-
-    // 配列に1が含まれる時は14に置換 ※合計値を算出する際に使用
-    for (const [index, item] of NUMERIC_ARRAY.entries()) {
-      if (item === 1) {
-        NUMERIC_ARRAY.splice(index, 1, 14);
+    makeNumericArray() {
+      const NUMERIC_ARRAY = [];
+      for (const item of this.array) {
+        NUMERIC_ARRAY.push(Number(item.replace(/[^0-9]/g, '')));
       }
+
+      // 配列に1が含まれる時は14に置換 ※合計値を算出する際に使用
+      for (const [index, item] of NUMERIC_ARRAY.entries()) {
+        if (item === 1) {
+          NUMERIC_ARRAY.splice(index, 1, 14);
+        }
+      }
+      return NUMERIC_ARRAY;
     }
 
-    let sum = 0;
-    for (const item of NUMERIC_ARRAY) {
-      sum += Number(item);
+    setArrayNumeric() {
+      const suitArray = new Set(this.makeNumericArray());
+      return suitArray;
     }
-    determineHand(NUMERIC_ARRAY, SUIT_ARRAY, sum, element);
-  };
 
-  const determineHand = (numericArray, suitArray, totalValue, input) => {
-    const SET_ARRAY_NUMERIC = new Set(numericArray);
-    const SET_ARRAY_SUIT = new Set(suitArray);
+    makeSuitArray() {
+      const SUIT_ARRAY = [];
+      for (const item of this.array) {
+        SUIT_ARRAY.push(item.replace(/\d+/g, ''));
+      }
+      return SUIT_ARRAY;
+    }
 
+    setArraySuit() {
+      const setArray = new Set(this.makeSuitArray());
+      return setArray;
+    }
+
+    sum() {
+      let sum = 0;
+      for (const item of this.makeNumericArray()) {
+        sum += Number(item);
+      }
+      return sum;
+    }
+
+    countSequence() {
+      let sequenceCounts = 0;
+      this.makeNumericArray().sort((a, b) => {
+        return a - b;
+      });
+      for (let i = 0; i < this.makeNumericArray().length; i++) {
+        if (Number(this.makeNumericArray()[i] + 1 === this.makeNumericArray()[i + 1])) {
+          sequenceCounts++;
+        }
+      }
+      return sequenceCounts;
+    }
+  }
+
+  let dealer = new Player(DEALER_CARD_ARRAY);
+  let player = new Player(PLAYER_CARD_ARRAY);
+
+  const determineHand = (numericArray, setNumericArray, setSuitArray, totalValue, sequenceCounts, input) => {
     let characterName = '';
     let characterRank = '';
-    let sequence_counts = 0;
 
-    // 連続している数字を判定
-    numericArray.sort((a, b) => {
-      return a - b;
-    });
-    for (let i = 0; i < numericArray.length; i++) {
-      if (Number(numericArray[i] + 1 === numericArray[i + 1])) {
-        sequence_counts++;
-      }
-    }
-
-    if (SET_ARRAY_SUIT.size === 1 && totalValue === 60) {
+    // 60は10,J,Q,K,Aの合計値
+    if (setSuitArray.size === 1 && totalValue === 60) {
       characterName = 'ROYAL FLUSH';
       characterRank = 10;
-    } else if (SET_ARRAY_SUIT.size === 1 && sequence_counts === 4) {
+    } else if (setSuitArray.size === 1 && sequenceCounts === 4) {
       characterName = 'STRAIGHT FLUSH';
       characterRank = 9;
-    } else if (SET_ARRAY_SUIT.size === 1) {
+    } else if (setSuitArray.size === 1) {
       characterName = 'FLUSH';
       characterRank = 6;
-    } else if (sequence_counts === 4 && sequence_counts === 4) {
+    } else if (sequenceCounts === 4 && sequenceCounts === 4) {
       characterName = 'STRAIGHT';
       characterRank = 9;
-    } else if (SET_ARRAY_NUMERIC.size === 2 || SET_ARRAY_NUMERIC.size === 3) {
+    } else if (setNumericArray.size === 2 || setNumericArray.size === 3) {
       let pear_counts = {};
       const DUPLICATE_NUMBER_ARRAY = [];
       for (const key of numericArray) {
@@ -121,39 +147,65 @@ BUTTON[0].addEventListener('click', (e) => {
           characterRank = 3;
         }
       }
-    } else if (SET_ARRAY_NUMERIC.size === 4) {
+    } else if (setNumericArray.size === 4) {
       characterName = 'A PAIR';
       characterRank = 2;
     } else {
       characterName = 'HIGH CARD';
       characterRank = 1;
     }
-
     input.innerHTML = characterName;
     input.dataset.rank = characterRank;
-    input.dataset.sum = totalValue;
   };
 
-  processArray(DEALER_CARD_ARRAY, ROLE_NAME[0]);
-  processArray(PLAYER_CARD_ARRAY, ROLE_NAME[1]);
+  determineHand(
+    dealer.makeNumericArray(),
+    dealer.setArrayNumeric(),
+    dealer.setArraySuit(),
+    dealer.sum(),
+    dealer.countSequence(),
+    ROLE_NAME[0]
+  );
+
+  determineHand(
+    player.makeNumericArray(),
+    player.setArrayNumeric(),
+    player.setArraySuit(),
+    player.sum(),
+    player.countSequence(),
+    ROLE_NAME[1]
+  );
+
+  const maximumValue = (array1, array2) => {
+    const DEARER_MAX_NUMBER = Math.max.apply(null, array1);
+    const PLAYER_MAX_NUMBER = Math.max.apply(null, array2);
+
+    if (DEARER_MAX_NUMBER > PLAYER_MAX_NUMBER) {
+      RESULT[0].innerHTML = 'WIN';
+      RESULT[0].classList = 'porker-game__result--win';
+      RESULT[1].innerHTML = 'LOSE';
+      RESULT[1].classList = 'porker-game__result--lose';
+    } else if (DEARER_MAX_NUMBER < PLAYER_MAX_NUMBER) {
+      RESULT[0].innerHTML = 'LOSE';
+      RESULT[0].classList = 'porker-game__result--lose';
+      RESULT[1].innerHTML = 'WIN';
+      RESULT[1].classList = 'porker-game__result--win';
+    } else if (DEARER_MAX_NUMBER === PLAYER_MAX_NUMBER) {
+      const DEARER_MAX_NUMBER_INDEX = array1.indexOf(DEARER_MAX_NUMBER);
+      const PLAYER_MAX_NUMBER_INDEX = array2.indexOf(PLAYER_MAX_NUMBER);
+      array1.splice(DEARER_MAX_NUMBER_INDEX, 1);
+      array2.splice(PLAYER_MAX_NUMBER_INDEX, 1);
+      maximumValue(array1, array2);
+    }
+  };
 
   const isWinner = (name) => {
-    const DEALER_SUM = Number(name[0].dataset.sum);
-    const PLAYER_SUM = Number(name[1].dataset.sum);
     for (let i = 0; i < name.length; i++) {
       const DEALER_RANK = Number(name[0].dataset.rank);
       const PLAYER_RANK = Number(name[1].dataset.rank);
 
-      if (DEALER_RANK === 1 && PLAYER_RANK === 1 && DEALER_SUM > PLAYER_SUM) {
-        RESULT[0].innerHTML = 'WIN';
-        RESULT[0].classList = 'porker-game__result--win';
-        RESULT[1].innerHTML = 'LOSE';
-        RESULT[1].classList = 'porker-game__result--lose';
-      } else if (DEALER_RANK === 1 && PLAYER_RANK === 1 && DEALER_SUM < PLAYER_SUM) {
-        RESULT[0].innerHTML = 'LOSE';
-        RESULT[0].classList = 'porker-game__result--lose';
-        RESULT[1].innerHTML = 'WIN';
-        RESULT[1].classList = 'porker-game__result--win';
+      if (DEALER_RANK === 1 && PLAYER_RANK === 1) {
+        maximumValue(dealer.makeNumericArray(), player.makeNumericArray());
       } else if (DEALER_RANK === PLAYER_RANK) {
         RESULT[i].innerHTML = 'DRAW';
         RESULT[i].classList = 'porker-game__result--draw';
