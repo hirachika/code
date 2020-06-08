@@ -89,11 +89,11 @@ BUTTON[0].addEventListener('click', (e) => {
 
     countSequence() {
       let sequenceCounts = 0;
-      this.makeNumericArray().sort((a, b) => {
+      const SORT_ARRAY = this.makeNumericArray().sort((a, b) => {
         return a - b;
       });
-      for (let i = 0; i < this.makeNumericArray().length; i++) {
-        if (Number(this.makeNumericArray()[i] + 1 === this.makeNumericArray()[i + 1])) {
+      for (let i = 0; i < SORT_ARRAY.length; i++) {
+        if (Number(SORT_ARRAY[i] + 1 === SORT_ARRAY[i + 1])) {
           sequenceCounts++;
         }
       }
@@ -118,7 +118,7 @@ BUTTON[0].addEventListener('click', (e) => {
     } else if (setSuitArray.size === 1) {
       characterName = 'FLUSH';
       characterRank = 6;
-    } else if (sequenceCounts === 4 && sequenceCounts === 4) {
+    } else if (setSuitArray.size > 1 && sequenceCounts === 4) {
       characterName = 'STRAIGHT';
       characterRank = 9;
     } else if (setNumericArray.size === 2 || setNumericArray.size === 3) {
