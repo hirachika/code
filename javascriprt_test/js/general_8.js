@@ -27,13 +27,11 @@ BUTTON[0].addEventListener('click', (e) => {
   }
 
   // シャッフルして手札を配る
-  // const SHUFFLE_CARD_ARRAY = CARD_ARRAY.sort(function () {
-  //   return Math.random() - 0.5;
-  // });
-  // const DEALER_CARD_ARRAY = SHUFFLE_CARD_ARRAY.splice(0, HAND);
-  // const PLAYER_CARD_ARRAY = SHUFFLE_CARD_ARRAY.splice(0, HAND);
-  const DEALER_CARD_ARRAY = ['spade3', 'spade4', 'spade5', 'spade6', 'spade7'];
-  const PLAYER_CARD_ARRAY = ['diamond9', 'heart10', 'diamond11', 'diamond12', 'diamond13'];
+  const SHUFFLE_CARD_ARRAY = CARD_ARRAY.sort(function () {
+    return Math.random() - 0.5;
+  });
+  const DEALER_CARD_ARRAY = SHUFFLE_CARD_ARRAY.splice(0, HAND);
+  const PLAYER_CARD_ARRAY = SHUFFLE_CARD_ARRAY.splice(0, HAND);
 
   const distributeHand = (array, element) => {
     for (const item of array) {
