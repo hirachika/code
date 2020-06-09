@@ -103,8 +103,10 @@ BUTTONS[0].addEventListener('click', (e) => {
 
   let dealer = new Player(DEALER_CARDS);
   let player = new Player(PLAYER_CARDS);
+  let name = [];
+  let rank = [];
 
-  const determineHand = (numbers, setNumbers, setMarks, total, sequence, input) => {
+  const determineHand = (numbers, setNumbers, setMarks, total, sequence) => {
     let characterName = '';
     let characterRank = '';
 
@@ -154,79 +156,55 @@ BUTTONS[0].addEventListener('click', (e) => {
       characterName = 'HIGH CARD';
       characterRank = 1;
     }
-    input.innerHTML = characterName;
-    input.dataset.rank = characterRank;
+    name.push(characterName);
+    rank.push(characterRank);
   };
 
-  determineHand(
-    dealer.getNumbers(),
-    dealer.setNumbers(),
-    dealer.setMarks(),
-    dealer.total(),
-    dealer.getSequence(),
-    ROLE_NAME[0]
-  );
-
-  determineHand(
-    player.getNumbers(),
-    player.setNumbers(),
-    player.setMarks(),
-    player.total(),
-    player.getSequence(),
-    ROLE_NAME[1]
-  );
-
-  // 勝った時の処理
-  const isWinner = (winner, loser) => {
-    winner.innerHTML = 'WIN';
-    winner.classList = 'porker-game__result--win';
-    loser.innerHTML = 'LOSE';
-    loser.classList = 'porker-game__result--lose';
-  };
-
-  // 負けた時の処理
-  const isLoser = (loser, winner) => {
-    loser.innerHTML = 'LOSE';
-    loser.classList = 'porker-game__result--lose';
-    winner.innerHTML = 'WIN';
-    winner.classList = 'porker-game__result--win';
-  };
+  determineHand(dealer.getNumbers(), dealer.setNumbers(), dealer.setMarks(), dealer.total(), dealer.getSequence());
+  determineHand(player.getNumbers(), player.setNumbers(), player.setMarks(), player.total(), player.getSequence());
 
   // カードの強さで判定　※ハイカードのみ
-  const equalsMaximumValue = (array1, array2) => {
+  const equalsMaximumValue = (array1, array2, characterName) => {
     const DEARER_MAXIMUM = Math.max.apply(null, array1);
     const PLAYER_MAXIMUM = Math.max.apply(null, array2);
 
     if (DEARER_MAXIMUM > PLAYER_MAXIMUM) {
-      isWinner(RESULT[0], RESULT[1]);
+      input('win', 'lose', characterName[0], characterName[1]);
     } else if (DEARER_MAXIMUM < PLAYER_MAXIMUM) {
-      isLoser(RESULT[0], RESULT[1]);
+      input('lose', 'win', characterName[0], characterName[1]);
     } else if (DEARER_MAXIMUM === PLAYER_MAXIMUM) {
       const DEARER_MAXIMUM_INDEX = array1.indexOf(DEARER_MAXIMUM);
       const PLAYER_MAXIMUM_INDEX = array2.indexOf(PLAYER_MAXIMUM);
       array1.splice(DEARER_MAXIMUM_INDEX, 1);
       array2.splice(PLAYER_MAXIMUM_INDEX, 1);
-      equalsMaximumValue(array1, array2);
+      equalsMaximumValue(array1, array2, characterName);
     }
+  };
+
+  // 判定結果を出力
+  const input = (dealerResult, playerResult, dealerCharacter, playerCharacter) => {
+    ROLE_NAME[0].innerHTML = dealerCharacter.toUpperCase();
+    ROLE_NAME[1].innerHTML = playerCharacter.toUpperCase();
+    RESULT[0].innerHTML = dealerResult.toUpperCase();
+    RESULT[1].innerHTML = playerResult.toUpperCase();
+    RESULT[0].classList = `porker-game__result--${dealerResult}`;
+    RESULT[1].classList = `porker-game__result--${playerResult}`;
   };
 
   // 役名の強さで判定
-  const determineResult = (name) => {
-    for (let i = 0; i < name.length; i++) {
-      const DEALER_RANK = Number(name[0].dataset.rank);
-      const PLAYER_RANK = Number(name[1].dataset.rank);
+  const determineResult = (characterName, characterRank) => {
+    const DEALER_RANK = characterRank[0];
+    const PLAYER_RANK = characterRank[1];
 
-      if (DEALER_RANK === 1 && PLAYER_RANK === 1) {
-        equalsMaximumValue(dealer.getNumbers(), player.getNumbers());
-      } else if (DEALER_RANK === PLAYER_RANK) {
-        RESULT[i].innerHTML = 'DRAW';
-        RESULT[i].classList = 'porker-game__result--draw';
-      } else if (DEALER_RANK < PLAYER_RANK) {
-        isLoser(RESULT[0], RESULT[1]);
-      } else if (DEALER_RANK > PLAYER_RANK) {
-        isWinner(RESULT[0], RESULT[1]);
-      }
+    if (DEALER_RANK === 1 && PLAYER_RANK === 1) {
+      equalsMaximumValue(dealer.getNumbers(), player.getNumbers(), characterName);
+    } else if (DEALER_RANK === PLAYER_RANK) {
+      input('draw', 'draw', characterName[0], characterName[1]);
+    } else if (DEALER_RANK > PLAYER_RANK) {
+      input('win', 'lose', characterName[0], characterName[1]);
+    } else if (DEALER_RANK < PLAYER_RANK) {
+      input('lose', 'win', characterName[0], characterName[1]);
     }
   };
-  determineResult(ROLE_NAME);
+  determineResult(name, rank);
 });
