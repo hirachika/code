@@ -301,6 +301,13 @@ PORKER
   }
 }
 
+.win-rate {
+  margin: 0 0 1rem;
+  font-size: 18px;
+  text-align: right;
+  color: yellow;
+}
+
 .porker-game__head {
   display: flex;
   width: 80%;
@@ -358,6 +365,13 @@ PORKER
   .porker-game__position {
     font-size: 9vw;
   }
+}
+
+.porker-game__count {
+  margin: 1rem 0 0;
+  font-size: 18px;
+  text-align: left;
+  color: yellow;
 }
 
 .porker__role-name-area {

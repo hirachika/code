@@ -8,205 +8,239 @@ const BUTTONS = document.getElementsByClassName('porker__start-button');
 const RESULTS = document.getElementsByClassName('porker-game__result');
 const RESULT = Array.from(RESULTS);
 const HAND = 5;
+const CARD_RANK = 13;
+
+// ゲームセット回数
+let game_count = 0;
+let playerWinCount = 0;
+let dealerWinCount = 0;
+
+// 親の勝率設定
+const DEALER_WIN_RATE = document.getElementsByClassName('win-rate__denominator');
+const WIN_RATE = 5;
+DEALER_WIN_RATE[0].innerHTML = WIN_RATE;
 
 BUTTONS[0].addEventListener('click', (e) => {
   e.preventDefault();
 
-  const initialize = (card) => {
-    while (card.firstChild) card.removeChild(card.firstChild);
-  };
-
-  initialize(PLAYER_CARD[0]);
-  initialize(PLAYER_CARD[1]);
-
-  // トランプを格納
-  const CARDS = [];
-  for (let i = 1; i <= 13; i++) {
-    CARDS.push(`club${i}`, `heart${i}`, `diamond${i}`, `spade${i}`);
-  }
-
-  // シャッフル
-  const SHUFFLE_CARDS = CARDS.sort(() => {
-    return Math.random() - 0.5;
-  });
-  const DEALER_CARDS = SHUFFLE_CARDS.splice(0, HAND);
-  const PLAYER_CARDS = SHUFFLE_CARDS.splice(0, HAND);
-
-  // 手札を配る
-  const distribute = (array, element) => {
-    for (const item of array) {
-      element.insertAdjacentHTML('beforeend', `<img src=images/${item}.png>`);
+  // ゲームの初期化
+  const initialize = (playerCards) => {
+    for (const item of playerCards) {
+      while (item.firstChild) item.removeChild(item.firstChild);
     }
   };
+  initialize(PLAYER_CARD);
 
-  distribute(DEALER_CARDS, PLAYER_CARD[0]);
-  distribute(PLAYER_CARDS, PLAYER_CARD[1]);
+  // カードをシャッフルして格納
+  let dealerCards;
+  let playerCards;
 
-  class Player {
-    constructor(cards) {
-      this.cards = cards;
+  const gameStart = () => {
+    game_count++;
+
+    const CARDS = [];
+    for (let i = 1; i <= CARD_RANK; i++) {
+      CARDS.push(`club${i}`, `heart${i}`, `diamond${i}`, `spade${i}`);
     }
-    getNumbers() {
-      const NUMBERS = [];
-      for (const item of this.cards) {
-        NUMBERS.push(Number(item.replace(/[^0-9]/g, '')));
-      }
+    const SHUFFLE_CARDS = CARDS.sort(() => {
+      return Math.random() - 0.5;
+    });
+    dealerCards = SHUFFLE_CARDS.splice(0, HAND);
+    playerCards = SHUFFLE_CARDS.splice(0, HAND);
 
-      // 配列に1が含まれる時は14に置換 ※合計値を算出する際に使用
-      for (const [index, item] of NUMBERS.entries()) {
-        if (item === 1) {
-          NUMBERS.splice(index, 1, 14);
+    // プレイヤーカードを判定用に加工
+    class Card {
+      constructor(cards) {
+        this.cards = cards;
+      }
+      getNumbers() {
+        const NUMBERS = [];
+        for (const item of this.cards) {
+          NUMBERS.push(Number(item.replace(/[^0-9]/g, '')));
         }
-      }
-      return NUMBERS;
-    }
 
-    setNumbers() {
-      const SET_NUMBERS = new Set(this.getNumbers());
-      return SET_NUMBERS;
-    }
-
-    getMarks() {
-      const MARKS = [];
-      for (const item of this.cards) {
-        MARKS.push(item.replace(/\d+/g, ''));
-      }
-      return MARKS;
-    }
-
-    setMarks() {
-      const SET_MARKS = new Set(this.getMarks());
-      return SET_MARKS;
-    }
-
-    total() {
-      let total = 0;
-      for (const item of this.getNumbers()) {
-        total += Number(item);
-      }
-      return total;
-    }
-
-    getSequence() {
-      let sequence = 0;
-      const SORT = this.getNumbers().sort((a, b) => {
-        return a - b;
-      });
-      for (let i = 0; i < SORT.length; i++) {
-        if (Number(SORT[i] + 1 === SORT[i + 1])) {
-          sequence++;
+        // 配列に1が含まれる時は14に置換 ※合計値と連番確認の際に使用
+        for (const [index, item] of NUMBERS.entries()) {
+          if (item === 1) {
+            NUMBERS.splice(index, 1, 14);
+          }
         }
+        return NUMBERS;
       }
-      return sequence;
-    }
-  }
 
-  let dealer = new Player(DEALER_CARDS);
-  let player = new Player(PLAYER_CARDS);
-  let name = [];
-  let rank = [];
-
-  const determineHand = (numbers, setNumbers, setMarks, total, sequence) => {
-    let characterName = '';
-    let characterRank = '';
-
-    // 60は10,J,Q,K,Aの合計値
-    if (setMarks.size === 1 && total === 60) {
-      characterName = 'ROYAL FLUSH';
-      characterRank = 10;
-    } else if (setMarks.size === 1 && sequence === 4) {
-      characterName = 'STRAIGHT FLUSH';
-      characterRank = 9;
-    } else if (setMarks.size === 1) {
-      characterName = 'FLUSH';
-      characterRank = 6;
-    } else if (setMarks.size > 1 && sequence === 4) {
-      characterName = 'STRAIGHT';
-      characterRank = 5;
-    } else if (setNumbers.size === 2 || setNumbers.size === 3) {
-      let pear_counts = {};
-      const DUPLICATE_NUMBER_ARRAY = [];
-      for (const key of numbers) {
-        pear_counts[key] = pear_counts[key] ? pear_counts[key] + 1 : 1;
+      setNumbers() {
+        const SET_NUMBERS = new Set(this.getNumbers());
+        return SET_NUMBERS;
       }
-      for (const key in pear_counts) {
-        DUPLICATE_NUMBER_ARRAY.push(pear_counts[key]);
-        DUPLICATE_NUMBER_ARRAY.sort((a, b) => {
+
+      getMarks() {
+        const MARKS = [];
+        for (const item of this.cards) {
+          MARKS.push(item.replace(/\d+/g, ''));
+        }
+        return MARKS;
+      }
+
+      setMarks() {
+        const SET_MARKS = new Set(this.getMarks());
+        return SET_MARKS;
+      }
+
+      total() {
+        let total = 0;
+        for (const item of this.getNumbers()) {
+          total += Number(item);
+        }
+        return total;
+      }
+
+      getSequence() {
+        let sequence = 0;
+        const SORT = this.getNumbers().sort((a, b) => {
           return a - b;
         });
-
-        if (DUPLICATE_NUMBER_ARRAY.toString() === '1,4') {
-          characterName = 'FOUR OF A KIND';
-          characterRank = 8;
-        } else if (DUPLICATE_NUMBER_ARRAY.toString() === '2,3') {
-          characterName = 'A FULL HOUSE';
-          characterRank = 7;
-        } else if (DUPLICATE_NUMBER_ARRAY.toString() === '1,1,3') {
-          characterName = 'THREE OF A KIND';
-          characterRank = 4;
-        } else if (DUPLICATE_NUMBER_ARRAY.toString() === '1,2,2') {
-          characterName = 'TWO PAIR';
-          characterRank = 3;
+        for (let i = 0; i < SORT.length; i++) {
+          if (Number(SORT[i] + 1 === SORT[i + 1])) {
+            sequence++;
+          }
         }
+        return sequence;
       }
-    } else if (setNumbers.size === 4) {
-      characterName = 'A PAIR';
-      characterRank = 2;
-    } else {
-      characterName = 'HIGH CARD';
-      characterRank = 1;
     }
-    name.push(characterName);
-    rank.push(characterRank);
+
+    const DEALER = new Card(dealerCards);
+    const PLAYER = new Card(playerCards);
+
+    // 役名を判定する
+    let role = [];
+    let rank = [];
+    const determineHand = (numbers, setNumbers, setMarks, total, sequence) => {
+      let characterName = '';
+      let characterRank = '';
+
+      // 60は10,J,Q,K,Aの合計値
+      if (setMarks.size === 1 && total === 60) {
+        characterName = 'ROYAL FLUSH';
+        characterRank = 10;
+      } else if (setMarks.size === 1 && sequence === 4) {
+        characterName = 'STRAIGHT FLUSH';
+        characterRank = 9;
+      } else if (setMarks.size === 1) {
+        characterName = 'FLUSH';
+        characterRank = 6;
+      } else if (setMarks.size > 1 && sequence === 4) {
+        characterName = 'STRAIGHT';
+        characterRank = 5;
+      } else if (setNumbers.size === 2 || setNumbers.size === 3) {
+        let pear_counts = {};
+        const DUPLICATE_NUMBER_ARRAY = [];
+        for (const key of numbers) {
+          pear_counts[key] = pear_counts[key] ? pear_counts[key] + 1 : 1;
+        }
+        for (const key in pear_counts) {
+          DUPLICATE_NUMBER_ARRAY.push(pear_counts[key]);
+          DUPLICATE_NUMBER_ARRAY.sort((a, b) => {
+            return a - b;
+          });
+
+          if (DUPLICATE_NUMBER_ARRAY.toString() === '1,4') {
+            characterName = 'FOUR OF A KIND';
+            characterRank = 8;
+          } else if (DUPLICATE_NUMBER_ARRAY.toString() === '2,3') {
+            characterName = 'A FULL HOUSE';
+            characterRank = 7;
+          } else if (DUPLICATE_NUMBER_ARRAY.toString() === '1,1,3') {
+            characterName = 'THREE OF A KIND';
+            characterRank = 4;
+          } else if (DUPLICATE_NUMBER_ARRAY.toString() === '1,2,2') {
+            characterName = 'TWO PAIR';
+            characterRank = 3;
+          }
+        }
+      } else if (setNumbers.size === 4) {
+        characterName = 'A PAIR';
+        characterRank = 2;
+      } else {
+        characterName = 'HIGH CARD';
+        characterRank = 1;
+      }
+      role.push(characterName);
+      rank.push(characterRank);
+    };
+
+    determineHand(DEALER.getNumbers(), DEALER.setNumbers(), DEALER.setMarks(), DEALER.total(), DEALER.getSequence());
+    determineHand(PLAYER.getNumbers(), PLAYER.setNumbers(), PLAYER.setMarks(), PLAYER.total(), PLAYER.getSequence());
+
+    // 役名とランクを格納
+    const DEALER_ROLE = role[0];
+    const PLAYER_ROLE = role[1];
+    const DEALER_RANK = rank[0];
+    const PLAYER_RANK = rank[1];
+
+    // 手札を配る
+    const distribute = (array, element) => {
+      for (const item of array) {
+        element.insertAdjacentHTML('beforeend', `<img src=images/${item}.png>`);
+      }
+    };
+
+    const playerWinner = (dealerResult) => {
+      if (dealerResult === 'l') {
+        determineResult(DEALER_RANK, PLAYER_RANK);
+      } else {
+        // 親が勝つまでシャッフルする
+        gameStart();
+      }
+    };
+
+    // 判定結果を出力（子が勝つように仕向ける）
+    const input = (dealerResult, playerResult) => {
+      if ((game_count % WIN_RATE == 0 && dealerResult === 'lose') || dealerResult === 'draw') {
+        playerWinner(dealerResult);
+      } else {
+        ROLE_NAME[0].innerHTML = DEALER_ROLE.toUpperCase();
+        ROLE_NAME[1].innerHTML = PLAYER_ROLE.toUpperCase();
+        RESULT[0].innerHTML = dealerResult.toUpperCase();
+        RESULT[1].innerHTML = playerResult.toUpperCase();
+        RESULT[0].classList = `porker-game__result--${dealerResult}`;
+        RESULT[1].classList = `porker-game__result--${playerResult}`;
+        distribute(dealerCards, PLAYER_CARD[0]);
+        distribute(playerCards, PLAYER_CARD[1]);
+      }
+    };
+
+    // ハイカードの時それぞれの手札の強さで勝敗判定
+    const equalsMaximumValue = (array1, array2) => {
+      const DEARER_MAXIMUM = Math.max.apply(null, array1);
+      const PLAYER_MAXIMUM = Math.max.apply(null, array2);
+
+      if (DEARER_MAXIMUM > PLAYER_MAXIMUM) {
+        input('lose', 'win');
+      } else if (DEARER_MAXIMUM < PLAYER_MAXIMUM) {
+        input('lose', 'win');
+      } else if (DEARER_MAXIMUM === PLAYER_MAXIMUM) {
+        const DEARER_MAXIMUM_INDEX = array1.indexOf(DEARER_MAXIMUM);
+        const PLAYER_MAXIMUM_INDEX = array2.indexOf(PLAYER_MAXIMUM);
+        array1.splice(DEARER_MAXIMUM_INDEX, 1);
+        array2.splice(PLAYER_MAXIMUM_INDEX, 1);
+        equalsMaximumValue(array1, array2);
+      }
+    };
+
+    // 役名の強さで勝敗判定
+    const determineResult = (dealerRank, playerRank) => {
+      // ハイカード
+      if (dealerRank === 1 && playerRank === 1) {
+        equalsMaximumValue(DEALER.getNumbers(), PLAYER.getNumbers());
+      } else if (dealerRank === playerRank) {
+        input('draw', 'draw');
+      } else if (dealerRank > playerRank) {
+        input('lose', 'win');
+      } else if (dealerRank < playerRank) {
+        input('win', 'lose');
+      }
+    };
+    determineResult(DEALER_RANK, PLAYER_RANK);
   };
-
-  determineHand(dealer.getNumbers(), dealer.setNumbers(), dealer.setMarks(), dealer.total(), dealer.getSequence());
-  determineHand(player.getNumbers(), player.setNumbers(), player.setMarks(), player.total(), player.getSequence());
-
-  // カードの強さで判定　※ハイカードのみ
-  const equalsMaximumValue = (array1, array2, characterName) => {
-    const DEARER_MAXIMUM = Math.max.apply(null, array1);
-    const PLAYER_MAXIMUM = Math.max.apply(null, array2);
-
-    if (DEARER_MAXIMUM > PLAYER_MAXIMUM) {
-      input('win', 'lose', characterName[0], characterName[1]);
-    } else if (DEARER_MAXIMUM < PLAYER_MAXIMUM) {
-      input('lose', 'win', characterName[0], characterName[1]);
-    } else if (DEARER_MAXIMUM === PLAYER_MAXIMUM) {
-      const DEARER_MAXIMUM_INDEX = array1.indexOf(DEARER_MAXIMUM);
-      const PLAYER_MAXIMUM_INDEX = array2.indexOf(PLAYER_MAXIMUM);
-      array1.splice(DEARER_MAXIMUM_INDEX, 1);
-      array2.splice(PLAYER_MAXIMUM_INDEX, 1);
-      equalsMaximumValue(array1, array2, characterName);
-    }
-  };
-
-  // 判定結果を出力
-  const input = (dealerResult, playerResult, dealerCharacter, playerCharacter) => {
-    ROLE_NAME[0].innerHTML = dealerCharacter.toUpperCase();
-    ROLE_NAME[1].innerHTML = playerCharacter.toUpperCase();
-    RESULT[0].innerHTML = dealerResult.toUpperCase();
-    RESULT[1].innerHTML = playerResult.toUpperCase();
-    RESULT[0].classList = `porker-game__result--${dealerResult}`;
-    RESULT[1].classList = `porker-game__result--${playerResult}`;
-  };
-
-  // 役名の強さで判定
-  const determineResult = (characterName, characterRank) => {
-    const DEALER_RANK = characterRank[0];
-    const PLAYER_RANK = characterRank[1];
-
-    // if (DEALER_RANK === 1 && PLAYER_RANK === 1) {
-    //   equalsMaximumValue(dealer.getNumbers(), player.getNumbers(), characterName);
-    // } else if (DEALER_RANK === PLAYER_RANK) {
-    //   input('draw', 'draw', characterName[0], characterName[1]);
-    // }
-    if (DEALER_RANK > PLAYER_RANK) {
-      input('win', 'lose', characterName[0], characterName[1]);
-    }
-    // else if (DEALER_RANK < PLAYER_RANK) {
-    //   input('lose', 'win', characterName[0], characterName[1]);
-    // }
-  };
-  determineResult(name, rank);
+  gameStart();
 });
