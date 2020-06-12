@@ -430,3 +430,60 @@ PORKER
   background-color: yellow;
   color: #000;
 }
+
+/* --------------------------------------------------
+SHOP LIST
+-------------------------------------------------- */
+.shop-list-ranking {
+  margin: 3rem auto;
+  max-width: 1000px;
+}
+
+.shop-list-ranking__title {
+  text-align: center;
+}
+
+.shop-list {
+  display: grid;
+  list-style-type: none;
+  display: -ms-grid;
+  display: grid;
+  gap: 0.5rem;
+  grid-template:
+    '. . .' auto
+    '. . .' auto / 30% 30% 30%;
+}
+
+.shop-item {
+  background-color: #fff;
+  border: solid 1px #eee;
+  border-radius: 5px;
+}
+
+.shop-item__link {
+  display: block;
+  padding: 1.5rem;
+  transition: all 0.3s;
+}
+
+.shop-item__figure {
+  margin: 0 auto;
+  width: 128px;
+}
+
+.shop-item__name {
+  margin: 0.5rem 0;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.shop-item__price {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
