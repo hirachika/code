@@ -1,5 +1,8 @@
 'use strict';
 
+const DEALER_WIN_RATE = document.getElementsByClassName('win-rate__denominator');
+const PLAYER_WIN = document.querySelector('.porker-game__player-win');
+const PLAYER_LOSE = document.querySelector('.porker-game__player-lose');
 const PLAYER_CARDS = document.getElementsByClassName('porker__playing-card');
 const PLAYER_CARD = Array.from(PLAYER_CARDS);
 const ROLE_NAMES = document.getElementsByClassName('porker__role-name');
@@ -16,12 +19,13 @@ let playerWinCount = 0;
 let dealerWinCount = 0;
 
 // 親の勝率設定
-const DEALER_WIN_RATE = document.getElementsByClassName('win-rate__denominator');
 const WIN_RATE = 5;
 DEALER_WIN_RATE[0].innerHTML = WIN_RATE;
 
 BUTTONS[0].addEventListener('click', (e) => {
   e.preventDefault();
+  game_count++;
+  console.log('game_count', game_count);
 
   // ゲームの初期化
   const initialize = (playerCards) => {
@@ -36,8 +40,6 @@ BUTTONS[0].addEventListener('click', (e) => {
   let playerCards;
 
   const gameStart = () => {
-    game_count++;
-
     const CARDS = [];
     for (let i = 1; i <= CARD_RANK; i++) {
       CARDS.push(`club${i}`, `heart${i}`, `diamond${i}`, `spade${i}`);
@@ -184,30 +186,48 @@ BUTTONS[0].addEventListener('click', (e) => {
       }
     };
 
-    const playerWinner = (dealerResult) => {
-      if (dealerResult === 'l') {
-        determineResult(DEALER_RANK, PLAYER_RANK);
-      } else {
-        // 親が勝つまでシャッフルする
-        gameStart();
+    // 出力（子が勝ったら出力）
+    const result = (dealerResult, playerResult) => {
+      if (playerResult === 'win') {
+        playerWinCount++;
+        console.log('result -> playerWinCount', playerWinCount);
+
+        if (game_count <= dealerWinCount * 5) {
+          console.log('これ以上勝てない');
+          // PLAYER_LOSE.innerHTML = dealerWinCount;
+          gameStart();
+        }
+      } else if (playerResult == 'win') {
+        playerWinCount++;
+        console.log('result -> playerWinCount', playerWinCount);
+        PLAYER_WIN.innerHTML = playerWinCount;
+        PLAYER_LOSE.innerHTML = game_count - playerWinCount;
       }
     };
 
-    // 判定結果を出力（子が勝つように仕向ける）
-    const input = (dealerResult, playerResult) => {
-      if ((game_count % WIN_RATE == 0 && dealerResult === 'lose') || dealerResult === 'draw') {
-        playerWinner(dealerResult);
-      } else {
-        ROLE_NAME[0].innerHTML = DEALER_ROLE.toUpperCase();
-        ROLE_NAME[1].innerHTML = PLAYER_ROLE.toUpperCase();
-        RESULT[0].innerHTML = dealerResult.toUpperCase();
-        RESULT[1].innerHTML = playerResult.toUpperCase();
-        RESULT[0].classList = `porker-game__result--${dealerResult}`;
-        RESULT[1].classList = `porker-game__result--${playerResult}`;
-        distribute(dealerCards, PLAYER_CARD[0]);
-        distribute(playerCards, PLAYER_CARD[1]);
-      }
-    };
+    // else if (){
+    //   dealerWinCount++;
+    //   PLAYER_LOSE.innerHTML = dealerWinCount;
+    // }
+    // // input(dealerWinCount, playerWinCount);
+
+    // const input = (count1, count2) => {
+    //   console.log('input -> 親の勝ち回数', count1, '子の勝ち回数', count2);
+
+    // };
+
+    // const input = (dealerResult, playerResult) => {
+    //   ROLE_NAME[0].innerHTML = DEALER_ROLE.toUpperCase();
+    //   ROLE_NAME[1].innerHTML = PLAYER_ROLE.toUpperCase();
+    //   RESULT[0].innerHTML = dealerResult.toUpperCase();
+    //   RESULT[1].innerHTML = playerResult.toUpperCase();
+    //   RESULT[0].classList = `porker-game__result--${dealerResult}`;
+    //   RESULT[1].classList = `porker-game__result--${playerResult}`;
+    //   PLAYER_WIN.innerHTML = playerWin;
+    //   PLAYER_LOSE.innerHTML = dealerWin;
+    //   distribute(dealerCards, PLAYER_CARD[0]);
+    //   distribute(playerCards, PLAYER_CARD[1]);
+    // };
 
     // ハイカードの時それぞれの手札の強さで勝敗判定
     const equalsMaximumValue = (array1, array2) => {
@@ -215,9 +235,9 @@ BUTTONS[0].addEventListener('click', (e) => {
       const PLAYER_MAXIMUM = Math.max.apply(null, array2);
 
       if (DEARER_MAXIMUM > PLAYER_MAXIMUM) {
-        input('lose', 'win');
+        result('win', 'lose');
       } else if (DEARER_MAXIMUM < PLAYER_MAXIMUM) {
-        input('lose', 'win');
+        result('lose', 'win');
       } else if (DEARER_MAXIMUM === PLAYER_MAXIMUM) {
         const DEARER_MAXIMUM_INDEX = array1.indexOf(DEARER_MAXIMUM);
         const PLAYER_MAXIMUM_INDEX = array2.indexOf(PLAYER_MAXIMUM);
@@ -233,11 +253,11 @@ BUTTONS[0].addEventListener('click', (e) => {
       if (dealerRank === 1 && playerRank === 1) {
         equalsMaximumValue(DEALER.getNumbers(), PLAYER.getNumbers());
       } else if (dealerRank === playerRank) {
-        input('draw', 'draw');
+        result('draw', 'draw');
       } else if (dealerRank > playerRank) {
-        input('lose', 'win');
+        result('win', 'lose');
       } else if (dealerRank < playerRank) {
-        input('win', 'lose');
+        result('lose', 'win');
       }
     };
     determineResult(DEALER_RANK, PLAYER_RANK);

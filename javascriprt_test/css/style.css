@@ -374,6 +374,15 @@ PORKER
   color: yellow;
 }
 
+.porker-game__player-win {
+  margin-right: 10px;
+  color: red;
+}
+
+.porker-game__player-lose {
+  color: #00a0e9;
+}
+
 .porker__role-name-area {
   position: relative;
   height: 80px;
