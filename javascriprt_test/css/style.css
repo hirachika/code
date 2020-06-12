@@ -380,7 +380,12 @@ PORKER
 }
 
 .porker-game__player-lose {
+  margin-right: 10px;
   color: #00a0e9;
+}
+
+.porker-game__player-draw {
+  color: greenyellow;
 }
 
 .porker__role-name-area {

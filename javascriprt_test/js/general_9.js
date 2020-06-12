@@ -3,6 +3,7 @@
 const DEALER_WIN_RATE = document.getElementsByClassName('win-rate__denominator');
 const PLAYER_WIN = document.querySelector('.porker-game__player-win');
 const PLAYER_LOSE = document.querySelector('.porker-game__player-lose');
+const PLAYER_DRAW = document.querySelector('.porker-game__player-draw');
 const PLAYER_CARDS = document.getElementsByClassName('porker__playing-card');
 const PLAYER_CARD = Array.from(PLAYER_CARDS);
 const ROLE_NAMES = document.getElementsByClassName('porker__role-name');
@@ -15,17 +16,28 @@ const CARD_RANK = 13;
 
 // ゲームセット回数
 let game_count = 0;
-let playerWinCount = 0;
+let game_set = 0;
 let dealerWinCount = 0;
+let playerWinCount = 0;
+let playerDrawCount = 0;
+let playerLoseCount = 0;
 
-// 親の勝率設定
+// 親の勝率設定 ※検証用
 const WIN_RATE = 5;
 DEALER_WIN_RATE[0].innerHTML = WIN_RATE;
 
 BUTTONS[0].addEventListener('click', (e) => {
   e.preventDefault();
+  // ゲーム回数
   game_count++;
-  console.log('game_count', game_count);
+
+  // ゲームセット
+  game_set++;
+  console.log('game_set', game_set);
+  if (game_set % WIN_RATE == 0) {
+    // 5回に1回リセットする
+    game_set = 0;
+  }
 
   // ゲームの初期化
   const initialize = (playerCards) => {
@@ -190,31 +202,13 @@ BUTTONS[0].addEventListener('click', (e) => {
     const result = (dealerResult, playerResult) => {
       if (playerResult === 'win') {
         playerWinCount++;
-        console.log('result -> playerWinCount', playerWinCount);
-
-        if (game_count <= dealerWinCount * 5) {
-          console.log('これ以上勝てない');
-          // PLAYER_LOSE.innerHTML = dealerWinCount;
-          gameStart();
-        }
-      } else if (playerResult == 'win') {
-        playerWinCount++;
-        console.log('result -> playerWinCount', playerWinCount);
-        PLAYER_WIN.innerHTML = playerWinCount;
-        PLAYER_LOSE.innerHTML = game_count - playerWinCount;
+      } else if (playerWinCount <= 4) {
+        gameStart();
       }
+      PLAYER_WIN.innerHTML = playerWinCount;
+      PLAYER_LOSE.innerHTML = game_count - (playerWinCount + playerDrawCount);
+      PLAYER_DRAW.innerHTML = playerDrawCount;
     };
-
-    // else if (){
-    //   dealerWinCount++;
-    //   PLAYER_LOSE.innerHTML = dealerWinCount;
-    // }
-    // // input(dealerWinCount, playerWinCount);
-
-    // const input = (count1, count2) => {
-    //   console.log('input -> 親の勝ち回数', count1, '子の勝ち回数', count2);
-
-    // };
 
     // const input = (dealerResult, playerResult) => {
     //   ROLE_NAME[0].innerHTML = DEALER_ROLE.toUpperCase();
