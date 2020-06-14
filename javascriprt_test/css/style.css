@@ -7,8 +7,8 @@ BASE
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Noto Sans JP', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, Osaka,
-    'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+  font-family: "Noto Sans JP", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, Osaka,
+    "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
 
 html,
@@ -16,7 +16,7 @@ body {
   height: 100vh;
 }
 
-input[type='text'],
+input[type="text"],
 textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -144,7 +144,7 @@ CUSTOM STYLE
   gap: 0.5rem;
   -ms-grid-rows: 30px 0.5rem 30px 0.5rem 30px;
   -ms-grid-columns: 90% 0.5rem 1fr;
-  grid-template: '. .' 30px '. .' 30px '. .' 30px / 90% 1fr;
+  grid-template: ". ." 30px ". ." 30px ". ." 30px / 90% 1fr;
 }
 
 @media (max-width: 500px) {
@@ -267,7 +267,7 @@ PORKER
   padding: 2rem 0;
   box-sizing: border-box;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAALUlEQVQYV2M0CpL4r2bDywADt458ZmCM6FP9D2KAJGA0WBCkCiYAYmNXic1MAFyVHlo8jcPeAAAAAElFTkSuQmCC);
-  font-family: 'Black Ops One', cursive;
+  font-family: "Black Ops One", cursive;
 }
 
 .porker-game__title {
@@ -369,7 +369,7 @@ PORKER
 }
 
 .porker__role-name-area::after {
-  content: '';
+  content: "";
   position: absolute;
   right: 0;
   bottom: -15px;
@@ -411,7 +411,7 @@ PORKER
   margin: 0 auto;
   padding: 1rem 2rem;
   font-size: 30px;
-  font-family: 'Black Ops One', cursive;
+  font-family: "Black Ops One", cursive;
   color: #fefbcf;
   background-color: red;
   border: solid 2px yellow;
@@ -436,33 +436,34 @@ SHOP LIST
 -------------------------------------------------- */
 .shop-list-ranking {
   margin: 3rem auto;
-  max-width: 1000px;
+  width: 80%;
 }
 
 .shop-list-ranking__title {
   text-align: center;
+  margin: 2rem;
 }
 
 .shop-list {
+  padding: 0;
   display: grid;
   list-style-type: none;
   display: -ms-grid;
   display: grid;
-  gap: 0.5rem;
-  grid-template:
-    '. . .' auto
-    '. . .' auto / 30% 30% 30%;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, 240px);
+  justify-content: space-between;
 }
 
 .shop-item {
   background-color: #fff;
   border: solid 1px #eee;
   border-radius: 5px;
+  padding: 1rem;
 }
 
 .shop-item__link {
   display: block;
-  padding: 1.5rem;
   transition: all 0.3s;
 }
 
@@ -484,6 +485,6 @@ SHOP LIST
 .shop-item__price {
   font-size: 14px;
   font-weight: bold;
-  color: #333;
+  color: #f06;
   margin: 0;
 }
