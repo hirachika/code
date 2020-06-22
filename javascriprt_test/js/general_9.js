@@ -4,6 +4,7 @@ const DEALER_WIN_RATE = document.getElementsByClassName('win-rate__denominator')
 const PLAYER_WIN = document.querySelector('.porker-game__player-win');
 const PLAYER_LOSE = document.querySelector('.porker-game__player-lose');
 const PLAYER_DRAW = document.querySelector('.porker-game__player-draw');
+const PLAYER_TOTAL = document.querySelector('.porker-game__total');
 const PLAYER_CARDS = document.getElementsByClassName('porker__playing-card');
 const PLAYER_CARD = Array.from(PLAYER_CARDS);
 const ROLE_NAMES = document.getElementsByClassName('porker__role-name');
@@ -17,26 +18,26 @@ const CARD_RANK = 13;
 // ゲームセット回数
 let game_count = 0;
 let game_set = 0;
+let click_count = 0;
 let dealerWinCount = 0;
+let dealerWinCountSet = 0;
 let playerWinCount = 0;
 let playerDrawCount = 0;
-let playerLoseCount = 0;
 
 // 親の勝率設定 ※検証用
-const WIN_RATE = 5;
+const WIN_RATE = 3;
 DEALER_WIN_RATE[0].innerHTML = WIN_RATE;
 
 BUTTONS[0].addEventListener('click', (e) => {
   e.preventDefault();
-  // ゲーム回数
-  game_count++;
-
-  // ゲームセット
+  click_count++;
   game_set++;
+  console.log('click_count', click_count);
   console.log('game_set', game_set);
-  if (game_set % WIN_RATE == 0) {
-    // 5回に1回リセットする
+
+  if (game_set === WIN_RATE) {
     game_set = 0;
+    dealerWinCountSet = 0;
   }
 
   // ゲームの初期化
@@ -47,11 +48,10 @@ BUTTONS[0].addEventListener('click', (e) => {
   };
   initialize(PLAYER_CARD);
 
-  // カードをシャッフルして格納
-  let dealerCards;
-  let playerCards;
-
   const gameStart = () => {
+    game_count++;
+    console.log('game_count', game_count);
+
     const CARDS = [];
     for (let i = 1; i <= CARD_RANK; i++) {
       CARDS.push(`club${i}`, `heart${i}`, `diamond${i}`, `spade${i}`);
@@ -59,8 +59,9 @@ BUTTONS[0].addEventListener('click', (e) => {
     const SHUFFLE_CARDS = CARDS.sort(() => {
       return Math.random() - 0.5;
     });
-    dealerCards = SHUFFLE_CARDS.splice(0, HAND);
-    playerCards = SHUFFLE_CARDS.splice(0, HAND);
+
+    let dealerCards = SHUFFLE_CARDS.splice(0, HAND);
+    let playerCards = SHUFFLE_CARDS.splice(0, HAND);
 
     // プレイヤーカードを判定用に加工
     class Card {
@@ -199,26 +200,44 @@ BUTTONS[0].addEventListener('click', (e) => {
     };
 
     // 出力（子が勝ったら出力）
-    const result = (dealerResult, playerResult) => {
-      if (playerResult === 'win') {
+    const result = (result) => {
+      if (result === 'playerDraw') {
+        playerDrawCount++;
+      } else if (result === 'dealerWin') {
+        dealerWinCount++;
+        dealerWinCountSet++;
+        if (game_set === WIN_RATE && dealerWinCountSet === 0) {
+          console.log('result -> dealerWinCountSet', dealerWinCountSet);
+          console.log('通過した');
+          gameStart();
+        } else if (game_set === 3) {
+          console.log('うん？');
+        }
+      } else if (result === 'playerWin') {
         playerWinCount++;
-      } else if (playerWinCount <= 4) {
-        gameStart();
       }
-      PLAYER_WIN.innerHTML = playerWinCount;
-      PLAYER_LOSE.innerHTML = game_count - (playerWinCount + playerDrawCount);
-      PLAYER_DRAW.innerHTML = playerDrawCount;
+      console.log('result -> playerWinCount', playerWinCount);
+      console.log('result -> playerDrawCount', playerDrawCount);
+      console.log('result -> dealerWinCount', dealerWinCount);
+      console.log('result -> dealerWinCountSet', dealerWinCountSet);
     };
 
-    // const input = (dealerResult, playerResult) => {
-    //   ROLE_NAME[0].innerHTML = DEALER_ROLE.toUpperCase();
-    //   ROLE_NAME[1].innerHTML = PLAYER_ROLE.toUpperCase();
-    //   RESULT[0].innerHTML = dealerResult.toUpperCase();
-    //   RESULT[1].innerHTML = playerResult.toUpperCase();
-    //   RESULT[0].classList = `porker-game__result--${dealerResult}`;
-    //   RESULT[1].classList = `porker-game__result--${playerResult}`;
-    //   PLAYER_WIN.innerHTML = playerWin;
-    //   PLAYER_LOSE.innerHTML = dealerWin;
+    let diff = game_count - click_count;
+    console.log('result -> diff', diff);
+
+    // input(playerWinCount, playerDrawCount, dealerWinCount - diff);
+
+    // const input = (winCount, loseCount, drawCount) => {
+    //   // ROLE_NAME[0].innerHTML = DEALER_ROLE.toUpperCase();
+    //   // ROLE_NAME[1].innerHTML = PLAYER_ROLE.toUpperCase();
+    //   // RESULT[0].innerHTML = dealerResult.toUpperCase();
+    //   // RESULT[1].innerHTML = playerResult.toUpperCase();
+    //   // RESULT[0].classList = `porker-game__result--${dealerResult}`;
+    //   // RESULT[1].classList = `porker-game__result--${playerResult}`;
+    //   PLAYER_WIN.innerHTML = winCount;
+    //   PLAYER_LOSE.innerHTML = loseCount;
+    //   PLAYER_DRAW.innerHTML = drawCount;
+    //   PLAYER_TOTAL.innerHTML = game_count;
     //   distribute(dealerCards, PLAYER_CARD[0]);
     //   distribute(playerCards, PLAYER_CARD[1]);
     // };
@@ -229,9 +248,9 @@ BUTTONS[0].addEventListener('click', (e) => {
       const PLAYER_MAXIMUM = Math.max.apply(null, array2);
 
       if (DEARER_MAXIMUM > PLAYER_MAXIMUM) {
-        result('win', 'lose');
+        result('dealerWin');
       } else if (DEARER_MAXIMUM < PLAYER_MAXIMUM) {
-        result('lose', 'win');
+        result('playerWin');
       } else if (DEARER_MAXIMUM === PLAYER_MAXIMUM) {
         const DEARER_MAXIMUM_INDEX = array1.indexOf(DEARER_MAXIMUM);
         const PLAYER_MAXIMUM_INDEX = array2.indexOf(PLAYER_MAXIMUM);
@@ -242,16 +261,16 @@ BUTTONS[0].addEventListener('click', (e) => {
     };
 
     // 役名の強さで勝敗判定
-    const determineResult = (dealerRank, playerRank) => {
+    const determineResult = (rank1, rank2) => {
       // ハイカード
-      if (dealerRank === 1 && playerRank === 1) {
+      if (rank1 === 1 && rank2 === 1) {
         equalsMaximumValue(DEALER.getNumbers(), PLAYER.getNumbers());
-      } else if (dealerRank === playerRank) {
-        result('draw', 'draw');
-      } else if (dealerRank > playerRank) {
-        result('win', 'lose');
-      } else if (dealerRank < playerRank) {
-        result('lose', 'win');
+      } else if (rank1 === rank2) {
+        result('playerDraw');
+      } else if (rank1 > rank2) {
+        result('dealerWin');
+      } else if (rank1 < rank2) {
+        result('playerWin');
       }
     };
     determineResult(DEALER_RANK, PLAYER_RANK);
