@@ -40,32 +40,26 @@ textarea {
 }
 
 .header__contents {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background: url(../images/header-logo.png) 10px 50% no-repeat;
+  max-width: 500px;
   min-height: 100px;
-}
-
-.header__contents h1,
-.header__contents h2 {
-  margin: 0;
-  color: #fff;
-  line-height: 1;
+  margin: 0 auto;
+  padding: 4rem 0 0;
 }
 
 .header__contents h1 {
-  padding: 30px 0 10px 85px;
-  font-size: 24px;
+  margin: 0 0 2rem;
+  color: #fff;
+  text-align: center;
+  line-height: 1;
+  font-size: 36px;
 }
 
-.header__contents h2 {
-  padding: 0 0 0 85px;
+.header__contents p {
+  text-align: center;
+  margin-top: 1rem;
+  color: #fff;
   font-size: 14px;
-  font-weight: normal;
-}
-
-.main-wrapper {
-  padding: 2rem;
 }
 
 .section {
@@ -75,6 +69,7 @@ textarea {
   background-color: #fff;
   -webkit-box-shadow: 0px 5px 3px -3px rgba(0, 0, 0, 0.4);
   box-shadow: 0px 5px 3px -3px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
 }
 
 .section__title {
