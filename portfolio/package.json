@@ -10,13 +10,18 @@
     "test": "jest"
   },
   "dependencies": {
-    "nuxt": "^2.14.0"
+    "destyle.css": "^1.0.15",
+    "nuxt": "^2.14.0",
+    "vue-typed-js": "^0.1.2"
   },
   "devDependencies": {
+    "@nuxtjs/style-resources": "^1.0.0",
     "@vue/test-utils": "^1.0.3",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^26.1.0",
     "jest": "^26.1.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.2",
     "vue-jest": "^3.0.4"
   }
 }
