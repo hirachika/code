@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "bulma": "^0.9.0",
     "destyle.css": "^1.0.15",
     "nuxt": "^2.14.0",
     "vue-typed-js": "^0.1.2"

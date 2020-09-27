@@ -25,11 +25,14 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+
   /*
   ** Global CSS
   */
   css: [
     'destyle.css',
+    // node.js module but we specify the pre-processor
+    { src: 'bulma/bulma.sass', lang: 'sass' }
   ],
   /*
   ** Plugins to load before mounting the App
@@ -63,5 +66,15 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    postcss: {
+      plugins: {
+        'postcss-custom-properties': {
+          warnings: false
+        }
+      }
+    },
+  },
+  generate: { 
+    dir: 'public' 
   }
 }
