@@ -17,8 +17,7 @@
         <button class="button is-primary is-inverted is-outlined">Welcom Login Form</button>
       </nuxt-link>
     </div>
-</div>
-
+  </div>
 </template>
 
 <script>
@@ -53,7 +52,7 @@ export default {
   min-height: 100vh;
 
   h1 {
-    width: 100%;
+    width: 90%;
     position: absolute;
     top: 50%;
     left: 50%;
