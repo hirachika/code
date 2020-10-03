@@ -1,7 +1,7 @@
 <template>
   <div class="top">
     <div class="container">
-      <p>ホーム画面ですぞい</p>
+      <p>ようこそ{{ $store.state.user.name }}さん</p>
     </div>
   </div>
 </template>

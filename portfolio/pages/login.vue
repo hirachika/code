@@ -61,10 +61,11 @@ export default {
       const provider = new firebase.auth.GoogleAuthProvider();
       firebase.auth().signInWithPopup(provider)
       .then((result) => {
-        console.log(result);
-        // TODO:トップページへ
+        const name = result.user.displayName;
+        this.$store.dispatch('user/updateDataAction', name);
+        this.$router.push('/home');
       }).catch((error) => {
-        console.log('ログインできませんでしたよ諦めて')
+        console.log(error);
         // TODO:ログイン画面にリダイレクトさせる
       });
     }

@@ -1,18 +1,20 @@
-// Set your brand colors
-$purple: #8A4D76;
-$pink: #FA7C91;
-$brown: #757763;
-$beige-light: #D0D1CD;
-$beige-lighter: #EFF0EB;
+// メインカラー
+$main-color: #FFA000;
+$main-bg-color: #E3F2FD;
 
-// Update Bulma's global variables
-$grey-dark: $brown;
-$grey-light: $beige-light;
-$primary: $purple;
-$link: $pink;
+// TODO:サブカラー
+// $sub-color: #4a98f1;
 
-// Update some of Bulma's component variables
-$control-border-width: 2px;
-$input-background-color: $beige-lighter;
-$input-border-color: transparent;
-$input-shadow: none;
+// テキストカラー
+$font-color: #212121;
+
+// アクセントカラー
+$accent-color: #29B6F6;
+ 
+//　無彩色（黒と白はblack,whiteで記述すること）
+$non-colored-color-gray-600: #333;
+$non-colored-color-gray-500: #797979;
+$non-colored-color-gray-400: #a3a3a3;
+$non-colored-color-gray-300: #d1d1d1;
+$non-colored-color-gray-200: #eee;
+$non-colored-color-gray-100: #f9f9f9;

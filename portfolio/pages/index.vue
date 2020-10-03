@@ -13,8 +13,7 @@
         class="login"
         :class="{'visible': isActive}"
         to="/login"
-      >
-        <button class="button is-primary is-inverted is-outlined">Welcom Login Form</button>
+      >Click Me!
       </nuxt-link>
     </div>
   </div>
@@ -43,7 +42,7 @@ export default {
 
 <style lang="scss">
 .top {
-  background-color: #000;
+  background-color: $main-bg-color;
 }
 
 .container {
@@ -57,9 +56,8 @@ export default {
     top: 50%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
-    color: $purple;
+    color: $main-color;
     text-align: center;
-    color: #fff;
     font-size: 72px;
   }
 
@@ -68,10 +66,16 @@ export default {
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 150px;
+    padding: .3rem;
     margin: 0;
+    font-size: 24px;
+    text-align: center;
+    color: $main-color;
+    border: solid 1px $main-color;
+    border-radius: 5px;
     transform: translateY(-50%) translateX(-50%);
     opacity: 0;
-    text-align: center;
   }
 
   .hidden {
