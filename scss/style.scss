@@ -1,6 +1,352 @@
 $main-color: #6E0DA7;
+$base-color: #FBF3FF;
+$link-color: #FFFF12;
+$text-color: #000;
+$text-sub-color: #707070;
 
-.c-header {
-  background-color: $main-color;
+@function get_vmin($size, $viewport:375){
+	$rate: 100 / $viewport;
+	@return $rate * $size * 1vmin;
+}
+
+@mixin fontSize($font_size:10){
+  font-size: $font_size * 1px;
+  font-size: get_vmin($font_size);
+}
+
+@function get_vw($size, $viewport:375){
+	$rate: 100 / $viewport;
+	@return $rate * $size * 1vw;
+}
+
+@mixin fontEj($font_size: 32px) {
+  font-size: $font_size;
+  font-weight: 600;
+  font-family: 'Oswald', sans-serif;
+}
+
+// ブレークポイント設定
+$pc: 768;
+@mixin pc {
+  @media all and (min-width: ($pc + 'px')) {
+    @content;
+  }
+}
+$sp: 767;
+@mixin sp {
+  @media all and (max-width: ($sp + 'px')) {
+    @content;
+  }
+}
+$tb: 960;
+@mixin tb {
+  @media all and (max-width: ($tb + 'px')) {
+    @content;
+  }
+}
+
+/*--------------------------
+ common
+----------------------------*/
+html,
+body {
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  line-height: 1.5;
+  letter-spacing: .05rem;
+  color: $text-color;
+  text-align: left;
+  @include pc {
+    font-size: 16px
+  }
+  @include sp {
+    font-size: get_vw(14);
+  }
+}
+img {
+  width: 100%;
+}
+.pc-only {
+  display: inherit !important;
+}
+.sp-only {
+  display: none !important;
+}
+@include sp {
+  .pc-only {
+    display: none !important;
+  }
+  .sp-only {
+    display: inherit !important;
+  }
+}
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.container {
+  max-width: 1024px;
+}
+.container-md {
+  max-width: 1170px;
+}
+.container-sm {
+  max-width: 960px;
+}
+
+/*--------------------------
+ top page
+----------------------------*/
+.page-header {
   color: #fff;
+  background-color: $main-color;
+  @include pc {
+    padding: 3rem 0;
+  }
+  &__inner {
+    position: relative;
+    margin: auto;
+    z-index: 1;
+    @include pc {
+      padding: 2rem 0;
+    }
+    @include sp {
+      overflow-x: hidden;
+    }
+    &::after {
+      content: "";
+      mix-blend-mode: soft-light;
+      position: absolute;
+      top: 0;
+      margin: 0 -5%;
+      width: 110%;
+      height: 100%;
+      z-index: -1;
+      @include pc {
+        background: url("/img/page-header-bg.jpg") center / 100% auto no-repeat;
+      }
+      @include sp {
+        background: url("/img/page-header-bg_sp.jpg") center / 100% auto no-repeat;
+      }
+    }
+    &::before {
+      content: "";
+      display: block;
+      background: url("/img/page-header-character.png") center / 100% auto no-repeat;
+      position: absolute;
+      height: 100%;
+      z-index: 0;
+      @include pc {
+        width: 40%;
+        bottom: 0;
+        right: -2%;
+      }
+      @include sp {
+        width: 70%;
+        bottom: -10%;
+        right: -24%;
+      }
+    }
+  }
+  &__title {
+    @include fontEj(80px);
+    line-height: 1.2;
+    @include sp {
+      font-size: get_vw(56);
+    }
+  }
+}
+.global-nav {
+  margin-top: 4rem;
+  &__list {
+    display: flex;
+    gap: 2rem;
+    @include pc {
+      @include fontEj();
+    }
+    @include sp {
+      display: none;
+      @include fontEj(20px);
+    }
+    a:hover {
+      color: $link-color;
+      transition: all .5s ease;
+    }
+  }
+}
+.page-section {
+  &__title {
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    @include pc {
+      margin-bottom: 4rem;
+    }
+    @include sp {
+      margin-bottom: get_vw(30);
+    }
+    span {
+      display: block;
+      margin-bottom: 1rem;
+      color: #fff;
+      @include pc {
+        font-size: 60px;
+      }
+      @include sp {
+        font-size: get_vw(48);
+      }
+    }
+    &--outline {
+      color: $text-color;
+      span {
+        -webkit-text-stroke: 2px $main-color;
+      }
+    }
+  }
+}
+.main-section {
+  background-color: $base-color;
+  @include pc {
+    padding: 5rem 0;
+  }
+  @include sp {
+    padding: get_vw(50) 0;
+  }
+  .story-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @include pc {
+      gap: 2rem;
+    }
+    @include sp {
+      gap: 1rem;
+    }
+    &__card  {
+      @include pc {
+        width: 48%;
+      }
+      @include sp {
+        width: 100%;
+        padding: 1rem;
+      }
+      a {
+        background-color: #fff;
+        padding: 2rem;
+        display: flex;
+        justify-content: space-between;
+        transition: .2s;
+        &:hover {
+          transform: translateY(-7px);
+        }
+      }
+      figure {
+        width: 40%;
+      }
+    }
+    .card-text {
+      width: 55%;
+      font-weight: 600;
+      @include sp {
+        font-size: get_vw(14)
+      }
+      time {
+        display: block;
+        margin-bottom: .5rem;
+        font-weight: 400;
+        font-size: 80%;
+        color: $text-sub-color;
+      }
+    }
+  }
+}
+.profile-section {
+  @include pc {
+    padding: 5rem 0;
+  }
+  @include sp {
+    padding: get_vw(50) 0;
+  }
+  &__flex {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    @include pc {
+      justify-content: space-between;
+    }
+    @include sp {
+      justify-content: center;
+    }
+    figure {
+      border: 1px solid $main-color;
+      @include pc {
+        width: 30%;
+      }
+      @include sp {
+        width: 60%;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  &__desc {
+    @include pc {
+      width: 60%;
+    }
+    @include sp {
+      width: 100%;
+    }
+  }
+  &__name {
+    font-size: 36px;
+    font-weight: bold;
+    @include sp {
+      text-align: center;
+    }
+    &:first-line {
+      font-size: 40%;
+      line-height: 1;
+      letter-spacing: 1rem;
+    }
+  }
+  &__txt {
+    line-height: 2;
+  }
+  &__sns {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: $main-color;
+    @include sp {
+      justify-content: center;
+    }
+    a:hover {
+      color: $link-color;
+      transition: all .5s ease;
+    }
+  }
+}
+
+/*--------------------------
+ character
+----------------------------*/
+.character-section {
+  &__inner {
+    background-color: $main-color;
+    transform: skew(0deg, -50deg);
+  }
+  &__wrap {
+    transform: skew(0deg, 50deg);
+  }
 }
