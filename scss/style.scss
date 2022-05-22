@@ -20,10 +20,10 @@ $text-sub-color: #707070;
 	@return $rate * $size * 1vw;
 }
 
-@mixin fontEj($font_size: 32px) {
+@mixin fontEj($font_size: 24px) {
   font-size: $font_size;
   font-weight: 600;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Cairo', sans-serif;
 }
 
 // ブレークポイント設定
@@ -55,8 +55,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  letter-spacing: .05rem;
+  font-family: 'Noto Sans JP', sans-serif;
   color: $text-color;
   text-align: left;
   @include pc {
@@ -113,6 +112,9 @@ img {
   @include pc {
     padding: 3rem 0;
   }
+  @include sp {
+    margin-top: 2rem;
+  }
   &__inner {
     position: relative;
     margin: auto;
@@ -121,6 +123,7 @@ img {
       padding: 2rem 0;
     }
     @include sp {
+      padding: get_vw(100) get_vw(10) get_vw(60);
       overflow: hidden;
     }
     &::after {
@@ -142,41 +145,52 @@ img {
     &::before {
       content: "";
       display: block;
-      background: url("/img/page-header-character.png") center / 100% auto no-repeat;
+      background: url("/img/page-header-character.png") center / 80% auto no-repeat;
       position: absolute;
       height: 100%;
       z-index: 0;
+      bottom: 0;
       @include pc {
         width: 40%;
-        bottom: 0;
         right: -2%;
       }
       @include sp {
         width: 70%;
-        bottom: -10%;
-        right: -24%;
+        right: -18%;
       }
     }
   }
   &__title {
-    @include fontEj(80px);
+    font-size: 72px;
     line-height: 1.2;
     @include sp {
-      font-size: get_vw(56);
+      @include fontSize(32);
     }
   }
 }
 .global-nav {
-  margin-top: 4rem;
+  @include pc {
+    margin-top: 4rem;
+    @include fontEj();
+  }
+  @include sp {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: .5rem 1rem;
+    background-color: $primary-color;
+    color: #fff;
+    z-index: 2;
+    @include fontEj(16px);
+  }
   &__list {
     display: flex;
-    gap: 2rem;
     @include pc {
-      @include fontEj();
+      gap: 2rem;
     }
     @include sp {
-      display: none;
-      @include fontEj(20px);
+      justify-content: space-around;
     }
     a {
       &:hover {
@@ -250,7 +264,7 @@ img {
 .site-body {
   background-color: $third-color;
   @include pc {
-    padding: 5rem 0;
+    padding: 5rem 0 10rem;
   }
   @include sp {
     padding: get_vw(50) 0;
@@ -290,8 +304,6 @@ img {
   &__title {
     color: #fff;
     text-align: center;
-    font-weight: 600;
-    font-family: 'Oswald', sans-serif;
     @include pc {
       margin-bottom: 4rem;
     }
@@ -302,9 +314,7 @@ img {
       display: block;
       margin-bottom: 1rem;
       color: #fff;
-      @include pc {
-        font-size: 60px;
-      }
+      @include fontEj(60px);
       @include sp {
         font-size: get_vw(48);
       }
@@ -358,8 +368,9 @@ img {
     .card-text {
       width: 55%;
       font-weight: 600;
+      line-height: 1.5;
       @include sp {
-        font-size: get_vw(14)
+        @include fontSize(14);
       }
       time {
         display: block;
@@ -408,9 +419,12 @@ img {
     }
   }
   &__name {
-    font-size: 36px;
-    font-weight: bold;
     margin-bottom: 1rem;
+    @include fontEj(36px);
+    @include sp {
+      margin-bottom: .5rem;
+      @include fontSize(24);
+    }
     &:first-line {
       font-size: 40%;
       line-height: 1;
@@ -439,6 +453,7 @@ img {
   position: relative;
   overflow: hidden;
   background:linear-gradient(135deg, $link-color 0%,$primary-color 50%);
+  z-index: 0;
   &::after {
     @include pc {
       position: absolute;
@@ -450,6 +465,7 @@ img {
       top: 0;
       right: -25%;
       transform: rotate(25deg);
+      z-index: -1;
     }
   }
   @include pc {
@@ -459,7 +475,7 @@ img {
     padding: get_vw(50) 0;
   }
 }
-.character-list {
+.characters {
   li {
     padding: 0 120px 100px;
     display: flex;
@@ -467,7 +483,7 @@ img {
     align-items: center;
     flex-wrap: wrap;
     @include sp {
-      padding: 0;
+      padding: 0 0 3rem;
       justify-content: center;
       flex-direction: column-reverse;
       gap: 2rem;
@@ -489,16 +505,19 @@ img {
     }
   }
   &__name {
-    font-size: 24px;
-    font-weight: bold;
     margin-bottom: 1rem;
+    @include fontEj(36px);
+    @include sp {
+      margin-bottom: .5rem;
+      @include fontSize(24);
+    }
     span {
       font-size: 80%;
     }
     &:first-line {
       font-size: 40%;
       line-height: 1;
-      letter-spacing: .5rem;
+      letter-spacing: .3rem;
     }
   }
 }

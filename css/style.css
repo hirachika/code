@@ -8,8 +8,7 @@ body {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  letter-spacing: 0.05rem;
+  font-family: "Noto Sans JP", sans-serif;
   color: #000;
   text-align: left;
 }
@@ -81,6 +80,11 @@ img {
     padding: 3rem 0;
   }
 }
+@media all and (max-width: 767px) {
+  .page-header {
+    margin-top: 2rem;
+  }
+}
 .page-header__inner {
   position: relative;
   margin: auto;
@@ -93,6 +97,7 @@ img {
 }
 @media all and (max-width: 767px) {
   .page-header__inner {
+    padding: 26.6666666667vw 2.6666666667vw 16vw;
     overflow: hidden;
   }
 }
@@ -119,59 +124,72 @@ img {
 .page-header__inner::before {
   content: "";
   display: block;
-  background: url("/img/page-header-character.png") center/100% auto no-repeat;
+  background: url("/img/page-header-character.png") center/80% auto no-repeat;
   position: absolute;
   height: 100%;
   z-index: 0;
+  bottom: 0;
 }
 @media all and (min-width: 768px) {
   .page-header__inner::before {
     width: 40%;
-    bottom: 0;
     right: -2%;
   }
 }
 @media all and (max-width: 767px) {
   .page-header__inner::before {
     width: 70%;
-    bottom: -10%;
-    right: -24%;
+    right: -18%;
   }
 }
 .page-header__title {
-  font-size: 80px;
-  font-weight: 600;
-  font-family: "Oswald", sans-serif;
+  font-size: 72px;
   line-height: 1.2;
 }
 @media all and (max-width: 767px) {
   .page-header__title {
-    font-size: 14.9333333333vw;
+    font-size: 32px;
+    font-size: 8.5333333333vmin;
   }
 }
 
-.global-nav {
-  margin-top: 4rem;
+@media all and (min-width: 768px) {
+  .global-nav {
+    margin-top: 4rem;
+    font-size: 24px;
+    font-weight: 600;
+    font-family: "Cairo", sans-serif;
+  }
+}
+@media all and (max-width: 767px) {
+  .global-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background-color: #6E0DA7;
+    color: #fff;
+    z-index: 2;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Cairo", sans-serif;
+  }
 }
 .global-nav__list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 2rem;
 }
 @media all and (min-width: 768px) {
   .global-nav__list {
-    font-size: 32px;
-    font-weight: 600;
-    font-family: "Oswald", sans-serif;
+    gap: 2rem;
   }
 }
 @media all and (max-width: 767px) {
   .global-nav__list {
-    display: none;
-    font-size: 20px;
-    font-weight: 600;
-    font-family: "Oswald", sans-serif;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
   }
 }
 .global-nav__list a:hover {
@@ -261,7 +279,7 @@ img {
 }
 @media all and (min-width: 768px) {
   .site-body {
-    padding: 5rem 0;
+    padding: 5rem 0 10rem;
   }
 }
 @media all and (max-width: 767px) {
@@ -318,8 +336,6 @@ img {
 .page-section__title {
   color: #fff;
   text-align: center;
-  font-weight: 600;
-  font-family: "Oswald", sans-serif;
 }
 @media all and (min-width: 768px) {
   .page-section__title {
@@ -335,11 +351,9 @@ img {
   display: block;
   margin-bottom: 1rem;
   color: #fff;
-}
-@media all and (min-width: 768px) {
-  .page-section__title span {
-    font-size: 60px;
-  }
+  font-size: 60px;
+  font-weight: 600;
+  font-family: "Cairo", sans-serif;
 }
 @media all and (max-width: 767px) {
   .page-section__title span {
@@ -415,10 +429,12 @@ img {
 .main-section .story-list .card-text {
   width: 55%;
   font-weight: 600;
+  line-height: 1.5;
 }
 @media all and (max-width: 767px) {
   .main-section .story-list .card-text {
-    font-size: 3.7333333333vw;
+    font-size: 14px;
+    font-size: 3.7333333333vmin;
   }
 }
 .main-section .story-list .card-text time {
@@ -488,9 +504,17 @@ img {
   }
 }
 .profile-section__name {
-  font-size: 36px;
-  font-weight: bold;
   margin-bottom: 1rem;
+  font-size: 36px;
+  font-weight: 600;
+  font-family: "Cairo", sans-serif;
+}
+@media all and (max-width: 767px) {
+  .profile-section__name {
+    margin-bottom: 0.5rem;
+    font-size: 24px;
+    font-size: 6.4vmin;
+  }
 }
 .profile-section__name:first-line {
   font-size: 40%;
@@ -526,6 +550,7 @@ img {
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #FF57B9 0%, #6E0DA7 50%);
+  z-index: 0;
 }
 @media all and (min-width: 768px) {
   .character-section::after {
@@ -539,6 +564,7 @@ img {
     right: -25%;
     -webkit-transform: rotate(25deg);
             transform: rotate(25deg);
+    z-index: -1;
   }
 }
 @media all and (min-width: 768px) {
@@ -552,7 +578,7 @@ img {
   }
 }
 
-.character-list li {
+.characters li {
   padding: 0 120px 100px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -567,8 +593,8 @@ img {
       flex-wrap: wrap;
 }
 @media all and (max-width: 767px) {
-  .character-list li {
-    padding: 0;
+  .characters li {
+    padding: 0 0 3rem;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -579,37 +605,45 @@ img {
     gap: 2rem;
   }
 }
-.character-list__desc {
+.characters__desc {
   width: 60%;
   line-height: 2;
   color: #fff;
 }
 @media all and (max-width: 767px) {
-  .character-list__desc {
+  .characters__desc {
     width: 80vw;
   }
 }
-.character-list__img {
+.characters__img {
   width: 30%;
   border: solid 1px #6E0DA7;
 }
 @media all and (max-width: 767px) {
-  .character-list__img {
+  .characters__img {
     width: 53.3333333333vw;
   }
 }
-.character-list__name {
-  font-size: 24px;
-  font-weight: bold;
+.characters__name {
   margin-bottom: 1rem;
+  font-size: 36px;
+  font-weight: 600;
+  font-family: "Cairo", sans-serif;
 }
-.character-list__name span {
+@media all and (max-width: 767px) {
+  .characters__name {
+    margin-bottom: 0.5rem;
+    font-size: 24px;
+    font-size: 6.4vmin;
+  }
+}
+.characters__name span {
   font-size: 80%;
 }
-.character-list__name:first-line {
+.characters__name:first-line {
   font-size: 40%;
   line-height: 1;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0.3rem;
 }
 
 /*--------------------------
