@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Webマンガ日和 | CHIKAKO HIRAOKA</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link rel="stylesheet" type="text/css" href="/css/destyle.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <link rel="icon" href="img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/swiper.css">
+  <script src="/js/swiper.min.js"></script>
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <meta name="twitter:card" content="">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:title" content="">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="">
+</head>
+<body>
+  <header class="page-header">
+    <div class="page-header__inner container">
+      <h1 class="page-header__title">Designers dream<br>ephemeral dreams.</h1>
+      <nav id="global-nav" class="global-nav">
+        <ul id="menu-header-menu" class="global-nav__list">
+          <li><a href="#story">STORY</a></li>
+          <li><a href="#character">CHARACTER</a></li>
+          <li><a href="#profile">PROFILE</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="site-body">
+    <div class="site-body__2col container-md">
+      <div class="primary">
+        <div class="primary__inner">
+          <article class="blog">
+            <div class="blog__date"><time datetime="2022-06-01 12:30">2022/06/05</time></div>
+            <h1 class="blog__title">第1話 完璧主義者とやりたいことないやつ</h1>
+            <p>正直「なんてやる気のないやつだ」って思ったし、柏木さんが気に入ったという事実だけで気に入らなかった。そのくらい、私はあなたを警戒していた。</p>
+            <p>それが始まりだった。</p>
+            <h2 class="blog__section-title">ストイックな女</h2>
+          </article>
+          <figure class="blog__img">
+            <img src="https://placehold.jp/700x2000.png" alt="">
+          </figure>
+        </div>
+        <div class="pager">
+          <ul class="article-pager">
+            <li class="article-pager__prev"><a href="">前へ</a></li>
+            <li class="article-pager__next"><a href="">次へ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="secondary">
+        <ul class="banners">
+          <li><a href=""><img src="https://placehold.jp/400x200.png" alt=""></a></li>
+          <li><a href=""><img src="https://placehold.jp/400x400.png" alt=""></a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner container-md">
+      <ul class="footer__banners">
+        <li><a href=""><img src="https://placehold.jp/600x120.png" alt=""></a></li>
+        <li><a href=""><img src="https://placehold.jp/600x120.png" alt=""></a></li>
+      </ul>
+      <p class="footer__copyright"><small>©️ 2022 Rame</small></p>
+    </div>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+  <script>
+    window.onload = function() {
+      var mySwiper = new Swiper ('.swiper-container', {
+        slidesPerView: 1, //画像を何枚表示するか
+        // spaceBetween: 10, //何ピクセル画像の間隔をあけるか
+        loop: true,//最後の画像までいったらループする
+        //ページネーションをつける場合
+        pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true,
+        },
+        //左右のナビゲーションをつける場合
+        navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+        }
+      });
+    }
+  </script>
+</body>
+</html>
