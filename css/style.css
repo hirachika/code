@@ -211,7 +211,7 @@ img {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 .pager .article-pager__prev, .pager .article-pager__next {
   color: .pager .article-pager__prev, .pager .article-pager__next #6E0DA7;

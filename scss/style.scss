@@ -208,7 +208,7 @@ img {
   .article-pager {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
     &__prev,
     &__next {
       color: &$primary-color;
