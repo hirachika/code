@@ -8,7 +8,7 @@ body {
 
 body {
   margin: 0;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: "Kiwi Maru", sans-serif;
   color: #000;
   text-align: left;
 }
@@ -25,6 +25,7 @@ body {
 
 img {
   width: 100%;
+  height: auto;
 }
 
 .pc-only {
@@ -92,7 +93,12 @@ img {
 }
 @media all and (min-width: 768px) {
   .page-header__inner {
-    padding: 2rem 0;
+    padding: 5rem 0;
+  }
+}
+@media all and (max-width: 960px) {
+  .page-header__inner {
+    padding: 4rem 2rem;
   }
 }
 @media all and (max-width: 767px) {
@@ -113,18 +119,18 @@ img {
 }
 @media all and (min-width: 768px) {
   .page-header__inner::after {
-    background: url("/img/page-header-bg.jpg") center/100% auto no-repeat;
+    background: url("images/page-header-bg.jpg") center/100% auto no-repeat;
   }
 }
 @media all and (max-width: 767px) {
   .page-header__inner::after {
-    background: url("/img/page-header-bg_sp.jpg") center/100% auto no-repeat;
+    background: url("images/page-header-bg_sp.jpg") center/100% auto no-repeat;
   }
 }
 .page-header__inner::before {
   content: "";
   display: block;
-  background: url("/img/page-header-character.png") center/80% auto no-repeat;
+  background: url("images/page-header-character.png") center/80% auto no-repeat;
   position: absolute;
   height: 100%;
   z-index: 0;
@@ -145,6 +151,8 @@ img {
 .page-header__title {
   font-size: 72px;
   line-height: 1.2;
+  font-weight: 400;
+  font-family: "Kaisei Opti", sans-serif;
 }
 @media all and (max-width: 767px) {
   .page-header__title {
@@ -155,10 +163,15 @@ img {
 
 @media all and (min-width: 768px) {
   .global-nav {
-    margin-top: 4rem;
+    margin-top: 2rem;
     font-size: 24px;
     font-weight: 600;
-    font-family: "Cairo", sans-serif;
+    font-family: "Kaisei Opti", sans-serif;
+  }
+}
+@media all and (max-width: 960px) {
+  .global-nav {
+    font-size: 18px;
   }
 }
 @media all and (max-width: 767px) {
@@ -173,7 +186,7 @@ img {
     z-index: 2;
     font-size: 16px;
     font-weight: 600;
-    font-family: "Cairo", sans-serif;
+    font-family: "Kaisei Opti", sans-serif;
   }
 }
 .global-nav__list {
@@ -353,18 +366,18 @@ img {
   color: #fff;
   font-size: 60px;
   font-weight: 600;
-  font-family: "Cairo", sans-serif;
+  font-family: "Kaisei Opti", sans-serif;
 }
 @media all and (max-width: 767px) {
   .page-section__title span {
     font-size: 12.8vw;
   }
 }
-.page-section__title--outline {
+.page-section__title--primary {
   color: #000;
 }
-.page-section__title--outline span {
-  -webkit-text-stroke: 2px #6E0DA7;
+.page-section__title--primary span {
+  color: #6E0DA7;
 }
 
 @media all and (min-width: 768px) {
@@ -389,7 +402,7 @@ img {
 }
 @media all and (min-width: 768px) {
   .main-section .story-list {
-    gap: 2rem;
+    gap: 2rem 0;
   }
 }
 @media all and (max-width: 767px) {
@@ -472,8 +485,14 @@ img {
             justify-content: space-between;
   }
 }
+@media all and (max-width: 960px) {
+  .profile-section__flex {
+    padding: 0 120px 100px;
+  }
+}
 @media all and (max-width: 767px) {
   .profile-section__flex {
+    padding: 0;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -507,7 +526,12 @@ img {
   margin-bottom: 1rem;
   font-size: 36px;
   font-weight: 600;
-  font-family: "Cairo", sans-serif;
+  font-family: "Kaisei Opti", sans-serif;
+}
+@media all and (max-width: 960px) {
+  .profile-section__name {
+    font-size: 30px;
+  }
 }
 @media all and (max-width: 767px) {
   .profile-section__name {
@@ -627,8 +651,6 @@ img {
 .characters__name {
   margin-bottom: 1rem;
   font-size: 36px;
-  font-weight: 600;
-  font-family: "Cairo", sans-serif;
 }
 @media all and (max-width: 767px) {
   .characters__name {
@@ -692,4 +714,52 @@ img {
 
 .banners li {
   margin-bottom: 1rem;
+}
+
+/*--------------------------
+ contact
+----------------------------*/
+.contact-form label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-bottom: 2rem;
+}
+.contact-form__left {
+  width: 40%;
+  display: block;
+}
+.contact-form__right {
+  width: 50%;
+  display: block;
+}
+.contact-form .wpcf7-text,
+.contact-form .wpcf7-textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: solid 1px #707070;
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+.wpcf7-submit {
+  display: block;
+  margin: 4rem auto 0;
+  padding: 1rem 3rem;
+  color: #fff;
+  background-color: #6E0DA7;
+  border-radius: 3px;
+}
+
+.wpcf7-not-valid-tip {
+  margin-top: 0.5rem;
+  color: #FF57B9;
+}
+
+.wpcf7-response-output {
+  text-align: center;
+  font-weight: bold;
+  color: #FF57B9;
 }

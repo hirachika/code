@@ -23,7 +23,7 @@ $text-sub-color: #707070;
 @mixin fontEj($font_size: 24px) {
   font-size: $font_size;
   font-weight: 600;
-  font-family: 'Cairo', sans-serif;
+  font-family: 'Kaisei Opti', sans-serif;
 }
 
 // ブレークポイント設定
@@ -55,7 +55,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Kiwi Maru', sans-serif;
   color: $text-color;
   text-align: left;
   @include pc {
@@ -67,6 +67,7 @@ body {
 }
 img {
   width: 100%;
+  height: auto;
 }
 .pc-only {
   display: inherit !important;
@@ -120,7 +121,10 @@ img {
     margin: auto;
     z-index: 1;
     @include pc {
-      padding: 2rem 0;
+      padding: 5rem 0;
+    }
+    @include tb {
+      padding: 4rem 2rem;
     }
     @include sp {
       padding: get_vw(100) get_vw(10) get_vw(60);
@@ -136,16 +140,16 @@ img {
       height: 100%;
       z-index: -1;
       @include pc {
-        background: url("/img/page-header-bg.jpg") center / 100% auto no-repeat;
+        background: url("images/page-header-bg.jpg") center / 100% auto no-repeat;
       }
       @include sp {
-        background: url("/img/page-header-bg_sp.jpg") center / 100% auto no-repeat;
+        background: url("images/page-header-bg_sp.jpg") center / 100% auto no-repeat;
       }
     }
     &::before {
       content: "";
       display: block;
-      background: url("/img/page-header-character.png") center / 80% auto no-repeat;
+      background: url("images/page-header-character.png") center / 80% auto no-repeat;
       position: absolute;
       height: 100%;
       z-index: 0;
@@ -163,6 +167,8 @@ img {
   &__title {
     font-size: 72px;
     line-height: 1.2;
+    font-weight: 400;
+    font-family: 'Kaisei Opti', sans-serif;
     @include sp {
       @include fontSize(32);
     }
@@ -170,8 +176,11 @@ img {
 }
 .global-nav {
   @include pc {
-    margin-top: 4rem;
+    margin-top: 2rem;
     @include fontEj();
+  }
+  @include tb {
+    font-size: 18px;
   }
   @include sp {
     position: fixed;
@@ -319,10 +328,10 @@ img {
         font-size: get_vw(48);
       }
     }
-    &--outline {
+    &--primary {
       color: $text-color;
       span {
-        -webkit-text-stroke: 2px $primary-color;
+        color: $primary-color;
       }
     }
   }
@@ -339,7 +348,7 @@ img {
     justify-content: space-between;
     flex-wrap: wrap;
     @include pc {
-      gap: 2rem;
+      gap: 2rem 0;
     }
     @include sp {
       gap: 1rem;
@@ -396,7 +405,11 @@ img {
     @include pc {
       justify-content: space-between;
     }
+    @include tb {
+      padding: 0 120px 100px;
+    }
     @include sp {
+      padding: 0;
       justify-content: center;
       gap: 2rem;
     }
@@ -421,6 +434,9 @@ img {
   &__name {
     margin-bottom: 1rem;
     @include fontEj(36px);
+    @include tb {
+      font-size: 30px;
+    }
     @include sp {
       margin-bottom: .5rem;
       @include fontSize(24);
@@ -506,7 +522,7 @@ img {
   }
   &__name {
     margin-bottom: 1rem;
-    @include fontEj(36px);
+    font-size: 36px;
     @include sp {
       margin-bottom: .5rem;
       @include fontSize(24);
@@ -563,4 +579,47 @@ img {
   li {
     margin-bottom: 1rem;
   }
+}
+/*--------------------------
+ contact
+----------------------------*/
+.contact-form {
+  label {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+  }
+  &__left {
+    width: 40%;
+    display: block;
+  }
+  &__right {
+    width: 50%;
+    display: block;
+  }
+  .wpcf7-text,
+  .wpcf7-textarea {
+    width: 100%;
+    padding: .5rem;
+    border: solid 1px $text-sub-color;
+    border-radius: 3px;
+    background-color: #fff;
+  }
+}
+.wpcf7-submit {
+  display: block;
+  margin: 4rem auto 0;
+  padding: 1rem 3rem;
+  color: #fff;
+  background-color: $primary-color;
+  border-radius: 3px;
+}
+.wpcf7-not-valid-tip {
+  margin-top: .5rem;
+  color: $link-color;
+}
+.wpcf7-response-output {
+  text-align: center;
+  font-weight: bold;
+  color: $link-color;
 }
