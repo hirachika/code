@@ -18,19 +18,22 @@
 ダッシュボード＜プラグインから必要なプラグインをインストールしていく。
 
 ### 必要プラグインをインストールする
-**Really Simple SSL**※必須
+#### ■ Really Simple SSL ※必須
 - URLを保護するためにインストールする、有効化した後『https』になっていることを確認する。
 - 画面では「70％」「まだ6作業あります」と表示されるが、この作業を行わなくても設定上大きな問題はない（「非表示」か右端の×印を押してOK）。  
 [最初にやっておきたいWordPress初期設定](https://rakkoserver.com/knowledge/693/)
 
-**BackWPup**※必須
+#### ■ BackWPup ※必須
 - ファイルやデータベースの自動バックアップを設定する。  
 [BackWPUpで確実にWordPressのバックアップを取る方法](https://lucy.ne.jp/bazubu/how-to-use-backwpup-3-23804.html)  
 ※**バックアップを格納するフォルダー**のパスを間違えないようにする。  
 ※Basic認証がかかっているとバックアップが取れない。
 
-**EWWW Image Optimizer**※必須
+#### ■ EWWW Image Optimizer
 [2022年最新 EWWW Image Optimizerの設定とWebPへの変換方法](https://ikuzoblog.com/ewww-webp)
+
+#### ■ All in One SEO
+[All in One SEOの設定方法と使い方](https://lucy.ne.jp/bazubu/all-in-one-seo-pack-3-23836.html)
 
 ## ③アクセス制限(Basic認証)
 
