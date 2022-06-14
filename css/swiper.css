@@ -147,8 +147,8 @@
   height: 50px;
   background-color: #fff;
   border-radius: 50%;
-  border: solid 1px #6E0DA7;
-  color: #6E0DA7;
+  border: solid 1px #00a3af;
+  color: #00a3af;
   z-index: 10;
   cursor: pointer;
   display: flex;
@@ -173,7 +173,7 @@
 }
 .swiper-button-prev,
 .swiper-container-rtl .swiper-button-next {
-  left: 0;
+  left: 3%;
   right: auto;
 }
 @media all and (max-width: 767px) {
@@ -188,7 +188,7 @@
 }
 .swiper-button-next,
 .swiper-container-rtl .swiper-button-prev {
-  right: 0;
+  right: 3%;
   left: auto;
 }
 @media all and (max-width: 767px) {
