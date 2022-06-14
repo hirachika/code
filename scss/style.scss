@@ -1,6 +1,6 @@
-$primary-color: #6E0DA7;
-$secondary-color: #F1D6FF;
-$third-color: #FBF3FF;
+$primary-color: #00a3af;
+$secondary-color: #abced8;
+$third-color: #ebf6f7;
 $link-color: #FF57B9;
 $text-color: #000;
 $text-sub-color: #707070;
@@ -69,6 +69,11 @@ img {
   width: 100%;
   height: auto;
 }
+p {
+  margin: 2rem 0;
+  font-size: 16px;
+  line-height: 1.7;
+}
 .pc-only {
   display: inherit !important;
 }
@@ -103,13 +108,54 @@ img {
 .container-sm {
   max-width: 960px;
 }
-
+.tags {
+  margin: .5rem 0;
+  &__list {
+    margin-right: .5rem;
+    padding: .3rem .5rem;
+    background-color: $link-color;
+    display: inline;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: normal;
+    font-size: 14px;
+  }
+}
+.sns {
+  display: flex;
+  margin: 1rem 0;
+  gap: 0 1rem;
+  a {
+    width: 100px;
+    display: inline-block;
+    padding: .3rem 1rem;
+    font-size: 24px;
+    border-radius: 3px;
+    text-align: center;
+    color: #fff;
+    &:hover {
+     opacity: 0.6;
+    }
+  }
+  &__twitter {
+    background: #55acee;
+  }
+  &__facebook {
+    background: #3b5998;
+  }
+  &__line {
+    background: #1dcd00;
+  }
+}
+.wp-block-post-featured-image {
+  display: none;
+}
 /*--------------------------
  header
 ----------------------------*/
 .page-header {
   color: #fff;
-  background:linear-gradient(135deg, $link-color 0%,$primary-color 50%);
+  background-color: $secondary-color;
   @include pc {
     padding: 3rem 0;
   }
@@ -127,7 +173,7 @@ img {
       padding: 4rem 2rem;
     }
     @include sp {
-      padding: get_vw(100) get_vw(10) get_vw(60);
+      padding: get_vw(100) get_vw(10) get_vw(100);
       overflow: hidden;
     }
     &::after {
@@ -149,18 +195,18 @@ img {
     &::before {
       content: "";
       display: block;
-      background: url("images/page-header-character.png") center / 80% auto no-repeat;
+      background: url("images/page-header-character.png") center bottom / 80% auto no-repeat;
       position: absolute;
       height: 100%;
       z-index: 0;
       bottom: 0;
       @include pc {
-        width: 40%;
-        right: -2%;
+        width: 38%;
+        right: 0;
       }
       @include sp {
         width: 70%;
-        right: -18%;
+        right: -12%;
       }
     }
   }
@@ -220,18 +266,39 @@ img {
     gap: 1rem;
     &__prev,
     &__next {
-      color: &$primary-color;
+      color: $primary-color;
       background-color: $third-color;
       a {
         padding: .75rem 1rem;
         display: inline-block;
         &:hover {
-          transition: all .5s ease;
+          transition: all .2s ease;
           color: #fff;
           background-color: $primary-color;
         }
       }
     }
+  }
+}
+/*--------------------------
+ page numbers
+----------------------------*/
+.nav-links {
+  ul {
+    margin-top: 4rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    span,
+    a {
+      padding: .5rem;
+      display: inline-block;
+      background-color: #fff;
+    }
+  }
+  .current {
+    color: #fff;
+    background-color: $primary-color;
   }
 }
 /*--------------------------
@@ -273,7 +340,7 @@ img {
 .site-body {
   background-color: $third-color;
   @include pc {
-    padding: 5rem 0 10rem;
+    padding: 5rem 0;
   }
   @include sp {
     padding: get_vw(50) 0;
@@ -355,27 +422,74 @@ img {
     }
     &__card  {
       @include pc {
-        width: 48%;
+        width: 32%;
       }
       @include sp {
         width: 100%;
       }
       a {
+        display: block;
+        min-height: 400px;
+        padding: 1.5rem;
         background-color: #fff;
-        padding: 2rem;
-        display: flex;
-        justify-content: space-between;
         transition: .2s;
-        &:hover {
-          transform: translateY(-7px);
+        @include tb {
+          min-height: 330px;
         }
       }
+      p {
+        text-align: left;
+        margin: 0;
+      }
       figure {
-        width: 40%;
+        position: relative;
+        overflow: hidden;
+        &::before{
+          display: block;
+          content: '';
+          position: absolute;
+          left: -30%;
+          top:-260%;
+          width: 230%;
+          height: 200%;
+          transform :rotate(40deg);
+          background: rgba(255,255,255,.2);
+          transition: .3s;
+          z-index: 1;
+        }
+        &::after{
+          display: block;
+          content: '';
+          position: absolute;
+          left: -30%;
+          top:-260%;
+          width: 230%;
+          height: 200%;
+          transform :rotate(40deg);
+          background: linear-gradient(to bottom right ,rgba($link-color,.3), rgba($primary-color,.3));
+          transition: .3s;
+          z-index: 2;
+        }
+        img {
+          display: block;
+          width: 100%;
+          transition: .3s;
+        }
+      }
+      &:hover{
+        figure{
+          &::before{
+            top:0;
+          }
+          &::after{
+            top:0;
+            transition-delay:.2s;
+          }
+        }
       }
     }
     .card-text {
-      width: 55%;
+      margin-top: 1rem;
       font-weight: 600;
       line-height: 1.5;
       @include sp {
@@ -406,7 +520,7 @@ img {
       justify-content: space-between;
     }
     @include tb {
-      padding: 0 120px 100px;
+      padding: 0 120px;
     }
     @include sp {
       padding: 0;
@@ -433,7 +547,7 @@ img {
   }
   &__name {
     margin-bottom: 1rem;
-    @include fontEj(36px);
+    @include fontEj(30px);
     @include tb {
       font-size: 30px;
     }
@@ -468,14 +582,14 @@ img {
 .character-section {
   position: relative;
   overflow: hidden;
-  background:linear-gradient(135deg, $link-color 0%,$primary-color 50%);
+  background-color: $primary-color;
   z-index: 0;
   &::after {
     @include pc {
       position: absolute;
       content: "";
       display: block;
-      background: #F1D6FF;
+      background: $secondary-color;
       width: 60%;
       height: 1000px;
       top: 0;
@@ -549,13 +663,31 @@ img {
   }
   &__title {
     font-weight: bold;
-    margin-bottom: 1rem;
     line-height: 1.5;
     @include pc {
       font-size: 24px;
     }
     @include sp {
       font-size: 20px;
+    }
+  }
+  h2 {
+    position: relative;
+    padding: 1rem 0;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.7;
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      content: '';
+      background-image: -webkit-repeating-linear-gradient(135deg, $link-color, $link-color 1px, transparent 2px, transparent 5px);
+      background-image: repeating-linear-gradient(-45deg, $link-color, $link-color 1px, transparent 2px, transparent 5px);
+      background-size: 7px 7px;
+      backface-visibility: hidden;
     }
   }
   &__section-title {
@@ -569,11 +701,6 @@ img {
       font-size: 18px;
     }
   }
-  p {
-    margin-bottom: 2rem;
-    font-size: 16px;
-    line-height: 1.7;
-  }
 }
 .banners {
   li {
@@ -586,22 +713,30 @@ img {
 .contact-form {
   label {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin-bottom: 2rem;
   }
   &__left {
     width: 40%;
     display: block;
+    @include sp {
+      width: 100%;
+      margin-bottom: .5rem;
+    }
   }
   &__right {
     width: 50%;
     display: block;
+    @include sp {
+      width: 100%;
+    }
   }
   .wpcf7-text,
   .wpcf7-textarea {
     width: 100%;
     padding: .5rem;
-    border: solid 1px $text-sub-color;
+    border: solid 1px $primary-color;
     border-radius: 3px;
     background-color: #fff;
   }
@@ -622,4 +757,5 @@ img {
   text-align: center;
   font-weight: bold;
   color: $link-color;
+  border-color: transparent;
 }
