@@ -1,0 +1,761 @@
+$primary-color: #00a3af;
+$secondary-color: #abced8;
+$third-color: #ebf6f7;
+$link-color: #FF57B9;
+$text-color: #000;
+$text-sub-color: #707070;
+
+@function get_vmin($size, $viewport:375){
+	$rate: 100 / $viewport;
+	@return $rate * $size * 1vmin;
+}
+
+@mixin fontSize($font_size:10){
+  font-size: $font_size * 1px;
+  font-size: get_vmin($font_size);
+}
+
+@function get_vw($size, $viewport:375){
+	$rate: 100 / $viewport;
+	@return $rate * $size * 1vw;
+}
+
+@mixin fontEj($font_size: 24px) {
+  font-size: $font_size;
+  font-weight: 600;
+  font-family: 'Kaisei Opti', sans-serif;
+}
+
+// ブレークポイント設定
+$pc: 768;
+@mixin pc {
+  @media all and (min-width: ($pc + 'px')) {
+    @content;
+  }
+}
+$sp: 767;
+@mixin sp {
+  @media all and (max-width: ($sp + 'px')) {
+    @content;
+  }
+}
+$tb: 960;
+@mixin tb {
+  @media all and (max-width: ($tb + 'px')) {
+    @content;
+  }
+}
+
+/*--------------------------
+ common
+----------------------------*/
+html,
+body {
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  font-family: 'Kiwi Maru', sans-serif;
+  color: $text-color;
+  text-align: left;
+  @include pc {
+    font-size: 16px
+  }
+  @include sp {
+    font-size: get_vw(14);
+  }
+}
+img {
+  width: 100%;
+  height: auto;
+}
+p {
+  margin: 2rem 0;
+  font-size: 16px;
+  line-height: 1.7;
+}
+.pc-only {
+  display: inherit !important;
+}
+.sp-only {
+  display: none !important;
+}
+@include sp {
+  .pc-only {
+    display: none !important;
+  }
+  .sp-only {
+    display: inherit !important;
+  }
+}
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.container {
+  max-width: 1024px;
+}
+.container-md {
+  max-width: 1170px;
+}
+.container-sm {
+  max-width: 960px;
+}
+.tags {
+  margin: .5rem 0;
+  &__list {
+    margin-right: .5rem;
+    padding: .3rem .5rem;
+    background-color: $link-color;
+    display: inline;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: normal;
+    font-size: 14px;
+  }
+}
+.sns {
+  display: flex;
+  margin: 1rem 0;
+  gap: 0 1rem;
+  a {
+    width: 100px;
+    display: inline-block;
+    padding: .3rem 1rem;
+    font-size: 24px;
+    border-radius: 3px;
+    text-align: center;
+    color: #fff;
+    &:hover {
+     opacity: 0.6;
+    }
+  }
+  &__twitter {
+    background: #55acee;
+  }
+  &__facebook {
+    background: #3b5998;
+  }
+  &__line {
+    background: #1dcd00;
+  }
+}
+.wp-block-post-featured-image {
+  display: none;
+}
+/*--------------------------
+ header
+----------------------------*/
+.page-header {
+  color: #fff;
+  background-color: $secondary-color;
+  @include pc {
+    padding: 3rem 0;
+  }
+  @include sp {
+    margin-top: 2rem;
+  }
+  &__inner {
+    position: relative;
+    margin: auto;
+    z-index: 1;
+    @include pc {
+      padding: 5rem 0;
+    }
+    @include tb {
+      padding: 4rem 2rem;
+    }
+    @include sp {
+      padding: get_vw(100) get_vw(10) get_vw(100);
+      overflow: hidden;
+    }
+    &::after {
+      content: "";
+      mix-blend-mode: soft-light;
+      position: absolute;
+      top: 0;
+      margin: 0 -5%;
+      width: 110%;
+      height: 100%;
+      z-index: -1;
+      @include pc {
+        background: url("images/page-header-bg.jpg") center / 100% auto no-repeat;
+      }
+      @include sp {
+        background: url("images/page-header-bg_sp.jpg") center / 100% auto no-repeat;
+      }
+    }
+    &::before {
+      content: "";
+      display: block;
+      background: url("images/page-header-character.png") center bottom / 80% auto no-repeat;
+      position: absolute;
+      height: 100%;
+      z-index: 0;
+      bottom: 0;
+      @include pc {
+        width: 38%;
+        right: 0;
+      }
+      @include sp {
+        width: 70%;
+        right: -12%;
+      }
+    }
+  }
+  &__title {
+    font-size: 72px;
+    line-height: 1.2;
+    font-weight: 400;
+    font-family: 'Kaisei Opti', sans-serif;
+    @include sp {
+      @include fontSize(32);
+    }
+  }
+}
+.global-nav {
+  @include pc {
+    margin-top: 2rem;
+    @include fontEj();
+  }
+  @include tb {
+    font-size: 18px;
+  }
+  @include sp {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: .5rem 1rem;
+    background-color: $primary-color;
+    color: #fff;
+    z-index: 2;
+    @include fontEj(16px);
+  }
+  &__list {
+    display: flex;
+    @include pc {
+      gap: 2rem;
+    }
+    @include sp {
+      justify-content: space-around;
+    }
+    a {
+      &:hover {
+        color: $link-color;
+        transition: all .5s ease;
+      }
+    }
+  }
+}
+/*--------------------------
+ pager
+----------------------------*/
+.pager {
+  margin: 3rem auto 2rem;
+  .article-pager {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    &__prev,
+    &__next {
+      color: $primary-color;
+      background-color: $third-color;
+      a {
+        padding: .75rem 1rem;
+        display: inline-block;
+        &:hover {
+          transition: all .2s ease;
+          color: #fff;
+          background-color: $primary-color;
+        }
+      }
+    }
+  }
+}
+/*--------------------------
+ page numbers
+----------------------------*/
+.nav-links {
+  ul {
+    margin-top: 4rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    span,
+    a {
+      padding: .5rem;
+      display: inline-block;
+      background-color: #fff;
+    }
+  }
+  .current {
+    color: #fff;
+    background-color: $primary-color;
+  }
+}
+/*--------------------------
+ footer
+----------------------------*/
+.footer {
+  background-color: $primary-color;
+  color: #fff;
+  &__inner {
+    @include pc {
+      padding: 3rem 0;
+    }
+    @include sp {
+      padding: 3rem 1rem;
+    }
+  }
+  &__banners {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    li {
+      @include pc {
+        width: 48%;
+      }
+      @include sp {
+        width: 100%;
+      }
+    }
+  }
+  &__copyright {
+    text-align: center;
+    margin-top: 2rem;
+  }
+}
+/*--------------------------
+ common
+----------------------------*/
+.site-body {
+  background-color: $third-color;
+  @include pc {
+    padding: 5rem 0;
+  }
+  @include sp {
+    padding: get_vw(50) 0;
+  }
+  &__2col {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @include sp {
+      gap: 2rem;
+    }
+  }
+}
+.primary {
+  background-color: #fff;
+  @include pc {
+    padding: 3rem 2rem;
+    width: 71.5%;
+  }
+  @include sp {
+    padding: 2rem 1rem;
+    width: 100%;
+  }
+}
+.secondary {
+  @include pc {
+    width: 25%;
+  }
+  @include sp {
+    width: 100%;
+  }
+}
+/*--------------------------
+ top
+----------------------------*/
+.page-section {
+  &__title {
+    color: #fff;
+    text-align: center;
+    @include pc {
+      margin-bottom: 4rem;
+    }
+    @include sp {
+      margin-bottom: get_vw(30);
+    }
+    span {
+      display: block;
+      margin-bottom: 1rem;
+      color: #fff;
+      @include fontEj(60px);
+      @include sp {
+        font-size: get_vw(48);
+      }
+    }
+    &--primary {
+      color: $text-color;
+      span {
+        color: $primary-color;
+      }
+    }
+  }
+}
+.main-section {
+  @include pc {
+    padding-bottom: 5rem;
+  }
+  @include sp {
+    padding-bottom: get_vw(50);
+  }
+  .story-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @include pc {
+      gap: 2rem 0;
+    }
+    @include sp {
+      gap: 1rem;
+    }
+    &__card  {
+      @include pc {
+        width: 32%;
+      }
+      @include sp {
+        width: 100%;
+      }
+      a {
+        display: block;
+        min-height: 400px;
+        padding: 1.5rem;
+        background-color: #fff;
+        transition: .2s;
+        @include tb {
+          min-height: 330px;
+        }
+      }
+      p {
+        text-align: left;
+        margin: 0;
+      }
+      figure {
+        position: relative;
+        overflow: hidden;
+        &::before{
+          display: block;
+          content: '';
+          position: absolute;
+          left: -30%;
+          top:-260%;
+          width: 230%;
+          height: 200%;
+          transform :rotate(40deg);
+          background: rgba(255,255,255,.2);
+          transition: .3s;
+          z-index: 1;
+        }
+        &::after{
+          display: block;
+          content: '';
+          position: absolute;
+          left: -30%;
+          top:-260%;
+          width: 230%;
+          height: 200%;
+          transform :rotate(40deg);
+          background: linear-gradient(to bottom right ,rgba($link-color,.3), rgba($primary-color,.3));
+          transition: .3s;
+          z-index: 2;
+        }
+        img {
+          display: block;
+          width: 100%;
+          transition: .3s;
+        }
+      }
+      &:hover{
+        figure{
+          &::before{
+            top:0;
+          }
+          &::after{
+            top:0;
+            transition-delay:.2s;
+          }
+        }
+      }
+    }
+    .card-text {
+      margin-top: 1rem;
+      font-weight: 600;
+      line-height: 1.5;
+      @include sp {
+        @include fontSize(14);
+      }
+      time {
+        display: block;
+        margin-bottom: .5rem;
+        font-weight: 400;
+        font-size: 80%;
+        color: $text-sub-color;
+      }
+    }
+  }
+}
+.profile-section {
+  @include pc {
+    padding-top: 5rem;
+  }
+  @include sp {
+    padding-top: get_vw(50);
+  }
+  &__flex {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    @include pc {
+      justify-content: space-between;
+    }
+    @include tb {
+      padding: 0 120px;
+    }
+    @include sp {
+      padding: 0;
+      justify-content: center;
+      gap: 2rem;
+    }
+    figure {
+      border: 1px solid $primary-color;
+      @include pc {
+        width: 30%;
+      }
+      @include sp {
+        width: get_vw(200);
+      }
+    }
+  }
+  &__desc {
+    @include pc {
+      width: 60%;
+    }
+    @include sp {
+      width: get_vw(300);
+    }
+  }
+  &__name {
+    margin-bottom: 1rem;
+    @include fontEj(30px);
+    @include tb {
+      font-size: 30px;
+    }
+    @include sp {
+      margin-bottom: .5rem;
+      @include fontSize(24);
+    }
+    &:first-line {
+      font-size: 40%;
+      line-height: 1;
+      letter-spacing: 1rem;
+    }
+  }
+  &__txt {
+    line-height: 2;
+  }
+  &__sns {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: $primary-color;
+    @include sp {
+      justify-content: center;
+    }
+    a:hover {
+      color: $link-color;
+      transition: all .5s ease;
+    }
+  }
+}
+.character-section {
+  position: relative;
+  overflow: hidden;
+  background-color: $primary-color;
+  z-index: 0;
+  &::after {
+    @include pc {
+      position: absolute;
+      content: "";
+      display: block;
+      background: $secondary-color;
+      width: 60%;
+      height: 1000px;
+      top: 0;
+      right: -25%;
+      transform: rotate(25deg);
+      z-index: -1;
+    }
+  }
+  @include pc {
+    padding: 5rem 0;
+  }
+  @include sp {
+    padding: get_vw(50) 0;
+  }
+}
+.characters {
+  li {
+    padding: 0 120px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    @include sp {
+      padding: 0 0 3rem;
+      justify-content: center;
+      flex-direction: column-reverse;
+      gap: 2rem;
+    }
+  }
+  &__desc {
+    width: 60%;
+    line-height: 2;
+    color: #fff;
+    @include sp {
+      width: get_vw(300);
+    }
+  }
+  &__img {
+    width: 30%;
+    border: solid 1px $primary-color;
+    @include sp {
+      width: get_vw(200);
+    }
+  }
+  &__name {
+    margin-bottom: 1rem;
+    font-size: 36px;
+    @include sp {
+      margin-bottom: .5rem;
+      @include fontSize(24);
+    }
+    span {
+      font-size: 80%;
+    }
+    &:first-line {
+      font-size: 40%;
+      line-height: 1;
+      letter-spacing: .3rem;
+    }
+  }
+}
+
+/*--------------------------
+ blog
+----------------------------*/
+.blog {
+  &__date {
+    color: $text-sub-color;
+    margin-bottom: .5rem;
+    font-size: 12px;
+  }
+  &__title {
+    font-weight: bold;
+    line-height: 1.5;
+    @include pc {
+      font-size: 24px;
+    }
+    @include sp {
+      font-size: 20px;
+    }
+  }
+  h2 {
+    position: relative;
+    padding: 1rem 0;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.7;
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      content: '';
+      background-image: -webkit-repeating-linear-gradient(135deg, $link-color, $link-color 1px, transparent 2px, transparent 5px);
+      background-image: repeating-linear-gradient(-45deg, $link-color, $link-color 1px, transparent 2px, transparent 5px);
+      background-size: 7px 7px;
+      backface-visibility: hidden;
+    }
+  }
+  &__section-title {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    @include pc {
+      font-size: 20px;
+    }
+    @include sp {
+      font-size: 18px;
+    }
+  }
+}
+.banners {
+  li {
+    margin-bottom: 1rem;
+  }
+}
+/*--------------------------
+ contact
+----------------------------*/
+.contact-form {
+  label {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  &__left {
+    width: 40%;
+    display: block;
+    @include sp {
+      width: 100%;
+      margin-bottom: .5rem;
+    }
+  }
+  &__right {
+    width: 50%;
+    display: block;
+    @include sp {
+      width: 100%;
+    }
+  }
+  .wpcf7-text,
+  .wpcf7-textarea {
+    width: 100%;
+    padding: .5rem;
+    border: solid 1px $primary-color;
+    border-radius: 3px;
+    background-color: #fff;
+  }
+}
+.wpcf7-submit {
+  display: block;
+  margin: 4rem auto 0;
+  padding: 1rem 3rem;
+  color: #fff;
+  background-color: $primary-color;
+  border-radius: 3px;
+}
+.wpcf7-not-valid-tip {
+  margin-top: .5rem;
+  color: $link-color;
+}
+.wpcf7-response-output {
+  text-align: center;
+  font-weight: bold;
+  color: $link-color;
+  border-color: transparent;
+}
