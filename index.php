@@ -1,28 +1,48 @@
 <?php get_header(); ?>
   <main class="site-body">
     <article class="site-body__container">
-      <section class="main-section page-section" id="story">
-        <div class="main-section__inner container-md">
-          <h2 class="page-section__title page-section__title--primary"><span>STORY</span>最新話はこちらからご覧ください</h2>
-          <ul class="story-list">
-          <?php if(have_posts()): while(have_posts()): the_post(); ?>
-            <li class="story-list__card">
-              <a href="<?php the_permalink(); ?>">
-                <figure>
-                <?php if( has_post_thumbnail() ): ?>
-                  <?php the_post_thumbnail('medium'); ?>
-                <?php else: ?>
-                  <img src="<?php echo get_template_directory_uri(); ?>/images/no-image.gif" alt="no-img">
-                <?php endif; ?>
-                </figure>
-                <div class="card-text">
-                  <time datetime="<?php echo get_the_date() ?>"><?php echo mysql2date('Y年n月j日', $post->post_date); ?></time>
-                  <p><?php the_title(); ?></p>
-                </div>
-              </a>
-            </li>
-          <?php endwhile; endif; ?>
-        </div>
+      <section class="main-section page-section">
+        <?php
+          $categories = get_categories(array('parent' => 0)); //最上位のカテゴリーのみを取得する
+          foreach ($categories as $category):
+            ?>
+          <div class="main-section__inner container-md">
+            <h2 class="page-section__title page-section__title--primary">
+              <span><?php echo $category->name; ?></span><?php echo $category->description; ?>
+            </h2>
+            <?php
+            $my_query = new WP_Query(array('cat' => $category->term_id));
+            if ($my_query->have_posts()):
+            ?>
+            <ul class="post-list">
+              <?php while ($my_query->have_posts()) : $my_query->the_post(); ?>
+              <li class="post-list__card">
+                <a href="<?php the_permalink(); ?>">
+                  <figure>
+                  <?php if( has_post_thumbnail() ): ?>
+                    <?php the_post_thumbnail('medium'); ?>
+                  <?php else: ?>
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/no-image.gif" alt="no-img">
+                  <?php endif; ?>
+                  </figure>
+                  <div class="card-text">
+                    <time datetime="<?php echo get_the_date() ?>"><?php echo mysql2date('Y年n月j日', $post->post_date); ?></time>
+                    <p><?php the_title(); ?></p>
+                  </div>
+                </a>
+              </li>
+              <?php endwhile; ?>
+            </ul>
+            <!-- <div class="more-button">
+              <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>">Read More</a>
+            </div> -->
+            <?php wp_reset_postdata(); ?>
+            <?php else: ?>
+            <p>投稿はありません。</p>
+            <?php endif; ?>
+          </div>
+
+        <?php endforeach; ?>
       </section>
 
       <section class="character-section page-section" id="character">

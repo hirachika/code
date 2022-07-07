@@ -6,15 +6,6 @@
   <meta name="description" content="" />
   <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/swiper.css">
   <?php wp_head(); ?>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBN11L7WT4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-GBN11L7WT4');
-  </script>
 </head>
 <body>
   <header class="page-header">
