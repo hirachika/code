@@ -74,6 +74,24 @@ p {
   font-size: 16px;
   line-height: 1.7;
 }
+.blog {
+ ul {
+   color: $link-color;
+   border: dotted $link-color 1px;
+   padding: .5rem .5rem .5rem 2rem;
+   list-style-type: circle;
+   li {
+     line-height: 1.5;
+     padding: .3rem 0;
+   }
+  }
+  a {
+    color: $link-color;
+    &:visited {
+      color: $link-color;
+    }
+  }
+}
 .pc-only {
   display: inherit !important;
 }
@@ -312,7 +330,7 @@ p {
       padding: 3rem 0;
     }
     @include sp {
-      padding: 3rem 1rem;
+      padding: 1rem 0;
     }
   }
   &__banners {
@@ -331,7 +349,7 @@ p {
   }
   &__copyright {
     text-align: center;
-    margin-top: 2rem;
+    margin: 0;
   }
 }
 /*--------------------------
@@ -427,21 +445,21 @@ p {
   }
 }
 .post-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   margin-bottom: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
   @include pc {
     gap: 2rem;
   }
-  @include sp {
+  @include tb {
     gap: 1rem;
   }
+  @include sp {
+    display: block;
+  }
   &__card  {
-    @include pc {
-      width: calc(100% / 3 - 2rem);
-    }
-    @include sp {
-      width: 100%;
+    &:not(:last-child) {
+      margin-bottom: 1rem;
     }
     a {
       display: block;
@@ -540,7 +558,6 @@ p {
     @include sp {
       padding: 0;
       justify-content: center;
-      gap: 2rem;
     }
     figure {
       border: 1px solid $primary-color;

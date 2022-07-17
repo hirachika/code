@@ -34,7 +34,7 @@
               <?php endwhile; ?>
             </ul>
             <!-- <div class="more-button">
-              <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>">Read More</a>
+              <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>">もっと見る</a>
             </div> -->
             <?php wp_reset_postdata(); ?>
             <?php else: ?>
