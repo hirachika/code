@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <main class="site-body">
-    <div class="site-body__2col container-sm">
+    <div class="site-body__2col container-md">
       <div class="primary">
         <div class="primary__inner">
           <div class="blog">
@@ -9,11 +9,11 @@
             <?php 
             $post_tags = get_the_tags();
               if ( $post_tags ) {
-                echo '<ul class="tags">';
+                echo '<div class="tags">';
                 foreach ( $post_tags as $tag ) {
-                  echo '<li class="tags__list">'.$tag->name.'</li>';
+                  echo '<div class="tags__list">'.$tag->name.'</div>';
                 }
-                echo '</ul>';
+                echo '</div>';
               }
             ?>
             <div class="blog__content">

@@ -81,19 +81,19 @@ p {
 }
 
 .container {
-  max-width: 1024px;
-}
-
-.container-md {
-  max-width: 1170px;
-}
-
-.container-sm {
   max-width: 960px;
 }
 
+.container-md {
+  max-width: 1024px;
+}
+
+.container-sm {
+  max-width: 800px;
+}
+
 .tags {
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 1rem;
 }
 .tags__list {
   margin-right: 0.5rem;
@@ -148,7 +148,7 @@ p {
 }
 @media all and (min-width: 768px) {
   .page-header {
-    padding: 3rem 0;
+    padding: 3rem 2rem;
   }
 }
 @media all and (max-width: 767px) {
@@ -160,16 +160,7 @@ p {
   position: relative;
   margin: auto;
   z-index: 1;
-}
-@media all and (min-width: 768px) {
-  .page-header__inner {
-    padding: 5rem 0;
-  }
-}
-@media all and (max-width: 960px) {
-  .page-header__inner {
-    padding: 4rem 2rem;
-  }
+  padding: 4rem 0;
 }
 @media all and (max-width: 767px) {
   .page-header__inner {
@@ -342,15 +333,8 @@ p {
   background-color: #00a3af;
   color: #fff;
 }
-@media all and (min-width: 768px) {
-  .footer__inner {
-    padding: 3rem 0;
-  }
-}
-@media all and (max-width: 767px) {
-  .footer__inner {
-    padding: 1rem 0;
-  }
+.footer__inner {
+  padding: 1rem 0;
 }
 .footer__banners {
   display: -webkit-box;
@@ -458,7 +442,7 @@ p {
 }
 @media all and (min-width: 768px) {
   .page-section__title {
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
   }
 }
 @media all and (max-width: 767px) {
@@ -500,7 +484,6 @@ p {
 .post-list {
   display: -ms-grid;
   display: grid;
-  margin-bottom: 2rem;
   grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
 }
 @media all and (min-width: 768px) {
@@ -515,17 +498,13 @@ p {
 }
 @media all and (max-width: 767px) {
   .post-list {
-    display: block;
+    gap: 2rem;
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
   }
-}
-.post-list__card:not(:last-child) {
-  margin-bottom: 1rem;
 }
 .post-list__card a {
   display: block;
-  min-height: 400px;
-  padding: 1.5rem;
-  background-color: #fff;
   -webkit-transition: 0.2s;
   transition: 0.2s;
 }
@@ -647,11 +626,12 @@ p {
   }
 }
 .profile-section__flex figure {
-  border: 1px solid #00a3af;
+  border-radius: 50%;
+  overflow: hidden;
 }
 @media all and (min-width: 768px) {
   .profile-section__flex figure {
-    width: 30%;
+    width: 33%;
   }
 }
 @media all and (max-width: 767px) {
@@ -740,7 +720,7 @@ p {
 }
 @media all and (min-width: 768px) {
   .character-section {
-    padding: 5rem 0;
+    padding: 4rem 0;
   }
 }
 @media all and (max-width: 767px) {
@@ -787,8 +767,9 @@ p {
   }
 }
 .characters__img {
-  width: 30%;
-  border: solid 1px #00a3af;
+  width: 33%;
+  border-radius: 50%;
+  overflow: hidden;
 }
 @media all and (max-width: 767px) {
   .characters__img {

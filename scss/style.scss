@@ -118,16 +118,16 @@ p {
   margin-left: auto;
 }
 .container {
-  max-width: 1024px;
-}
-.container-md {
-  max-width: 1170px;
-}
-.container-sm {
   max-width: 960px;
 }
+.container-md {
+  max-width: 1024px;
+}
+.container-sm {
+  max-width: 800px;
+}
 .tags {
-  margin: .5rem 0;
+  margin: .5rem 0 1rem;
   &__list {
     margin-right: .5rem;
     padding: .3rem .5rem;
@@ -175,7 +175,7 @@ p {
   color: #fff;
   background-color: $secondary-color;
   @include pc {
-    padding: 3rem 0;
+    padding: 3rem 2rem;
   }
   @include sp {
     margin-top: 2rem;
@@ -184,12 +184,7 @@ p {
     position: relative;
     margin: auto;
     z-index: 1;
-    @include pc {
-      padding: 5rem 0;
-    }
-    @include tb {
-      padding: 4rem 2rem;
-    }
+    padding: 4rem 0;
     @include sp {
       padding: get_vw(100) get_vw(10) get_vw(100);
       overflow: hidden;
@@ -326,12 +321,7 @@ p {
   background-color: $primary-color;
   color: #fff;
   &__inner {
-    @include pc {
-      padding: 3rem 0;
-    }
-    @include sp {
-      padding: 1rem 0;
-    }
+    padding: 1rem 0;
   }
   &__banners {
     display: flex;
@@ -412,7 +402,7 @@ p {
     color: #fff;
     text-align: center;
     @include pc {
-      margin-bottom: 4rem;
+      margin-bottom: 2rem;
     }
     @include sp {
       margin-bottom: get_vw(30);
@@ -446,7 +436,6 @@ p {
 }
 .post-list {
   display: grid;
-  margin-bottom: 2rem;
   grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
   @include pc {
     gap: 2rem;
@@ -455,17 +444,12 @@ p {
     gap: 1rem;
   }
   @include sp {
-    display: block;
+    gap: 2rem;
+    grid-template-columns: 100%;
   }
   &__card  {
-    &:not(:last-child) {
-      margin-bottom: 1rem;
-    }
     a {
       display: block;
-      min-height: 400px;
-      padding: 1.5rem;
-      background-color: #fff;
       transition: .2s;
       @include tb {
         min-height: 330px;
@@ -560,9 +544,10 @@ p {
       justify-content: center;
     }
     figure {
-      border: 1px solid $primary-color;
+      border-radius: 50%;
+      overflow: hidden;
       @include pc {
-        width: 30%;
+        width: 33%;
       }
       @include sp {
         width: get_vw(200);
@@ -631,7 +616,7 @@ p {
     }
   }
   @include pc {
-    padding: 5rem 0;
+    padding: 4rem 0;
   }
   @include sp {
     padding: get_vw(50) 0;
@@ -660,8 +645,9 @@ p {
     }
   }
   &__img {
-    width: 30%;
-    border: solid 1px $primary-color;
+    width: 33%;
+    border-radius: 50%;
+    overflow: hidden;
     @include sp {
       width: get_vw(200);
     }
